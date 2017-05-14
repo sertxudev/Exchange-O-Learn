@@ -3,17 +3,20 @@
         <div class="row header-container">
             <div class="col-md-4 col-sm-4 col-xs-4 header">
                 <i class="fa fa-th-list"></i>
-                <h2 class="text-nowrap text-center hidden-xs">  Agenda</h2></div>
+                <h2 class="text-nowrap text-center hidden-xs">  Agenda</h2>
+            </div>
             <div class="col-md-4 col-sm-4 col-xs-4 header">
                 <i class="fa fa-comments"></i>
-                <h2 class="text-nowrap text-center hidden-xs title">  Chat</h2></div>
+                <h2 class="text-nowrap text-center hidden-xs title">  Chat</h2>
+            </div>
             <div class="col-md-4 col-sm-4 col-xs-4 header">
                 <i class="fa fa-file-text"></i>
-                <h2 class="text-nowrap text-center hidden-xs title">  Archivos</h2></div>
+                <h2 class="text-nowrap text-center hidden-xs title">  Archivos</h2>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4 module" ng-controller="eventsController as module">
-                <div class="row evento" ng-repeat="event in module.events">
+                <div class="row evento" ng-repeat="event in module.events" ng-click="mostrarEvento(event.id)">
                     <div class="col-lg-3 col-md-3 date">
                         <h2 class="day"> {{event.time| date:'dd'}} </h2><span>{{event.time| date:'MMMM'}} {{event.time| date:'yyyy'}}</span></div>
                     <div class="col-lg-9 col-md-9 body">
@@ -22,6 +25,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 module overflow-hidden" ng-controller="chatController as module">
                 <div class="row chat">
                     <div class="col-md-12">
@@ -34,7 +38,7 @@
                                             <div class="chat-msg">
                                                 <div class="chat-msg-author">
                                                     <strong>{{message.name}} {{message.surname}}</strong>&nbsp;
-                                                    <span class="date">{{1288323623006| date: 'HH:mm dd/mm/yyyy'}}</span>
+                                                    <span class="date">{{message.time| date: 'hh:mm a dd/MM/yyyy'}}</span>
                                                 </div>
                                                 <p>{{message.text}}</p>
                                             </div>
@@ -60,12 +64,15 @@
             <div class="col-md-4 module">
                 <div class="row carpetas">
                     <div class="col-xs-6 carpeta not-active">
-                        <h4>Personal </h4></div>
+                        <h4>Privado </h4></div>
                     <div class="col-xs-6 carpeta">
-                        <h4>Profesor </h4></div>
+                        <h4>Público </h4></div>
                 </div>
                 <div class="row archivos">
                     <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo">
+                        <div>
+                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        </div>
                         <img class="img-responsive" src="./assets/img/blank.png">
                         <span>defalt.exe </span>
                     </div>
@@ -124,5 +131,20 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div class="modal fade" id="mostrarEvento" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="event_title">{{module.evento.title}} - {{module.evento.date| date:"dd 'de' MMMM 'del' yyyy"}}</h4>
+                </div>
+                <div class="modal-body" id="event_description"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>

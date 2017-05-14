@@ -5,4 +5,9 @@ class evento extends ddbb {
         $now = time();
         return $this->seleccionar("SELECT * FROM events WHERE time>='$now' ORDER BY time ASC");
     }
+    
+    public function obtenerEvento($id){
+        $now = time();
+        return $this->seleccionar("SELECT * FROM events WHERE id='$id'");
+    }
 }
