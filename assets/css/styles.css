@@ -1,0 +1,128 @@
+.evento .day{
+  margin:auto;
+  height:30px;
+}
+
+@media (max-width:1199px) {
+  .evento .date{
+    text-align:center;
+    margin-top:1%;
+  }
+}
+
+@media (min-width:1200px) {
+  .evento .date{
+    text-align:center;
+    margin-top:2%;
+  }
+}
+
+.header{
+  height:70px;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+
+.header-container{
+  background-color:#32fea8;
+}
+
+.evento .body .title{
+  margin:3px 0;
+  margin-bottom:3px;
+}
+
+.evento .body .text{
+  height:43px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin:0;
+}
+
+.archivo:hover{
+  box-shadow:inset 2px 0px 10px #808080;
+  z-index:2;
+}
+
+.evento:hover{
+  box-shadow:inset 2px 0px 10px #808080;
+  z-index:2;
+}
+
+.archivos{
+  margin:5px;
+  padding:0;
+  position:relative;
+}
+
+.evento{
+  margin:5px;
+  padding:0;
+  border-bottom:1px dashed #000;
+  position:relative;
+}
+
+.evento .body{
+  height:100%;
+}
+
+.module{
+  height:calc(100vh - 70px);
+  margin:0;
+  overflow-y:hidden;
+  max-height:100vh;
+}
+
+.module:hover{
+  box-shadow:0 0 20px 5px #808080;
+  z-index:1;
+  overflow-y:auto;
+}
+
+.overflow-hidden{
+  overflow:hidden!important;
+}
+
+.archivo{
+  padding:5px 0 0 0;
+  text-align:center;
+  margin:0 5px 0 5px;
+}
+
+.archivo img{
+  margin:auto;
+}
+
+.carpetas{
+  height:50px;
+}
+
+.carpeta.not-active{
+  box-shadow:inset 2px 0px 10px #808080;
+}
+
+.carpeta{
+  height:50px;
+  padding:8px 0 0 0;
+  margin:0;
+  text-align:center;
+  vertical-align:middle;
+}
+
+@media (max-width:767px) {
+  .header .fa{
+    margin-top:20px;
+    margin-bottom:10px;
+  }
+}
+
+.header .fa{
+  font-size:30px;
+  display:inline-block;
+}
+
+.header h2{
+  display:inline-block;
+}
+
