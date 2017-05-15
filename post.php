@@ -50,4 +50,9 @@
             $messages = new c_messages();
             echo $messages->sendMessage($_GET['text'], $_SESSION['id']);
             break;
+        
+        case 'obtenerCarpetas':
+            $folders = new c_carpeta();
+            echo $folders->obtenerCarpetas();
+            break;
     }

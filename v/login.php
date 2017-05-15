@@ -38,6 +38,30 @@
             </div>
         </div>
         <script>
+
+            var submit = document.getElementById("password");
+            submit.addEventListener("keydown", function (e) {
+                if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+                    $.ajax({
+                        method: "POST",
+                        url: "post.php",
+
+                        data: {
+                            r: 'login',
+                            username: $('#username').val(),
+                            password: $('#password').val()
+                        }
+                    })
+                            .done(function (msg) {
+                                if (msg == 1) {
+                                    window.location = "./";
+                                } else {
+                                    $('#alerts').removeClass('hidden');
+                                }
+                            });
+                }
+            });
+
             $('#login').on('click', function () {
                 $.ajax({
                     method: "POST",

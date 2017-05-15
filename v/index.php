@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 module">
+            <div class="col-md-4 module" ng-controller="filesController as module">
                 <div class="row carpetas">
                     <div class="col-xs-6 carpeta not-active">
                         <h4>Privado </h4></div>

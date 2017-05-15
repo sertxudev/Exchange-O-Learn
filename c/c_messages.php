@@ -3,7 +3,7 @@
 class c_messages {
 
     public function obtenerMessages() {
-        $messages = new messages();        
+        $messages = new messages();
         $pdo = $messages->obtenerMessages();
         $return = json_encode($pdo->fetchAll(PDO::FETCH_ASSOC));
         echo $return;
