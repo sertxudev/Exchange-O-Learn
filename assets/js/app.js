@@ -29,6 +29,18 @@
                     }
             , 1500);
 
+            var submit = document.getElementById("submit_text");
+            submit.addEventListener("keydown", function (e) {
+                if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+                    $http.get('./post.php?r=sendMessage&text=' + $('#submit_text').val()).then(function (response) {
+                        if (response.data == 1) {
+                            $('#submit_text').val('');
+                        }
+                    });
+                }
+            });
+
+
             $('#submit_button').on('click', function () {
                 $http.get('./post.php?r=sendMessage&text=' + $('#submit_text').val()).then(function (response) {
                     if (response.data == 1) {
