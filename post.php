@@ -53,6 +53,6 @@
         
         case 'obtenerCarpetas':
             $folders = new c_carpeta();
-            echo $folders->obtenerCarpetas();
+            echo $folders->obtenerCarpetas($_SESSION['id']);
             break;
     }

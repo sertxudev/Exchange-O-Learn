@@ -20,10 +20,6 @@ class ddbb {
         return $this->conexion->exec($sql);
     }
 
-    public function loop($sql) {
-        return $this->conexion->query($sql);
-    }
-    
     public function seleccionar($sql) {
         logger::guardar("Seleccionar: " . $sql);
         return $this->conexion->query($sql);

@@ -1,6 +1,6 @@
 <body ng-app="eol">
     <div class="container-fluid">
-        <div class="row header-container">
+        <div class="row header-container" id="header-container">
             <div class="col-md-4 col-sm-4 col-xs-4 header">
                 <i class="fa fa-th-list"></i>
                 <h2 class="text-nowrap text-center hidden-xs">  Agenda</h2>
@@ -63,23 +63,23 @@
             </div>
             <div class="col-md-4 module" ng-controller="filesController as module">
                 <div class="row carpetas">
-                    <div class="col-xs-6 carpeta not-active">
-                        <h4>Privado </h4></div>
-                    <div class="col-xs-6 carpeta">
+                    <div class="col-xs-6 carpeta not-active" ng-click="personalTab">
+                        <h4>Carpeta Personal </h4></div>
+                    <div class="col-xs-6 carpeta" ng-click="publicTab">
                         <h4>Público </h4></div>
                 </div>
                 <div class="row archivos">
-                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo">
-                        <div>
+                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo" ng-repeat="carpeta in module.carpetas" ng-click="mostrarCarpeta(carpeta.id)">
+<!--                        <div class="options">
                             <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </div>
+                        </div>-->
+                        <img class="img-responsive" src="./assets/img/folder.png">
+                        <span>{{carpeta.name}} {{carpeta.surname}}</span>
+                    </div>
+<!--                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo">
                         <img class="img-responsive" src="./assets/img/blank.png">
                         <span>defalt.exe </span>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo">
-                        <img class="img-responsive" src="./assets/img/blank.png">
-                        <span>defalt.exe </span>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -134,7 +134,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="mostrarEvento" role="dialog">
+    <div class="modal fade" id="mostrarCarpeta" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

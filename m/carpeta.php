@@ -1,7 +1,7 @@
 <?php
 
 class carpeta extends ddbb {
-    public function obtenerCarpetas(){
-        return $this->seleccionar("SELECT name, surname FROM users WHERE type!='admin'");
+    public function obtenerCarpetas($id){
+        return $this->seleccionar("SELECT id, name, surname FROM users WHERE type!='admin' AND id!=$id ORDER BY name");
     }
 }
