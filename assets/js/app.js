@@ -67,6 +67,7 @@
             var module = this;
             $http.get('./post.php?r=obtenerCarpetas').then(function (response) {
                 module.carpetas = response.data;
+                console.log(response);
             });
 
             /*$scope.mostrarEvento = function (id) {
@@ -80,17 +81,15 @@
              };*/
             
             $scope.mostrarCarpeta = function (id) {
-                /*$http.get('./post.php?r=obtenerEvento&id=' + id).then(function (response) {
-                    module.evento = response.data;
-                    console.log(response);
-                    $('#event_title').html(response.data.title + ' - ' + response.data.time);
-                    $('#event_description').html(response.data.description);
-                    $('#mostrarEvento').modal();
-                });*/
                 console.log(id);
             };
-            $scope.tabPersonal = function (id) {
-                console.log(id);
+            
+            $scope.tabPersonal = function () {
+                console.log('Personal');
+            };
+            
+            $scope.tabPublic = function () {
+                console.log('Public');
             };
         }]);
 })();

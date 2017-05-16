@@ -63,9 +63,9 @@
             </div>
             <div class="col-md-4 module" ng-controller="filesController as module">
                 <div class="row carpetas">
-                    <div class="col-xs-6 carpeta not-active" ng-click="personalTab">
+                    <div class="col-xs-6 carpeta not-active" ng-click="tabPersonal()">
                         <h4>Carpeta Personal </h4></div>
-                    <div class="col-xs-6 carpeta" ng-click="publicTab">
+                    <div class="col-xs-6 carpeta" ng-click="tabPublic()">
                         <h4>Público </h4></div>
                 </div>
                 <div class="row archivos">

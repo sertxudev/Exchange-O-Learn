@@ -52,7 +52,7 @@
             break;
         
         case 'obtenerCarpetas':
-            $folders = new c_carpeta();
-            echo $folders->obtenerCarpetas($_SESSION['id']);
+            $folder = new c_carpeta();
+            echo $folder->obtenerCarpetas($_SESSION['id']);
             break;
     }
