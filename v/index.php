@@ -74,6 +74,11 @@
                         <span>{{carpetas.name}} {{carpetas.surname}}</span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12 upload" ng-click="uploadFile()">
+                        <h2><i class="fa fa-upload" aria-hidden="true"></i></h2>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

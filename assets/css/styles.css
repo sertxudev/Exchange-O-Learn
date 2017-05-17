@@ -4,6 +4,24 @@
     }
 }
 
+.upload{
+    bottom: 0;
+    position: absolute;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 70px;
+}
+
+.upload:hover{
+    box-shadow: 0 0 20px 0px #808080;
+}
+
+.upload h2{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
 .archivo .options{
     opacity: 0.35;
     height: 25px;
@@ -110,7 +128,7 @@
 }
 
 .archivo{
-  height: 130px;
+  min-height: 130px;
   padding:0 0 0 0;
   text-align:center;
   margin:0 5px 0 5px;

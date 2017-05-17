@@ -53,7 +53,6 @@
                 }
             });
 
-
             setInterval(
                     function () {
                         if (int < 1) {
