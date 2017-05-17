@@ -55,4 +55,14 @@
             $folder = new c_carpeta();
             echo $folder->obtenerCarpetas($_SESSION['id']);
             break;
+        
+        case 'obtenerCarpeta':
+            $folder = new c_carpeta();
+            echo $folder->obtenerCarpeta($_GET['id']);
+            break;
+        
+        case 'obtenerUsuario':
+            $user = new c_usuario();
+            echo $user->obtenerUsuario($_GET['id']);
+            break; 
     }

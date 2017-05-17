@@ -31,3 +31,7 @@
     }
 
     include_once './v/footer.php';
+
+    /* TODO */
+//    Quitar logger del setInterval de los mensajes
+//    

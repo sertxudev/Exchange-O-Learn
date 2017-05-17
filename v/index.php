@@ -69,17 +69,10 @@
                         <h4>Público </h4></div>
                 </div>
                 <div class="row archivos">
-                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo" ng-repeat="carpeta in module.carpetas" ng-click="mostrarCarpeta(carpeta.id)">
-<!--                        <div class="options">
-                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </div>-->
+                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo" ng-repeat="carpetas in module.carpetas" ng-click="mostrarCarpeta(carpetas.id)">
                         <img class="img-responsive" src="./assets/img/folder.png">
-                        <span>{{carpeta.name}} {{carpeta.surname}}</span>
+                        <span>{{carpetas.name}} {{carpetas.surname}}</span>
                     </div>
-<!--                    <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo">
-                        <img class="img-responsive" src="./assets/img/blank.png">
-                        <span>defalt.exe </span>
-                    </div>-->
                 </div>
             </div>
         </div>
@@ -134,7 +127,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="mostrarCarpeta" role="dialog">
+    <div class="modal fade" id="mostrarEvento" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -148,3 +141,25 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="mostrarCarpeta" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="carpeta_name">{{module.usuario.name}} {{module.usuario.surname}}</h4>
+                </div>
+                <div class="modal-body" id="carpeta_files">
+                    <ul>
+                        <li ng-repeat="carpeta in module.carpeta">
+                            {{carpeta.file_name}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+

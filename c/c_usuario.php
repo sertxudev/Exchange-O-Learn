@@ -6,9 +6,9 @@ class c_usuario {
         $user = new usuario();
         
         $id = $this->sanitizeString($post_id);
-        
-        $user->obtener($id);
-        return $user->fetch(PDO::FETCH_ASSOC);
+
+        $pdo = $user->obtener($id);
+        return json_encode($pdo->fetch(PDO::FETCH_ASSOC));
     }
     
     public function crearUsuario($post_username, $post_password, $post_name, $post_surname, $post_birthday, $post_type){
@@ -49,10 +49,11 @@ class c_usuario {
     public function login($post_username, $post_password) {
         $user = new usuario();
         
-        $username = $this->sanitizeString($post_username);
-        $password = hash('sha512', $this->sanitizeString($post_password));
-        
-        $pdo = $user->login($username, $password);
+        //$username = $this->sanitizeString($post_username);
+        //$password = hash('sha512', $this->sanitizeString($post_password));
+        $password = hash('sha512', $post_password);
+        //$pdo = $user->login($username, $password);
+        $pdo = $user->login($post_username, $password);
         $return = $pdo->fetch(PDO::FETCH_ASSOC);
         
         if($return == false){

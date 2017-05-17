@@ -22,4 +22,8 @@ class usuario extends ddbb {
         return $this->seleccionar("SELECT id, username, name, surname, birthday, type FROM users WHERE username='$username' AND password='$password'");
     }
     
+    public function obtener($id){
+        return $this->seleccionar("SELECT name, surname FROM users WHERE id='$id'");
+    }
+    
 }
