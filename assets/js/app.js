@@ -9,7 +9,6 @@
             $scope.mostrarEvento = function (id) {
                 $http.get('./post.php?r=obtenerEvento&id=' + id).then(function (response) {
                     module.evento = response.data;
-                    console.log(response);
                     $('#event_title').html(response.data.title + ' - ' + response.data.time);
                     $('#event_description').html(response.data.description);
                     $('#mostrarEvento').modal();
@@ -43,7 +42,7 @@
             });
 
 
-            $('#submit_button').on('click', function () {
+            /*$('#submit_button').on('click', function () {
                 if ($('#submit_text').val()) {
                     $http.get('./post.php?r=sendMessage&text=' + $('#submit_text').val()).then(function (response) {
                         if (response.data == 1) {
@@ -51,7 +50,7 @@
                         }
                     });
                 }
-            });
+            });*/
 
             setInterval(
                     function () {
@@ -70,7 +69,6 @@
             var module = this;
             $http.get('./post.php?r=obtenerCarpetas').then(function (response) {
                 module.carpetas = response.data;
-                console.log(module.carpetas);
             });
             
             /*$scope.mostrarEvento = function (id) {
@@ -86,13 +84,11 @@
             $scope.mostrarCarpeta = function (id) {
                 $http.get('./post.php?r=obtenerUsuario&id=' + id).then(function (response) {
                     module.usuario = response.data;
-                    console.log(module.usuario);
                     $('#carpeta_name').html('Carpeta de ' + module.usuario.name + ' ' + module.usuario.surname);
                 });
                 
                 $http.get('./post.php?r=obtenerCarpeta&id=' + id).then(function (response) {
                     module.carpeta = response.data;
-                    console.log(module.carpeta);
 
                     $('#carpeta_files').html(module.carpeta);
                     $('#mostrarCarpeta').modal();

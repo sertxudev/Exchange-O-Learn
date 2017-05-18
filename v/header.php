@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/chat.css">
         <link rel="stylesheet" href="./assets/css/AdminLTE.css">
+        <link rel="stylesheet" href="./assets/css/skin-purple.css">
         <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/js/angular.min.js"></script>
         <script src="./assets/js/angular-locale_es-es.js"></script>
