@@ -32,7 +32,6 @@
     switch ($_GET['r']) {
 
         case 'obtenerColor':
-            logger::guardar('{"color": "'.$_SESSION['color'].'", "background": "'.$_SESSION['background'].'"}');
             echo '{"color": "'.$_SESSION['color'].'", "background": "'.$_SESSION['background'].'"}';
             break;
         
@@ -67,7 +66,7 @@
         
         case 'obtenerCarpeta':
             $folder = new c_carpeta();
-            echo $folder->obtenerCarpeta($_GET['id'], $_SESSION['']);
+            echo $folder->obtenerCarpeta($_GET['id'], $_SESSION['type']);
             break;
         
         case 'obtenerUsuario':

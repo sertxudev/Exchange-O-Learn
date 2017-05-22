@@ -1,10 +1,9 @@
 (function () {
     var app = angular.module('eol', []);
     
-    app.controller('colorController', ['$http', '$scope', function ($http, $scope) {
+    app.controller('colorController', ['$http', function ($http) {
             var module = this;
             $http.get('./post.php?r=obtenerColor').then(function (response) {
-                console.log(response);
                 module.custom = response.data;
             });
         }]);
