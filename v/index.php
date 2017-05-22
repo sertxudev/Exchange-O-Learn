@@ -1,7 +1,7 @@
 <body class="hold-transition skin-purple sidebar-mini" style="height: 100vh" ng-app="eol">
-    <div class="wrapper">
+    <div class="wrapper" ng-controller="TabController as tab">
         <header class="main-header">
-            <a href="index2.html" class="logo">
+            <a class="logo">
                 <span class="logo-mini"><b>E</b>O<b>L</b></span>
                 <span class="logo-lg"><b>Exchange</b> O' <b>Learn</b></span>
             </a>
@@ -9,17 +9,18 @@
         <aside class="main-sidebar">
             <section class="sidebar">
                 <ul class="sidebar-menu">
-                    <li class="active"><a href="#"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
-                    <li><a href="#"><i class="fa fa-folder-open"></i> <span>Carpeta Personal</span></a></li>
-                    <li><a href="#"><i class="fa fa-gear"></i> <span>Configuración</span></a></li>
+                    <li ng-class="{ active:tab.isSet(1) }"><a ng-click="tab.setTab(1)"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+                    <li ng-class="{ active:tab.isSet(2) }"><a ng-click="tab.setTab(2)"><i class="fa fa-folder-open"></i> <span>Carpeta Personal</span></a></li>
+                    <li ng-class="{ active:tab.isSet(3) }"><a ng-click="tab.setTab(3)"><i class="fa fa-gear"></i> <span>Configuración</span></a></li>
+                    <li><a ng-click="logout()"><i class="fa fa-sign-out"></i> <span>Cerrar Sesión</span></a></li>
                 </ul>
             </section>
         </aside>
 
         <div class="content-wrapper">
             <section class="content">
-                <div class="container-fluid">
-                    <div class="row header-container" id="header-container">
+                <div class="container-fluid" ng-show="tab.isSet(1)">
+                    <div class="row header-container" id="header-container" ng-controller="colorController as color" style="background-color: {{color.custom.background}}; color: {{color.custom.color}};">
                         <div class="col-md-4 col-sm-4 col-xs-4 header">
                             <i class="fa fa-th-list"></i>
                             <h2 class="text-nowrap text-center hidden-xs">  Agenda</h2>
@@ -51,13 +52,12 @@
                                     <div class="row chat-window material">
                                         <div class="panel">
                                             <div class="panel-body msg-container-base" id="chat-container">
-
                                                 <div class="row msg-container" id="message_{{message.id}}" ng-repeat="message in module.messages">
                                                     <div class="col-md-12 col-xs-12">
                                                         <div class="chat-msg">
                                                             <div class="chat-msg-author">
                                                                 <strong>{{message.name}} {{message.surname}}</strong>&nbsp;
-                                                                <span class="date">{{message.time| date: 'hh:mm a dd/MM/yyyy'}}</span>
+                                                                <span class="date">{{message.time*1000 | date: 'hh:mm a dd/MM/yyyy'}}</span>
                                                             </div>
                                                             <p>{{message.text}}</p>
                                                         </div>
@@ -68,9 +68,6 @@
                                             <div class="panel-footer chat-bottom-bar">
                                                 <div class="input-group col-md-12">
                                                     <input type="text" id="submit_text" class="form-control input-sm chat-input" placeholder="Enviar un mensaje" />
-<!--                                                        <span class="input-group-btn">
-                                                        <button id="submit_button" class="btn btn-sm chat-submit-button">Enviar</button> 
-                                                    </span>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -79,27 +76,21 @@
                             </div>
                         </div>
                         <div class="col-md-4 module" ng-controller="filesController as module">
-                            <!--                            <div class="row carpetas">
-                                                            <div class="col-xs-6 carpeta not-active" ng-click="tabPersonal()">
-                                                                <h4>Carpeta Personal </h4>
-                                                            </div>
-                                                            <div class="col-xs-6 carpeta" ng-click="tabPublic()">
-                                                                <h4>Público </h4>
-                                                            </div>
-                                                        </div>-->
                             <div class="row archivos">
+                               
                                 <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo" ng-repeat="carpetas in module.carpetas" ng-click="mostrarCarpeta(carpetas.id)">
                                     <img class="img-responsive" src="./assets/img/folder.png">
                                     <span>{{carpetas.name}} {{carpetas.surname}}</span>
                                 </div>
                             </div>
-                            <!--                            <div class="row">
-                                                            <div class="col-md-12 upload" ng-click="uploadFile()">
-                                                                <h2><i class="fa fa-upload" aria-hidden="true"></i></h2>
-                                                            </div>
-                                                        </div>-->
                         </div>
                     </div>
+                </div>
+                <div class="container-fluid" ng-show="tab.isSet(2)">
+                    <h2>Tab 2</h2>
+                </div>
+                <div class="container-fluid" ng-show="tab.isSet(3)">
+                    <h2>Tab 3</h2>
                 </div>
             </section>
         </div>
@@ -121,12 +112,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="mostrarCarpeta" role="dialog">
+    <div class="modal fade" id="mostrarCarpeta" role="dialog" ng-controller="filesController as modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="carpeta_name">{{module.usuario.name}} {{module.usuario.surname}}</h4>
+                    <h4 class="modal-title" id="carpeta_name">{{hello}}{{module.usuario.name}} {{module.usuario.surname}}</h4>
                 </div>
                 <div class="modal-body" id="carpeta_files">
                     <ul>

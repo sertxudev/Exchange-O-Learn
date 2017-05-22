@@ -31,6 +31,11 @@
     // Rutas GET
     switch ($_GET['r']) {
 
+        case 'obtenerColor':
+            logger::guardar('{"color": "'.$_SESSION['color'].'", "background": "'.$_SESSION['background'].'"}');
+            echo '{"color": "'.$_SESSION['color'].'", "background": "'.$_SESSION['background'].'"}';
+            break;
+        
         case 'obtenerEventosFuturos':
             $evento = new c_evento();
             echo $evento->obtenerEventosFuturos();
@@ -48,6 +53,10 @@
 
         case 'sendMessage':
             $messages = new c_messages();
+//            
+//            $_POST = (array) json_decode( file_get_contents("php://input") );
+//
+//            echo $messages->sendMessage($_POST['text'], $_SESSION['id']);
             echo $messages->sendMessage($_GET['text'], $_SESSION['id']);
             break;
         
@@ -58,11 +67,16 @@
         
         case 'obtenerCarpeta':
             $folder = new c_carpeta();
-            echo $folder->obtenerCarpeta($_GET['id']);
+            echo $folder->obtenerCarpeta($_GET['id'], $_SESSION['']);
             break;
         
         case 'obtenerUsuario':
             $user = new c_usuario();
             echo $user->obtenerUsuario($_GET['id']);
-            break; 
+            break;
+        
+        case 'logout':
+            $user = new c_usuario();
+            echo $user->logout();
+            break;
     }

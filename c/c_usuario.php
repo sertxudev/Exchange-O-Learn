@@ -1,7 +1,7 @@
 <?php
 
 class c_usuario {
-        
+    
     public function obtenerUsuario($post_id) {
         $user = new usuario();
         
@@ -60,10 +60,13 @@ class c_usuario {
             echo 0;
         }else{
         
-            $_SESSION['id']       = $return['id'];
-            $_SESSION['username'] = $return['username'];
-            $_SESSION['name']     = $return['name'];
-            $_SESSION['surname']  = $return['surname'];
+            $_SESSION['id']             = $return['id'];
+            $_SESSION['username']       = $return['username'];
+            $_SESSION['name']           = $return['name'];
+            $_SESSION['surname']        = $return['surname'];
+            $_SESSION['color']          = $return['color'];
+            $_SESSION['background']     = $return['background'];
+            $_SESSION['type']           = $return['type'];
             
             echo 1;
         }
@@ -71,5 +74,9 @@ class c_usuario {
     
     private function sanitizeString($string){
         return filter_var($string, FILTER_SANITIZE_STRING);
+    }
+    
+     public function logout() {
+        session_destroy();
     }
 }

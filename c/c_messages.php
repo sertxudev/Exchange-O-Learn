@@ -15,8 +15,8 @@ class c_messages {
         $text = $this->sanitizeString($post_text);
         $id = $this->sanitizeString($post_id);
         
-        $time = round(microtime(true) * 1000);
-        
+        $time = date('Y-m-d H:i:s');
+                
         $pdo = $messages->sendMessage($text, $id, $time);
         if($pdo){
             echo 1;

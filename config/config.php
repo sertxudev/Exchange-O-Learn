@@ -18,7 +18,7 @@ if(file_exists(_RUTA_LOG_."depurando")){
     define("_HOST_", "localhost");
     define("_BBDD_", "eol");
     define("_USER_", "root");
-    define("_PASS_", "estonoloadivinanadie");
+    define("_PASS_", "root");
     define("_TIPO_", "mysql");
     
 /* Autoloader */
