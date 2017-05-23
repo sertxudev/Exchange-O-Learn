@@ -25,6 +25,15 @@ class c_carpeta {
         }
         return $return;
     }
+    
+    public function obtenerCarpetaPersonal($post_id) {
+        $folder = new carpeta();
+
+        $id = $this->sanitizeString($post_id);
+
+        $pdo = $folder->obtenerCarpetaPersonal($id);
+        return json_encode($pdo->fetchAll(PDO::FETCH_ASSOC));
+    }
 
     private function sanitizeString($string) {
         return filter_var($string, FILTER_SANITIZE_STRING);

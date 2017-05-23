@@ -38,7 +38,7 @@
                         <div class="col-md-4 module" ng-controller="eventsController as module">
                             <div class="row evento" ng-repeat="event in module.events" ng-click="mostrarEvento(event.id)">
                                 <div class="col-lg-3 col-md-3 date">
-                                    <h2 class="day"> {{event.time| date:'dd'}} </h2><span>{{event.time| date:'MMMM'}} {{event.time| date:'yyyy'}}</span></div>
+                                    <h2 class="day"> {{event.time| date:'dd'}} </h2><span>{{event.time | date:'MMMM'}} {{event.time | date:'yyyy'}}</span></div>
                                 <div class="col-lg-9 col-md-9 body">
                                     <h3 class="title">{{event.title}}</h3>
                                     <p class="text">{{event.description}}</p>
@@ -57,7 +57,7 @@
                                                         <div class="chat-msg">
                                                             <div class="chat-msg-author">
                                                                 <strong>{{message.name}} {{message.surname}}</strong>&nbsp;
-                                                                <span class="date">{{message.time*1000 | date: 'hh:mm a dd/MM/yyyy'}}</span>
+                                                                <span class="date">{{message.time * 1000 | date: 'hh:mm a dd/MM/yyyy'}}</span>
                                                             </div>
                                                             <p>{{message.text}}</p>
                                                         </div>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-md-4 module" ng-controller="filesController as module">
                             <div class="row archivos">
-                               
+
                                 <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo" ng-repeat="carpetas in module.carpetas" ng-click="mostrarCarpeta(carpetas.id)">
                                     <img class="img-responsive" src="./assets/img/folder.png">
                                     <span>{{carpetas.name}} {{carpetas.surname}}</span>
@@ -86,8 +86,51 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" ng-show="tab.isSet(2)">
-                    <h2>Tab 2</h2>
+                <div class="container-fluid" ng-show="tab.isSet(2)" style="padding-top: 15px;">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table class="table table-bordered bordered table-striped datatable" ui-jq="dataTable" ng-controller="personalFilesController as module">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Creación</th>
+                                        <th>Acceso</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="file in module.files">
+                                        <td>{{file.name}}</td>
+                                        <td>{{file.time*1000 | date: 'hh:mm a dd/MM/yyyy'}}</td>
+                                        <td>{{file.access}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <h2></h2>
+                    <form action="./post.php?r=uploadFile" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file" />
+                        <button type="submit">Subir!</button>
+                    </form>
+                    <!--                    <form action="./post.php?r=uploadFile" class="dropzone" id="uploadFiles">
+                                            <input type="file" name="file" />
+                                        </form>
+                                        <table datatable class="table" id="personalFiles" ng-controller="personalFilesController as module">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Creación</th>
+                                                    <th>Acceso</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="file in module.files">
+                                                    <td>{{file.name}}</td>
+                                                    <td>{{file.time}}</td>
+                                                    <td>{{file.access}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>-->
                 </div>
                 <div class="container-fluid" ng-show="tab.isSet(3)">
                     <h2>Tab 3</h2>

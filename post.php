@@ -32,14 +32,14 @@
     switch ($_GET['r']) {
 
         case 'obtenerColor':
-            echo '{"color": "'.$_SESSION['color'].'", "background": "'.$_SESSION['background'].'"}';
+            echo '{"color": "' . $_SESSION['color'] . '", "background": "' . $_SESSION['background'] . '"}';
             break;
-        
+
         case 'obtenerEventosFuturos':
             $evento = new c_evento();
             echo $evento->obtenerEventosFuturos();
             break;
-        
+
         case 'obtenerEvento':
             $evento = new c_evento();
             echo $evento->obtenerEvento($_GET['id']);
@@ -58,7 +58,7 @@
 //            echo $messages->sendMessage($_POST['text'], $_SESSION['id']);
             echo $messages->sendMessage($_GET['text'], $_SESSION['id']);
             break;
-        
+
         case 'obtenerCarpetas':
             $folder = new c_carpeta();
             echo $folder->obtenerCarpetas($_SESSION['id']);
@@ -68,12 +68,41 @@
             $folder = new c_carpeta();
             echo $folder->obtenerCarpeta($_GET['id'], $_SESSION['type']);
             break;
-        
+
         case 'obtenerUsuario':
             $user = new c_usuario();
             echo $user->obtenerUsuario($_GET['id']);
             break;
-        
+
+        case 'uploadFile':
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $ext = array_search(
+                    $finfo->file($_FILES['file']['tmp_name']), array(
+                'jpg' => 'image/jpeg',
+                'png' => 'image/png',
+                'gif' => 'image/gif',
+                    ), true);
+
+            $file_name = hash('md5', time());
+            $file_url = './uploads/' . $_FILES['file']['name'];
+
+            if (move_uploaded_file(
+                            $_FILES['file']['tmp_name'], sprintf('./uploads/%s.%s', $file_name, $ext)
+                    )) {
+
+                $folder = new c_carpeta();
+                echo $folder->subirArchivo($file_name, $file_url, $_SESSION['id'], $_POST['access']);
+            } else {
+                echo 'Se ha producido un error al subir el archivo';
+            }
+
+            break;
+
+        case 'obtenerCarpetaPersonal':
+            $folder = new c_carpeta();
+            echo $folder->obtenerCarpetaPersonal($_SESSION['id']);
+            break;
+
         case 'logout':
             $user = new c_usuario();
             echo $user->logout();

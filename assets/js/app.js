@@ -1,13 +1,13 @@
 (function () {
-    var app = angular.module('eol', []);
-    
+    var app = angular.module('eol', ['ui.bootstrap', 'ui.utils']);
+
     app.controller('colorController', ['$http', function ($http) {
             var module = this;
             $http.get('./post.php?r=obtenerColor').then(function (response) {
                 module.custom = response.data;
             });
         }]);
-    
+
     app.controller('eventsController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
             $http.get('./post.php?r=obtenerEventosFuturos').then(function (response) {
@@ -107,9 +107,17 @@
             };
         }]);
 
+    app.controller('personalFilesController', ['$http', function ($http) {
+            var module = this;
+            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
+                module.files = response.data;
+            });
+        }]);
 })();
 
 function bcolor(color) {
     $('#header-container').css("backgroundColor", color);
 }
-
+$(document).ready(function () {
+    $('#personalFiles').DataTable();
+});
