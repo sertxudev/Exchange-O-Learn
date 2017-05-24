@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('eol', ['ui.bootstrap', 'ui.utils']);
+    var app = angular.module('eol', []);
 
     app.controller('colorController', ['$http', function ($http) {
             var module = this;
@@ -109,9 +109,11 @@
 
     app.controller('personalFilesController', ['$http', function ($http) {
             var module = this;
-            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
-                module.files = response.data;
-            });
+//            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
+//                module.files = response.data;
+//                console.log(response);
+//                $('#panelBody').html(module.files);
+//            });
         }]);
 })();
 
@@ -119,5 +121,12 @@ function bcolor(color) {
     $('#header-container').css("backgroundColor", color);
 }
 $(document).ready(function () {
-    $('#personalFiles').DataTable();
+    $('#personalFilesTable').DataTable({
+        "ajax": "./post.php?r=obtenerCarpetaPersonal",
+        "columns": [
+            { "data": "name" },
+            { "data": "time" },
+            { "data": "access" }
+        ]
+    });
 });

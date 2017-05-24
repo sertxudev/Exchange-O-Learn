@@ -38,7 +38,7 @@
                         <div class="col-md-4 module" ng-controller="eventsController as module">
                             <div class="row evento" ng-repeat="event in module.events" ng-click="mostrarEvento(event.id)">
                                 <div class="col-lg-3 col-md-3 date">
-                                    <h2 class="day"> {{event.time| date:'dd'}} </h2><span>{{event.time | date:'MMMM'}} {{event.time | date:'yyyy'}}</span></div>
+                                    <h2 class="day"> {{event.time| date:'dd'}} </h2><span>{{event.time| date:'MMMM'}} {{event.time| date:'yyyy'}}</span></div>
                                 <div class="col-lg-9 col-md-9 body">
                                     <h3 class="title">{{event.title}}</h3>
                                     <p class="text">{{event.description}}</p>
@@ -57,7 +57,7 @@
                                                         <div class="chat-msg">
                                                             <div class="chat-msg-author">
                                                                 <strong>{{message.name}} {{message.surname}}</strong>&nbsp;
-                                                                <span class="date">{{message.time * 1000 | date: 'hh:mm a dd/MM/yyyy'}}</span>
+                                                                <span class="date">{{message.time * 1000| date: 'hh:mm a dd/MM/yyyy'}}</span>
                                                             </div>
                                                             <p>{{message.text}}</p>
                                                         </div>
@@ -86,10 +86,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" ng-show="tab.isSet(2)" style="padding-top: 15px;">
+                <div class="container-fluid" ng-show="tab.isSet(2)" style="padding-top: 15px;" ng-controller="personalFilesController as module">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" ui-jq="dataTable" ng-controller="personalFilesController as module">
+                            <table class="table table-bordered bordered table-striped datatable" id="personalFilesTable" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -97,12 +97,7 @@
                                         <th>Acceso</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr ng-repeat="file in module.files">
-                                        <td>{{file.name}}</td>
-                                        <td>{{file.time*1000 | date: 'hh:mm a dd/MM/yyyy'}}</td>
-                                        <td>{{file.access}}</td>
-                                    </tr>
+                                <tbody id="panelBody">
                                 </tbody>
                             </table>
                         </div>

@@ -25,14 +25,40 @@ class c_carpeta {
         }
         return $return;
     }
-    
+
     public function obtenerCarpetaPersonal($post_id) {
         $folder = new carpeta();
 
         $id = $this->sanitizeString($post_id);
 
         $pdo = $folder->obtenerCarpetaPersonal($id);
-        return json_encode($pdo->fetchAll(PDO::FETCH_ASSOC));
+        
+        $array_a = $pdo->fetchAll(PDO::FETCH_ASSOC);
+
+        $i = 0;
+        $return = '{"data": [';
+
+        foreach ($array_a as $a) {
+            if($i == 0){
+                $return .= '{'
+                    . '"name": "'.$a['name'].'",'
+                    . '"time": "'.$a['time'].'",'
+                    . '"access": "'.$a['access'].'"'
+                    . '}';
+                $i++;
+            }else{
+                $return .= ',{'
+                    . '"name": "'.$a['name'].'",'
+                    . '"time": "'.$a['time'].'",'
+                    . '"access": "'.$a['access'].'"'
+                    . '}';
+            }
+            
+        }
+        
+        $return .= ']}';
+        
+        return $return;
     }
 
     private function sanitizeString($string) {
