@@ -9,10 +9,26 @@
         <aside class="main-sidebar">
             <section class="sidebar">
                 <ul class="sidebar-menu">
-                    <li ng-class="{ active:tab.isSet(1) }"><a ng-click="tab.setTab(1)"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
-                    <li ng-class="{ active:tab.isSet(2) }"><a ng-click="tab.setTab(2)"><i class="fa fa-folder-open"></i> <span>Carpeta Personal</span></a></li>
-                    <li ng-class="{ active:tab.isSet(3) }"><a ng-click="tab.setTab(3)"><i class="fa fa-gear"></i> <span>Configuración</span></a></li>
-                    <li><a ng-click="logout()"><i class="fa fa-sign-out"></i> <span>Cerrar Sesión</span></a></li>
+
+                    <li ng-class="{ active:tab.isSet(1) }">
+                        <a ng-click="tab.setTab(1)"><i class="fa fa-home"></i> <span>Inicio</span></a>
+                    </li>
+
+                    <li ng-class="{ active:tab.isSet(2) }" style="display: inline-block; width: 81%;">
+                        <a ng-click="tab.setTab(2)"><i class="fa fa-folder-open"></i> <span>Carpeta Personal</span></a>
+                    </li>
+                    <li ng-class="{ active:hover }" ng-show="tab.isSet(2)" style="display: inline-block; float: right;">
+                        <a style="float:right;" ng-click="uploadPersonalFiles()"><i class="fa fa-upload"></i></a>
+                    </li>
+
+                    <li ng-class="{ active:tab.isSet(3) }">
+                        <a ng-click="tab.setTab(3)"><i class="fa fa-gear"></i> <span>Configuración</span></a>
+                    </li>
+
+                    <li>
+                        <a ng-click="logout()"><i class="fa fa-sign-out"></i> <span>Cerrar Sesión</span></a>
+                    </li>
+
                 </ul>
             </section>
         </aside>
@@ -102,11 +118,6 @@
                             </table>
                         </div>
                     </div>
-                    <h2></h2>
-                    <form action="./post.php?r=uploadFile" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file" />
-                        <button type="submit">Subir!</button>
-                    </form>
                     <!--                    <form action="./post.php?r=uploadFile" class="dropzone" id="uploadFiles">
                                             <input type="file" name="file" />
                                         </form>
@@ -168,5 +179,26 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uploadPersonalFiles" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Subir Archivos</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="./post.php?r=uploadFile" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file" />
+                        <button type="submit">Subir!</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Subir</button>
+                </div>
+            </div>
+
         </div>
     </div>

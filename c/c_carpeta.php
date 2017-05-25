@@ -42,14 +42,14 @@ class c_carpeta {
             if($i == 0){
                 $return .= '{'
                     . '"name": "'.$a['name'].'",'
-                    . '"time": "'.$a['time'].'",'
+                    . '"time": "'.date('d-m-Y', $a['time']).'",'
                     . '"access": "'.$a['access'].'"'
                     . '}';
                 $i++;
             }else{
                 $return .= ',{'
                     . '"name": "'.$a['name'].'",'
-                    . '"time": "'.$a['time'].'",'
+                    . '"time": "'.date('d-m-Y', $a['time']).'",'
                     . '"access": "'.$a['access'].'"'
                     . '}';
             }
@@ -57,7 +57,6 @@ class c_carpeta {
         }
         
         $return .= ']}';
-        
         return $return;
     }
 

@@ -105,10 +105,28 @@
                     window.location = "./";
                 });
             };
+            
+            $scope.uploadPersonalFiles = function(){
+                $('#uploadPersonalFiles').modal();
+            };
+            
         }]);
 
-    app.controller('personalFilesController', ['$http', function ($http) {
+    app.controller('personalFilesController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
+            
+            
+//            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
+//                module.files = response.data;
+//                console.log(response);
+//                $('#panelBody').html(module.files);
+//            });
+        }]);
+    
+    app.controller('uploadPersonalFilesController', ['$http', '$scope', function ($http, $scope) {
+            var module = this;
+            
+            
 //            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
 //                module.files = response.data;
 //                console.log(response);
