@@ -14,7 +14,7 @@
                         <a ng-click="tab.setTab(1)"><i class="fa fa-home"></i> <span>Inicio</span></a>
                     </li>
 
-                    <li ng-class="{ active:tab.isSet(2) }" style="display: inline-block; width: 81%;">
+                    <li ng-class="{ active:tab.isSet(2) }" style="display: inline-block;" ng-style="{ width: tab.isSet(2) ? '81%' : '100%' }">
                         <a ng-click="tab.setTab(2)"><i class="fa fa-folder-open"></i> <span>Carpeta Personal</span></a>
                     </li>
                     <li ng-class="{ active:hover }" ng-show="tab.isSet(2)" style="display: inline-block; float: right;">
@@ -138,8 +138,24 @@
                                             </tbody>
                                         </table>-->
                 </div>
-                <div class="container-fluid" ng-show="tab.isSet(3)">
+                <div class="container-fluid" ng-show="tab.isSet(3)" ng-controller="configController as module">
                     <h2>Tab 3</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h4>Color Texto</h4>
+                                    <input id="colorTexto" type="text" class="form-control" value="pink" />
+                                </div>
+                                <div class="col-md-5">
+                                    <h4>Color Fondo</h4>
+                                    <input id="colorFondo" type="text" class="form-control" value="pink" />
+                                </div>
+                                <button type="button" class="btn btn-primary" ng-click="guardarColor()">Guardar Colores</button>
+                            </div>
+                        </div>                        
+                    </div>
+                    
                 </div>
             </section>
         </div>

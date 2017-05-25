@@ -72,7 +72,24 @@ class c_usuario {
         }
     }
     
-    private function sanitizeString($string){
+    public function cambiarColor($post_color, $post_background, $post_id){
+        $user = new usuario();
+        
+        $color      = $this->sanitizeString($post_color);
+        $background = $this->sanitizeString($post_background);
+        $id         = $this->sanitizeString($post_id);
+        
+        $pdo = $user->cambiarColor($color, $background, $id);
+        
+        $return = $pdo->fetch(PDO::FETCH_ASSOC) ? 0 : 1;
+        
+        $_SESSION['color']      = $color;
+        $_SESSION['background'] = $background;
+        
+        return json_encode($return);
+    }
+
+        private function sanitizeString($string){
         return filter_var($string, FILTER_SANITIZE_STRING);
     }
     

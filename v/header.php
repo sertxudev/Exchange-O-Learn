@@ -16,11 +16,15 @@
 <!--        <link rel="stylesheet" href="./assets/css/dataTables.bootstrap.min.css">-->
         <link href="./assets/css/datatables.min.css" rel="stylesheet" type="text/css"/>
         
+        <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.1/css/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css"/>
+        
         <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/bootstrap/js/bootstrap.js"></script>
         
         <script src="./assets/js/angular.min.js"></script>
         <script src="./assets/js/angular-locale_es-es.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.1/js/bootstrap-colorpicker.min.js"></script>
         
 <!--        <script src="./assets/js/ui-bootstrap-tpls.min.js"></script>
         <script src="./assets/js/angular-ui-utils.min.js"></script>

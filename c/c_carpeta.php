@@ -34,30 +34,81 @@ class c_carpeta {
         $pdo = $folder->obtenerCarpetaPersonal($id);
         
         $array_a = $pdo->fetchAll(PDO::FETCH_ASSOC);
-
-        $i = 0;
-        $return = '{"data": [';
-
-        foreach ($array_a as $a) {
-            if($i == 0){
-                $return .= '{'
-                    . '"name": "'.$a['name'].'",'
-                    . '"time": "'.date('d-m-Y', $a['time']).'",'
-                    . '"access": "'.$a['access'].'"'
-                    . '}';
-                $i++;
-            }else{
-                $return .= ',{'
-                    . '"name": "'.$a['name'].'",'
-                    . '"time": "'.date('d-m-Y', $a['time']).'",'
-                    . '"access": "'.$a['access'].'"'
-                    . '}';
-            }
-            
-        }
         
-        $return .= ']}';
-        return $return;
+        
+        /** Método Pro ... */
+        
+        /**
+         * El caracter de &, sirve para pasar una variable por referencia, 
+         * es decir le pasamos la variable en si, no el valor de esta.
+         * 
+         * Array_walk, que nos permite aplicar la función definida por el usuario
+         * dada por callback a cada elemento del array dado por array.
+         * 
+         * Que dentro de un metodo, podemos usar funciones
+         */
+        function cambiarFechas(&$elemento, $clave){
+            $fecha = date('d-m-Y', $elemento['time']);
+//            switch ($elemento['access']){
+//                case 0:
+//                    $elemento['access'] = 'Público';
+//                    break;
+//                case 1:
+//                    $elemento['access'] = 'Protegido';
+//                    break;
+//                case 2:
+//                    $elemento['access'] = 'Privado';
+//                    break;
+//            }
+            $access = $elemento['access'] == 0 ? 'Público' 
+                    : $elemento['access'] == 1 ? 'Protegido' 
+                    : 'Privado' ;
+            
+            $elemento['access'] = $access;
+            $elemento['time'] = $fecha;
+        }
+
+        array_walk($array_a, 'cambiarFechas');
+        
+        /** Más PRO entoavia
+         * 
+        array_walk($array_a, function (&$elemento, $clave){
+            $elemento['time'] = date('d-m-Y', $elemento['time']);
+            $elemento['access'] = $elemento['access'] == 0 ? 'Público' : $elemento['access'] == 1 ? 'Protegido' : 'Privado' ;
+            });
+         * 
+         */
+        
+        return json_encode(array(
+            "data" => $array_a
+        ));
+        
+        
+
+        /** Método artesano de contruir un JSON */
+//        $i = 0;
+//        $return = '{"data": [';
+//
+//        foreach ($array_a as $a) {
+//            if($i == 0){
+//                $return .= '{'
+//                    . '"name": "'.$a['name'].'",'
+//                    . '"time": "'.date('d-m-Y', $a['time']).'",'
+//                    . '"access": "'.$a['access'].'"'
+//                    . '}';
+//                $i++;
+//            }else{
+//                $return .= ',{'
+//                    . '"name": "'.$a['name'].'",'
+//                    . '"time": "'.date('d-m-Y', $a['time']).'",'
+//                    . '"access": "'.$a['access'].'"'
+//                    . '}';
+//            }
+//            
+//        }
+//        
+//        $return .= ']}';
+//        return $return;
     }
 
     private function sanitizeString($string) {

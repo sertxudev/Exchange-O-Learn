@@ -105,34 +105,46 @@
                     window.location = "./";
                 });
             };
-            
-            $scope.uploadPersonalFiles = function(){
+
+            $scope.uploadPersonalFiles = function () {
                 $('#uploadPersonalFiles').modal();
             };
-            
+
         }]);
 
     app.controller('personalFilesController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
-            
-            
+
+
 //            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
 //                module.files = response.data;
 //                console.log(response);
 //                $('#panelBody').html(module.files);
 //            });
         }]);
-    
+
     app.controller('uploadPersonalFilesController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
-            
-            
+
 //            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
 //                module.files = response.data;
 //                console.log(response);
 //                $('#panelBody').html(module.files);
 //            });
         }]);
+
+    app.controller('configController', ['$http', '$scope', function ($http, $scope) {
+            var module = this;
+
+            $scope.guardarColor = function () {
+                var r = './post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val();
+                console.log(r);
+                $http.get('./post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val()).then(function (response) {
+                    
+                });
+            };
+        }]);
+
 })();
 
 function bcolor(color) {
@@ -142,9 +154,52 @@ $(document).ready(function () {
     $('#personalFilesTable').DataTable({
         "ajax": "./post.php?r=obtenerCarpetaPersonal",
         "columns": [
-            { "data": "name" },
-            { "data": "time" },
-            { "data": "access" }
+            {"data": "name"},
+            {"data": "time"},
+            {"data": "access"}
         ]
     });
+
+    $('#colorTexto').colorpicker({
+        customClass: 'colorpicker-2x',
+        sliders: {
+            saturation: {
+                maxLeft: 200,
+                maxTop: 200
+            },
+            hue: {
+                maxTop: 200
+            },
+            alpha: {
+                maxTop: 200
+            }
+        },
+        format: 'rgba'
+    })
+            .on('changeColor', function (e) {
+                $('#colorTexto').css('color', e.color.toString('rgba'));
+                $('#colorFondo').css('color', e.color.toString('rgba'));
+            });
+
+
+    $('#colorFondo').colorpicker({
+        customClass: 'colorpicker-2x',
+        sliders: {
+            saturation: {
+                maxLeft: 200,
+                maxTop: 200
+            },
+            hue: {
+                maxTop: 200
+            },
+            alpha: {
+                maxTop: 200
+            }
+        },
+        format: 'rgba'
+    })
+            .on('changeColor', function (e) {
+                $('#colorTexto').css('backgroundColor', e.color.toString('rgba'));
+                $('#colorFondo').css('backgroundColor', e.color.toString('rgba'));
+            });
 });

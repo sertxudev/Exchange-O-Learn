@@ -103,6 +103,11 @@
             echo $folder->obtenerCarpetaPersonal($_SESSION['id']);
             break;
 
+        case 'cambiarColor':
+            $user = new c_usuario();
+            echo $user->cambiarColor($_GET['color'], $_GET['background'], $_SESSION['id']);
+            break;
+        
         case 'logout':
             $user = new c_usuario();
             echo $user->logout();

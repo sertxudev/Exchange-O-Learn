@@ -26,4 +26,8 @@ class usuario extends ddbb {
         return $this->seleccionar("SELECT name, surname FROM users WHERE id='$id'", TRUE);
     }
     
+    public function cambiarColor($color, $background, $id) {
+        return $this->seleccionar("UPDATE users SET color='$color', background='$background' WHERE id='$id'", TRUE);
+    }
+    
 }
