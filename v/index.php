@@ -138,24 +138,50 @@
                                             </tbody>
                                         </table>-->
                 </div>
-                <div class="container-fluid" ng-show="tab.isSet(3)" ng-controller="configController as module">
-                    <h2>Tab 3</h2>
+                <div class="container-fluid" ng-show="tab.isSet(3)" style="padding-top: 15px;" ng-controller="configController as module">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <h4>Color Texto</h4>
                                     <input id="colorTexto" type="text" class="form-control" value="pink" />
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <h4>Color Fondo</h4>
                                     <input id="colorFondo" type="text" class="form-control" value="pink" />
                                 </div>
-                                <button type="button" class="btn btn-primary" ng-click="guardarColor()">Guardar Colores</button>
+                                <div class="col-md-2" style="height: 73px;">
+                                    <button type="button" class="btn btn-primary" ng-click="guardarColor()" style="margin-top: 39px">Guardar Colores</button>
+                                </div>
                             </div>
-                        </div>                        
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Usuario</h4>
+                                    <input id="config_username" type="text" class="form-control" value="" />
+                                </div>
+                                <div class="col-md-3">
+                                    <h4>Contraseña</h4>
+                                    <input id="config_password" type="password" class="form-control" value="" />
+                                </div>
+                                <div class="col-md-3">
+                                    <h4>Cumpleaños</h4>
+                                    <input id="config_birthday" type="date" class="form-control" value="" />
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Nombre</h4>
+                                    <input id="config_name" type="text" class="form-control" value="" />
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Apellidos</h4>
+                                    <input id="config_surname" type="text" class="form-control" value="" />
+                                </div>
+                                <div class="col-md-2" style="height: 73px;">
+                                    <button type="button" class="btn btn-primary" ng-click="guardarPerfil()" style="margin-top: 39px">Guardar Perfil</button>
+                                </div>
+                            </div>
+                        </div> 
                     </div>
-                    
                 </div>
             </section>
         </div>
