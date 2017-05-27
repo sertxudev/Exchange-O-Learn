@@ -79,7 +79,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="panel-footer chat-bottom-bar">
                                                 <div class="input-group col-md-12">
@@ -109,6 +108,7 @@
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
+                                        <th>Tipo</th>
                                         <th>Creación</th>
                                         <th>Acceso</th>
                                     </tr>
@@ -227,20 +227,46 @@
     <div class="modal fade" id="uploadPersonalFiles" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Subir Archivos</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="./post.php?r=uploadFile" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file" />
-                        <button type="submit">Subir!</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Subir</button>
-                </div>
+                <form action="./post.php?r=uploadFile" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Subir Archivos</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="file_name" class="col-sm-2 control-label">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="file_name" placeholder="Nombre">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Acceso:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="file_access">
+                                    <option value="0">Público</option>
+                                    <option value="1">Protegido</option>
+                                    <option value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="file_name" class="col-sm-2 control-label">Archivo:</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="" name="file" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Subir</button>
+                    </div>
+                </form>
             </div>
 
         </div>
     </div>
+
+    <a type="button" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>

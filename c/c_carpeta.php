@@ -47,7 +47,8 @@ class c_carpeta {
          * 
          * Que dentro de un metodo, podemos usar funciones
          */
-        function cambiarFechas(&$elemento, $clave){
+        function prepararDatos(&$elemento, $clave){
+            $name = '<a href="' . $elemento['url'] . '" target="_BLANK">' . $elemento['name'] . '</a>';
             $fecha = date('d-m-Y', $elemento['time']);
 //            switch ($elemento['access']){
 //                case 0:
@@ -64,11 +65,12 @@ class c_carpeta {
                     : $elemento['access'] == 1 ? 'Protegido' 
                     : 'Privado' ;
             
+            $elemento['name'] = $name;
             $elemento['access'] = $access;
             $elemento['time'] = $fecha;
         }
 
-        array_walk($array_a, 'cambiarFechas');
+        array_walk($array_a, 'prepararDatos');
         
         /** Más PRO entoavia
          * 
@@ -78,7 +80,7 @@ class c_carpeta {
             });
          * 
          */
-        
+                
         return json_encode(array(
             "data" => $array_a
         ));
@@ -110,9 +112,27 @@ class c_carpeta {
 //        $return .= ']}';
 //        return $return;
     }
+    
+    public function subirArchivo($post_name, $post_url, $post_ext, $post_id, $post_access) {
+        $folder = new carpeta();
+
+        $id     = $this->sanitizeString($post_id);
+        $name   = $this->sanitizeString($post_name);
+        $ext    = $this->sanitizeString($post_ext);
+        $access = $this->sanitizeString($post_access);
+        $url    = $this->sanitizeUrl($post_url);
+        
+        $time = date('Y-m-d');
+       
+        $folder->subirArchivo($name, $url, $ext, $id, $access, $time);
+    }
 
     private function sanitizeString($string) {
         return filter_var($string, FILTER_SANITIZE_STRING);
+    }
+    
+    private function sanitizeUrl($url) {
+        return filter_var($url, FILTER_SANITIZE_URL);
     }
 
 }

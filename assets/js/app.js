@@ -28,13 +28,13 @@
             var module = this;
             var int = 0;
 
-            setInterval(
-                    function () {
-                        $http.get('./post.php?r=obtenerMessages').then(function (response) {
-                            module.messages = response.data;
-                        });
-                    }
-            , 1500);
+//            setInterval(
+//                    function () {
+//                        $http.get('./post.php?r=obtenerMessages').then(function (response) {
+//                            module.messages = response.data;
+//                        });
+//                    }
+//            , 1500);
 
             var submit = document.getElementById("submit_text");
             submit.addEventListener("keydown", function (e) {
@@ -140,45 +140,43 @@
                 var r = './post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val();
                 console.log(r);
                 $http.get('./post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val()).then(function (response) {
-                    
+
                 });
             };
         }]);
 
 })();
 
-function bcolor(color) {
-    $('#header-container').css("backgroundColor", color);
-}
 $(document).ready(function () {
     $('#personalFilesTable').DataTable({
         "ajax": "./post.php?r=obtenerCarpetaPersonal",
         "columns": [
             {"data": "name"},
+            {"data": "type"},
             {"data": "time"},
             {"data": "access"}
         ],
         "language": {
-            "sProcessing":     "Procesando...",
-            "sLengthMenu":     "Mostrar _MENU_ registros",
-            "sZeroRecords":    "No se encontraron archivos",
-            "sEmptyTable":     "No existe ningún archivo",
-            "sInfo":           "Mostrando del archivo _START_ al _END_ de un total de _TOTAL_",
-            "sInfoEmpty":      "No hay archivos",
-            "sInfoFiltered":   "(filtrados _MAX_ archivos)",
-            "sInfoPostFix":    "",
-            "sSearch":         "Buscar:",
-            "sUrl":            "",
-            "sInfoThousands":  ",",
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron archivos",
+            "sEmptyTable": "No existe ningún archivo",
+            "sInfo": "Mostrando del archivo _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "No hay archivos",
+            "sInfoFiltered": "(filtrados _MAX_ archivos)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
             "oPaginate": {
-                "sFirst":    "Primero",
-                "sLast":     "Último",
-                "sNext":     "Siguiente",
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
             "oAria": {
-                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         }

@@ -10,6 +10,10 @@ class carpeta extends ddbb{
     }
     
     public function obtenerCarpetaPersonal($id){
-        return $this->seleccionar("SELECT name, owner, url, UNIX_TIMESTAMP(time) AS time, access FROM files WHERE owner=$id", TRUE);
+        return $this->seleccionar("SELECT name, owner, type, url, UNIX_TIMESTAMP(time) AS time, access FROM files WHERE owner=$id", TRUE);
+    }
+    
+    public function subirArchivo($name, $url, $ext, $id, $access, $time){
+        return $this->insertar("INSERT INTO files (name, url, type, owner, access, time) VALUES ('$name', '$url', '$ext', '$id', '$access', '$time')", TRUE);
     }
 }

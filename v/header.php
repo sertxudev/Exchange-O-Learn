@@ -11,8 +11,8 @@
         
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/chat.css">
-        <link rel="stylesheet" href="./assets/css/AdminLTE.css">
-        <link rel="stylesheet" href="./assets/css/skin-purple.css">
+        <link rel="stylesheet" href="./assets/css/menu.css">
+        <link rel="stylesheet" href="./assets/css/menu-purple.css">
 <!--        <link rel="stylesheet" href="./assets/css/dataTables.bootstrap.min.css">-->
         <link href="./assets/css/datatables.min.css" rel="stylesheet" type="text/css"/>
         
