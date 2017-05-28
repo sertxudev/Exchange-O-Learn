@@ -144,11 +144,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <h4>Color Texto</h4>
-                                    <input id="colorTexto" type="text" class="form-control" value="pink" />
+                                    <input id="colorTexto" type="text" class="form-control" value="<?php echo $_SESSION['color'] ?>" />
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Color Fondo</h4>
-                                    <input id="colorFondo" type="text" class="form-control" value="pink" />
+                                    <input id="colorFondo" type="text" class="form-control" value="<?php echo $_SESSION['background'] ?>" />
                                 </div>
                                 <div class="col-md-2" style="height: 73px;">
                                     <button type="button" class="btn btn-primary" ng-click="guardarColor()" style="margin-top: 39px">Guardar Colores</button>

@@ -75,29 +75,29 @@ switch ($_GET['r']) {
         break;
 
     case 'uploadFile':
-        var_dump($_FILES);
-        exit;
-        /*$finfo = new finfo(FILEINFO_MIME_TYPE);*/
-        /*echo $finfo->file($_FILES['file']['tmp_name']);
-        exit;*/
-        /*$ext = array_search(
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+//        echo $finfo->file($_FILES['file']['tmp_name']);
+//        exit;
+        $ext = array_search(
                 $finfo->file($_FILES['file']['tmp_name']), array(
             'jpg' => 'image/jpeg',
             'png' => 'image/png',
             'gif' => 'image/gif',
             'pdf' => 'application/pdf',
-                ), true);*/
+            'rar' => 'application/x-rar',
+            'zip' => 'application/zip',
+                ), true);
 
         $file_name = hash('md5', time());
         $file_url = './uploads/' . $file_name;
 
         if ($ext) {
             if (move_uploaded_file(
-                            $_FILES['file']['tmp_name']/*, sprintf('./uploads/%s.%s', $file_name, $ext)*/
+                            $_FILES['file']['tmp_name'], sprintf('./uploads/%s.%s', $file_name, $ext)
                     )) {
 
                 $folder = new c_carpeta();
-                echo $folder->subirArchivo($_POST['file_name'], $file_url, /*$ext*/'.png', $_SESSION['id'], $_POST['file_access']);
+                echo $folder->subirArchivo($_POST['file_name'], $file_url, $ext, $_SESSION['id'], $_POST['file_access']);
             } else {
                 echo 'Se ha producido un error al subir el archivo';
             }
