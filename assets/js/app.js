@@ -28,26 +28,18 @@
             var module = this;
             var int = 0;
 
-//            setInterval(
-//                    function () {
-//                        $http.get('./post.php?r=obtenerMessages').then(function (response) {
-//                            module.messages = response.data;
-//                        });
-//                    }
-//            , 1500);
+            setInterval(
+                    function () {
+                        $http.get('./post.php?r=obtenerMessages').then(function (response) {
+                            module.messages = response.data;
+                        });
+                    }
+            , 1500);
 
             var submit = document.getElementById("submit_text");
             submit.addEventListener("keydown", function (e) {
-                if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+                if (e.keyCode === 13) {
                     if ($('#submit_text').val()) {
-//                        datos = {
-//                            text: $('#submit_text').val()
-//                        };
-//                        $http.post('./post.php?r=sendMessage', datos).then(function (response) {
-//                            if (response.data == 1) {
-//                                $('#submit_text').val('');
-//                            }
-//                        });
                         $http.post('./post.php?r=sendMessage&text=' + $('#submit_text').val()).then(function (response) {
                             if (response.data == 1) {
                                 $('#submit_text').val('');
@@ -112,25 +104,16 @@
 
         }]);
 
-    app.controller('personalFilesController', ['$http', '$scope', function ($http, $scope) {
-            var module = this;
-
-
-//            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
-//                module.files = response.data;
-//                console.log(response);
-//                $('#panelBody').html(module.files);
-//            });
-        }]);
-
     app.controller('uploadPersonalFilesController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
 
-//            $http.get('./post.php?r=obtenerCarpetaPersonal').then(function (response) {
-//                module.files = response.data;
-//                console.log(response);
-//                $('#panelBody').html(module.files);
-//            });
+            $scope.borrarArchivo = function (id) {
+                console.log(id);
+                $http.get('./post.php?r=borrarArchivoPersonal&id=' + id).then(function (response) {
+                    module.files = response.data;
+                    console.log(response);
+                });
+            };
         }]);
 
     app.controller('configController', ['$http', '$scope', function ($http, $scope) {
@@ -146,6 +129,66 @@
         }]);
 
 })();
+function borrarArchivo(id) {
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'borrarArchivo',
+            id: id
+        }
+    })
+            .done(function (msg) {
+                console.log(msg);
+                if(msg == 0){
+                    $('#modalEditarArchivo').modal('hide');
+                    $('#personalFilesTable').DataTable().ajax.reload( null, false );
+                }
+            });
+}
+
+function editarArchivo(id) {
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'obtenerArchivo',
+            id: id
+        }
+    })
+            .done(function (msg) {
+                var data = JSON.parse(msg);
+                
+                $('#file_id').val(data.id);
+                $('#file_name').val(data.name);
+                $('#file_access').val(data.access);
+                $('#modalEditarArchivo').modal();
+            });
+}
+
+function postEditarArchivo(){
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'editarArchivo',
+            id: $('#file_id').val(),
+            name: $('#file_name').val(),
+            access:$('#file_access').val()
+        }
+    })
+            .done(function (msg) {
+                if(msg == 0){
+                    $('#file_name').val('');
+                    $('#file_access').val('');
+                    $('#modalEditarArchivo').modal('hide');
+                    $('#personalFilesTable').DataTable().ajax.reload( null, false );
+                }
+            });
+}
 
 $(document).ready(function () {
     $('#personalFilesTable').DataTable({
@@ -154,7 +197,8 @@ $(document).ready(function () {
             {"data": "name"},
             {"data": "type"},
             {"data": "time"},
-            {"data": "access"}
+            {"data": "access"},
+            {"data": "actions"}
         ],
         "language": {
             "sProcessing": "Procesando...",
@@ -179,9 +223,10 @@ $(document).ready(function () {
                 "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
-        }
+        },
+        "bLengthChange": false
     });
-
+    
     $('#colorTexto').colorpicker({
         customClass: 'colorpicker-2x',
         sliders: {

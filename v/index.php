@@ -101,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" ng-show="tab.isSet(2)" style="padding-top: 15px;" ng-controller="personalFilesController as module">
+                <div class="container-fluid" ng-show="tab.isSet(2)" style="padding-top: 15px;">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <table class="table table-bordered bordered table-striped datatable" id="personalFilesTable" style="width: 100%;">
@@ -111,6 +111,7 @@
                                         <th>Tipo</th>
                                         <th>Creación</th>
                                         <th>Acceso</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="panelBody">
@@ -118,25 +119,6 @@
                             </table>
                         </div>
                     </div>
-                    <!--                    <form action="./post.php?r=uploadFile" class="dropzone" id="uploadFiles">
-                                            <input type="file" name="file" />
-                                        </form>
-                                        <table datatable class="table" id="personalFiles" ng-controller="personalFilesController as module">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Creación</th>
-                                                    <th>Acceso</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="file in module.files">
-                                                    <td>{{file.name}}</td>
-                                                    <td>{{file.time}}</td>
-                                                    <td>{{file.access}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>-->
                 </div>
                 <div class="container-fluid" ng-show="tab.isSet(3)" style="padding-top: 15px;" ng-controller="configController as module">
                     <div class="panel panel-default">
@@ -264,6 +246,43 @@
                         <button type="submit" class="btn btn-primary">Subir</button>
                     </div>
                 </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarArchivo" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editar Archivo</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="file_name" class="col-sm-2 control-label">Nombre:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="file_name" id="file_name" placeholder="Nombre">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Acceso:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="file_access" name="file_access">
+                                    <option value="0">Público</option>
+                                    <option value="1">Protegido</option>
+                                    <option value="2">Privado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" id="file_id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="postEditarArchivo()" class="btn btn-primary">Actualizar</button>
+                </div>
             </div>
 
         </div>

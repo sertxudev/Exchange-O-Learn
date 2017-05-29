@@ -22,6 +22,21 @@ switch ($_POST['r']) {
             echo $user->crearUsuario($_POST['username'], $_POST['password'], $_POST['name'], $_POST['surname'], $_POST['birthday'], $_POST['type']);
         }
         break;
+
+    case 'borrarArchivo':
+        $folder = new c_carpeta();
+        echo $folder->borrarArchivo($_POST['id'], $_SESSION['id']);
+        break;
+    
+    case 'obtenerArchivo':
+        $folder = new c_carpeta();
+        echo $folder->obtenerArchivo($_POST['id'], $_SESSION['id']);
+        break;
+    
+    case 'editarArchivo':
+        $folder = new c_carpeta();
+        echo $folder->editarArchivo($_POST['id'], $_POST['name'], $_POST['access'], $_SESSION['id']);
+        break;
 }
 
 if (!isset($_GET['r'])) {
@@ -89,7 +104,7 @@ switch ($_GET['r']) {
                 ), true);
 
         $file_name = hash('md5', time());
-        $file_url = './uploads/' . $file_name;
+        $file_url = './uploads/' . $file_name . '.' . $ext;
 
         if ($ext) {
             if (move_uploaded_file(
@@ -97,7 +112,8 @@ switch ($_GET['r']) {
                     )) {
 
                 $folder = new c_carpeta();
-                echo $folder->subirArchivo($_POST['file_name'], $file_url, $ext, $_SESSION['id'], $_POST['file_access']);
+                $folder->subirArchivo($_POST['file_name'], $file_url, $ext, $_SESSION['id'], $_POST['file_access']);
+                header("Location: ./");
             } else {
                 echo 'Se ha producido un error al subir el archivo';
             }

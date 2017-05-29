@@ -4,12 +4,16 @@
     }
 }
 
-.btn-floating{
+table.dataTable td, table.dataTable th {
+    vertical-align: middle!important;
+}
+
+.btn-floating {
        bottom: 0;
        position: absolute;
        text-align: center;
        z-index: 10000;
-       cursor: none;
+       cursor: help;
        right: 0;
        padding: 0;
        border-radius: 50%;
