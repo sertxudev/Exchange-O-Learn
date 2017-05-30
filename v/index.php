@@ -126,11 +126,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <h4>Color Texto</h4>
-                                    <input id="colorTexto" type="text" class="form-control" value="<?php echo $_SESSION['color'] ?>" />
+                                    <input id="colorTexto" type="text" class="form-control" value="<?php echo $_SESSION['color'] ?>" style="background-color: <?php echo $_SESSION['background'] ?>; color: <?php echo $_SESSION['color'] ?>;" />
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Color Fondo</h4>
-                                    <input id="colorFondo" type="text" class="form-control" value="<?php echo $_SESSION['background'] ?>" />
+                                    <input id="colorFondo" type="text" class="form-control" value="<?php echo $_SESSION['background'] ?>" style="background-color: <?php echo $_SESSION['background'] ?>; color: <?php echo $_SESSION['color'] ?>;" />
                                 </div>
                                 <div class="col-md-2" style="height: 73px;">
                                     <button type="button" class="btn btn-primary" ng-click="guardarColor()" style="margin-top: 39px">Guardar Colores</button>
@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <h4>Cumpleaños</h4>
-                                    <input id="config_birthday" type="date" class="form-control" value="" />
+                                    <input id="config_birthday" type="text" class="form-control" value="" readonly/>
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Nombre</h4>
@@ -190,14 +190,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="carpeta_name">{{hello}}{{module.usuario.name}} {{module.usuario.surname}}</h4>
+                    <h4 class="modal-title" id="carpeta_name">{{module.usuario.name}} {{module.usuario.surname}}</h4>
                 </div>
                 <div class="modal-body" id="carpeta_files">
-                    <ul>
-                        <li ng-repeat="carpeta in module.carpeta">
-                            {{carpeta.file_name}}
-                        </li>
-                    </ul>
+                    <table class="table table-bordered bordered table-striped datatable" id="filesFolder" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Creación</th>
+                                <th>Acceso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="panelBody">
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

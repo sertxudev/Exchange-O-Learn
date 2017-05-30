@@ -19,11 +19,21 @@ class c_carpeta {
 
         $pdo = $folder->obtenerCarpeta($id, $type);
         $array_a = $pdo->fetchAll(PDO::FETCH_ASSOC);
-        $return = "";
-        foreach ($array_a as $a) {
-            $return .= "<li><a href=" . $a['url'] . " download>" . $a['name'] . "</a> - " . $a['access'] . " </li>";
-        }
-        return $return;
+        
+        array_walk($array_a, function (&$elemento, $clave){
+            $name = '<a href="' . $elemento['url'] . '" target="_BLANK">' . $elemento['name'] . '</a>';
+            $fecha = date('d-m-Y', $elemento['time']);
+            $access = $elemento['access'] == 0 ? 'Público' 
+                    : ($elemento['access'] == 1 ? 'Protegido' : 'Privado') ;
+            
+            $elemento['name']       = $name;
+            $elemento['access']     = $access;
+            $elemento['time']       = $fecha;
+        });
+        
+        return json_encode(array(
+            "data" => $array_a
+        ));
     }
 
     public function obtenerCarpetaPersonal($post_id) {
@@ -79,7 +89,7 @@ class c_carpeta {
         
         $pdo = $folder->obtenerUrlArchivo($id);
         $return = $pdo->fetch(PDO::FETCH_ASSOC);
-        return $folder->borrarArchivo($id, $owner) ? (unlink($return['url']) ? 0 : 1) : 2 ;
+        return $folder->borrarArchivo($id, $owner) ? (@unlink($return['url']) ? 0 : 1) : 2 ;
     }
     
     public function obtenerArchivo($post_id, $post_owner) {

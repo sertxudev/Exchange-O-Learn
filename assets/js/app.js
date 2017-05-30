@@ -73,11 +73,46 @@
                     $('#carpeta_name').html('Carpeta de ' + module.usuario.name + ' ' + module.usuario.surname);
                 });
 
-                $http.get('./post.php?r=obtenerCarpeta&id=' + id).then(function (response) {
-                    module.carpeta = response.data;
-                    $('#carpeta_files').html(module.carpeta);
-                    $('#mostrarCarpeta').modal();
+                $('#filesFolder').DataTable({
+                    "ajax": "./post.php?r=obtenerCarpeta&id=" + id,
+                    "columns": [
+                        {"data": "name"},
+                        {"data": "type"},
+                        {"data": "time"},
+                        {"data": "access"}
+                    ],
+                    "language": {
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sZeroRecords": "No se encontraron archivos",
+                        "sEmptyTable": "No existe ningún archivo",
+                        "sInfo": "Mostrando del archivo _START_ al _END_ de un total de _TOTAL_",
+                        "sInfoEmpty": "No hay archivos",
+                        "sInfoFiltered": "(filtrados _MAX_ archivos)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+                    "bLengthChange": false,
+                    destroy: true
                 });
+//                $http.get('./post.php?r=obtenerCarpeta&id=' + id).then(function (response) {
+//                    module.carpeta = response.data;
+//                    $('#carpeta_files').html(module.carpeta);
+                $('#mostrarCarpeta').modal();
+//                });
             };
         }]);
 
@@ -119,11 +154,28 @@
     app.controller('configController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
 
-            $scope.guardarColor = function () {
-                var r = './post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val();
-                console.log(r);
-                $http.get('./post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val()).then(function (response) {
+            $http.get('./post.php?r=obtenerPerfil').then(function (response) {
+                module.perfil = response.data;
+                console.log(response.data);
+                $('#config_username').val(module.perfil.username);
+                $('#config_birthday').val(module.perfil.birthday);
+                $('#config_name').val(module.perfil.name);
+                $('#config_surname').val(module.perfil.surname);
+            });
 
+            $scope.guardarColor = function () {
+                $http.get('./post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val()).then(function (response) {
+                    if (response.data == 1) {
+                        window.location = "./";
+                    }
+                });
+            };
+
+            $scope.guardarPerfil = function () {
+                $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&birthday=' + $('#config_birthday').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
+                    if (response.data == 1) {
+                        window.location = "./";
+                    }
                 });
             };
         }]);
@@ -141,9 +193,12 @@ function borrarArchivo(id) {
     })
             .done(function (msg) {
                 console.log(msg);
-                if(msg == 0){
+                if (msg == 0) {
                     $('#modalEditarArchivo').modal('hide');
-                    $('#personalFilesTable').DataTable().ajax.reload( null, false );
+                    $('#personalFilesTable').DataTable().ajax.reload(null, false);
+                }
+                if (msg == 1) {
+                    $('#personalFilesTable').DataTable().ajax.reload(null, false);
                 }
             });
 }
@@ -160,7 +215,7 @@ function editarArchivo(id) {
     })
             .done(function (msg) {
                 var data = JSON.parse(msg);
-                
+
                 $('#file_id').val(data.id);
                 $('#file_name').val(data.name);
                 $('#file_access').val(data.access);
@@ -168,7 +223,7 @@ function editarArchivo(id) {
             });
 }
 
-function postEditarArchivo(){
+function postEditarArchivo() {
     $.ajax({
         method: "POST",
         url: "post.php",
@@ -177,20 +232,23 @@ function postEditarArchivo(){
             r: 'editarArchivo',
             id: $('#file_id').val(),
             name: $('#file_name').val(),
-            access:$('#file_access').val()
+            access: $('#file_access').val()
         }
     })
             .done(function (msg) {
-                if(msg == 0){
+                if (msg == 0) {
                     $('#file_name').val('');
                     $('#file_access').val('');
                     $('#modalEditarArchivo').modal('hide');
-                    $('#personalFilesTable').DataTable().ajax.reload( null, false );
+                    $('#personalFilesTable').DataTable().ajax.reload(null, false);
                 }
             });
 }
 
 $(document).ready(function () {
+
+    $("#config_birthday").datepicker({dateFormat: 'yy-mm-dd'});
+
     $('#personalFilesTable').DataTable({
         "ajax": "./post.php?r=obtenerCarpetaPersonal",
         "columns": [
@@ -226,7 +284,10 @@ $(document).ready(function () {
         },
         "bLengthChange": false
     });
-    
+    function mostrarCarpeta(id) {
+
+    }
+
     $('#colorTexto').colorpicker({
         customClass: 'colorpicker-2x',
         sliders: {

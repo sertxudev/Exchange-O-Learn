@@ -8,10 +8,16 @@ class usuario extends ddbb {
                 . "('$username', '$password', '$name', '$surname', '$birthday', '$type')", TRUE);
     }
     
-    public function editar($id, $username, $password, $name, $surname, $birthday, $type){
-        $this->actualizar("UPDATE users SET "
-                . "username='$username', password='$password', name='$name', surname='$surname', birthday='$birthday', type='$type' "
-                . "WHERE id='$id'", TRUE);
+    public function actualizarPerfil($id, $username, $name, $surname, $birthday, $password = false){
+        if(!empty($password)){
+            $this->actualizar("UPDATE users SET "
+                    . "username='$username', password='$password', name='$name', surname='$surname', birthday='$birthday' "
+                    . "WHERE id='$id'", TRUE);
+        }else{
+            $this->actualizar("UPDATE users SET "
+                    . "username='$username', name='$name', surname='$surname', birthday='$birthday' "
+                    . "WHERE id='$id'", TRUE);
+        }
     }
     
     public function borrar($id){
@@ -24,6 +30,10 @@ class usuario extends ddbb {
     
     public function obtener($id){
         return $this->seleccionar("SELECT name, surname FROM users WHERE id='$id'", TRUE);
+    }
+    
+    public function obtenerPerfil($id){
+        return $this->seleccionar("SELECT username, name, surname, birthday, color FROM users WHERE id='$id'", TRUE);
     }
     
     public function cambiarColor($color, $background, $id) {

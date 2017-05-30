@@ -59,6 +59,11 @@ switch ($_GET['r']) {
         $evento = new c_evento();
         echo $evento->obtenerEvento($_GET['id']);
         break;
+    
+    case 'actualizarPerfil':
+        $user = new c_usuario();
+        echo $user->actualizarPerfil($_SESSION['id'], $_GET['username'], $_GET['password'], $_GET['name'], $_GET['surname'], $_GET['birthday']);
+        break;
 
     case 'obtenerMessages':
         $messages = new c_messages();
@@ -87,6 +92,11 @@ switch ($_GET['r']) {
     case 'obtenerUsuario':
         $user = new c_usuario();
         echo $user->obtenerUsuario($_GET['id']);
+        break;
+    
+    case 'obtenerPerfil':
+        $user = new c_usuario();
+        echo $user->obtenerPerfil($_SESSION['id']);
         break;
 
     case 'uploadFile':

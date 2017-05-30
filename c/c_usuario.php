@@ -11,6 +11,15 @@ class c_usuario {
         return json_encode($pdo->fetch(PDO::FETCH_ASSOC));
     }
     
+    public function obtenerPerfil($post_id) {
+        $user = new usuario();
+        
+        $id = $this->sanitizeString($post_id);
+
+        $pdo = $user->obtenerPerfil($id);
+        return json_encode($pdo->fetch(PDO::FETCH_ASSOC));
+    }
+    
     public function crearUsuario($post_username, $post_password, $post_name, $post_surname, $post_birthday, $post_type){
         $user = new usuario();
         
@@ -24,18 +33,19 @@ class c_usuario {
         $user->crear($username, $password, $name, $surname, $birthday, $type);
     }
     
-    public function editarUsuario($post_id, $post_username, $post_password, $post_name, $post_surname, $post_birthday, $post_type){
+    public function actualizarPerfil($post_id, $post_username, $post_password, $post_name, $post_surname, $post_birthday){
         $user = new usuario();
         
         $id = $this->sanitizeString($post_id);
         $username = $this->sanitizeString($post_username);
-        $password = hash('sha512', $this->sanitizeString($post_password));
         $name     = $this->sanitizeString($post_name);
         $surname  = $this->sanitizeString($post_surname);
         $birthday = $this->sanitizeString($post_birthday);
-        $type     = $this->sanitizeString($post_type);
-        
-        $user->editar($id, $username, $password, $name, $surname, $birthday, $type);
+        if(!empty($post_password)){
+            $password = hash('sha512', $this->sanitizeString($post_password));
+            return $user->actualizarPerfil($id, $username, $name, $surname, $birthday, $password);
+        }        
+        return $user->actualizarPerfil($id, $username, $name, $surname, $birthday);
     }
     
     public function borrarUsuario($post_id) {
