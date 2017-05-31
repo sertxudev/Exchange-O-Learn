@@ -156,7 +156,6 @@
 
             $http.get('./post.php?r=obtenerPerfil').then(function (response) {
                 module.perfil = response.data;
-                console.log(response.data);
                 $('#config_username').val(module.perfil.username);
                 $('#config_birthday').val(module.perfil.birthday);
                 $('#config_name').val(module.perfil.name);

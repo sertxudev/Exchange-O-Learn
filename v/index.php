@@ -17,14 +17,36 @@
                     <li ng-class="{ active:tab.isSet(2) }" style="display: inline-block;" ng-style="{ width: tab.isSet(2) ? '81%' : '100%' }">
                         <a ng-click="tab.setTab(2)"><i class="fa fa-folder-open"></i> <span>Carpeta Personal</span></a>
                     </li>
-                    <li ng-class="{ active:hover }" ng-show="tab.isSet(2)" style="display: inline-block; float: right;">
+                    <li ng-class="{ active:hover }" ng-show="tab.isSet(2)" style="display: inline-block; float: right; position: absolute;">
                         <a style="float:right;" ng-click="uploadPersonalFiles()"><i class="fa fa-upload"></i></a>
                     </li>
 
                     <li ng-class="{ active:tab.isSet(3) }">
                         <a ng-click="tab.setTab(3)"><i class="fa fa-gear"></i> <span>Configuración</span></a>
                     </li>
-
+                    <?php 
+                    if ($_SESSION['type'] >= 2){
+                        echo '<li class="treeview" ng-class="{ active:tab.isSet(4) || tab.isSet(5) || tab.isSet(6) || tab.isSet(7) }">
+                        <a ng-click="tab.setTab(4)">
+                            <i class="fa fa-dashboard"></i> <span>Panel de Control</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a ng-click="tab.setTab(5)"><i class="fa fa-lock"></i> Administración</a>
+                            </li>
+                            <li>
+                                <a ng-click="tab.setTab(6)"><i class="fa fa-book"></i> Profesores</a>
+                            </li>
+                            <li>
+                                <a ng-click="tab.setTab(7)"><i class="fa fa-pencil"></i> Alumnos</a>
+                            </li>
+                        </ul>
+                    </li>';
+                    }
+                    ?>
                     <li>
                         <a ng-click="logout()"><i class="fa fa-sign-out"></i> <span>Cerrar Sesión</span></a>
                     </li>
