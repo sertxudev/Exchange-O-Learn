@@ -24,8 +24,8 @@
                     <li ng-class="{ active:tab.isSet(3) }">
                         <a ng-click="tab.setTab(3)"><i class="fa fa-gear"></i> <span>Configuración</span></a>
                     </li>
-                    <?php 
-                    if ($_SESSION['type'] >= 2){
+                    <?php
+                    if ($_SESSION['type'] >= 2) {
                         echo '<li class="treeview" ng-class="{ active:tab.isSet(4) || tab.isSet(5) || tab.isSet(6) || tab.isSet(7) }">
                         <a ng-click="tab.setTab(4)">
                             <i class="fa fa-dashboard"></i> <span>Panel de Control</span>
@@ -186,6 +186,79 @@
                             </div>
                         </div> 
                     </div>
+                </div>
+                <div class="container-fluid" ng-show="tab.isSet(4)" style="padding-top: 15px;">
+                    <section class="content-header">
+                        <h1>
+                            Dashboard
+                            <small>Control de Panel</small>
+                        </h1>
+                    </section>
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua">
+                            <div class="inner">
+                                <h3>44</h3>
+
+                                <p>Alumnos</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-red">
+                            <div class="inner">
+                                <h3>6</h3>
+
+                                <p>Profesores</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3>244</h3>
+
+                                <p>Mensajes</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-comments"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-purple">
+                            <div class="inner">
+                                <h3>14</h3>
+
+                                <p>Eventos</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-border col-lg-5">
+                        <h3>Bloquear Aplicación</h3>
+                        <button>Bloquear</button>
+                    </div>
+                    
                 </div>
             </section>
         </div>

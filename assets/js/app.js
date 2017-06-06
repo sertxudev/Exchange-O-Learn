@@ -246,7 +246,19 @@ function postEditarArchivo() {
 
 $(document).ready(function () {
 
-    $("#config_birthday").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#config_birthday").datepicker({
+        dateFormat: 'yy-mm-dd',
+        yearRange: "-100:+0",
+        changeMonth: true,
+        changeYear: true,
+        
+        prevText: 'Ant.',
+        nextText: 'Sig.',
+        currentText: 'Hoy',
+        monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+        dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+        firstDay: 1
+    });
 
     $('#personalFilesTable').DataTable({
         "ajax": "./post.php?r=obtenerCarpetaPersonal",
