@@ -390,4 +390,4 @@
         </div>
     </div>
 
-    <a type="button" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>
+    <a type="button" href="./docs/" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>

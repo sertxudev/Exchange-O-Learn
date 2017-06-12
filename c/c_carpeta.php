@@ -46,7 +46,7 @@ class c_carpeta {
         $array_a = $pdo->fetchAll(PDO::FETCH_ASSOC);
         
         array_walk($array_a, function (&$elemento, $clave){
-            $name = '<a href="' . $elemento['url'] . '" target="_BLANK">' . $elemento['name'] . '</a>';
+            $name = '<a href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '">' . $elemento['name'] . '</a>';
             $fecha = date('d-m-Y', $elemento['time']);
             $access = $elemento['access'] == 0 ? 'Público' 
                     : ($elemento['access'] == 1 ? 'Protegido' : 'Privado') ;
