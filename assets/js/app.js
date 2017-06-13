@@ -175,6 +175,7 @@
 
             $scope.guardarPerfil = function () {
                 $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&birthday=' + $('#config_birthday').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
+                    console.log(response);
                     if (response.data == 1) {
                         window.location = "./";
                     }
@@ -343,12 +344,130 @@ $(document).ready(function () {
         ],
         "language": {
             "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron archivos",
-            "sEmptyTable": "No existe ningún archivo",
-            "sInfo": "Mostrando del archivo _START_ al _END_ de un total de _TOTAL_",
-            "sInfoEmpty": "No hay archivos",
-            "sInfoFiltered": "(filtrados _MAX_ archivos)",
+            "sLengthMenu": "Mostrar _MENU_ alumnos",
+            "sZeroRecords": "No se encontraron alumnos",
+            "sEmptyTable": "No existe ningún alumno",
+            "sInfo": "Mostrando del alumno _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "No hay alumnos",
+            "sInfoFiltered": "(filtrados _MAX_ alumnos)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        "bLengthChange": false
+    });
+
+    $('#profesoresTable').DataTable({
+        "ajax": "./post.php?r=obtenerProfesores",
+        "columns": [
+            {"data": "name"},
+            {"data": "surname"},
+            {"data": "username"},
+            {"data": "birthday"},
+            {"data": "acciones"}
+        ],
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ profesores",
+            "sZeroRecords": "No se encontraron profesores",
+            "sEmptyTable": "No existe ningún profesor",
+            "sInfo": "Mostrando del profesor _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "No hay profesores",
+            "sInfoFiltered": "(filtrados _MAX_ profesores)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        "bLengthChange": false
+    });
+
+    $('#mensajesTable').DataTable({
+        "ajax": "./post.php?r=obtenerMensajes",
+        "columns": [
+            {"data": "id"},
+            {"data": "time"},
+            {"data": "name"},
+            {"data": "surname"},
+            {"data": "text"},
+            {"data": "acciones"}
+        ],
+        "order": [[ 0, "desc" ]],
+        "columnDefs": [ {
+            "targets": 5,
+            "orderable": false
+        }],
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ mensajes",
+            "sZeroRecords": "No se encontraron mensajes",
+            "sEmptyTable": "No existe ningún mensaje",
+            "sInfo": "Mostrando del mensaje _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "No hay mensajes",
+            "sInfoFiltered": "(filtrados _MAX_ mensajes)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        "bLengthChange": false
+    });
+
+    $('#eventosTable').DataTable({
+        "ajax": "./post.php?r=obtenerEventos",
+        "columns": [
+            {"data": "title"},
+            {"data": "description"},
+            {"data": "time"},
+            {"data": "acciones"}
+        ],
+        "order": [[ 2, "desc" ]],
+        "columnDefs": [ {
+            "targets": 3,
+            "orderable": false
+        }],
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ eventos",
+            "sZeroRecords": "No se encontraron eventos",
+            "sEmptyTable": "No existe ningún evento",
+            "sInfo": "Mostrando del evento _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "No hay eventos",
+            "sInfoFiltered": "(filtrados _MAX_ eventos)",
             "sInfoPostFix": "",
             "sSearch": "Buscar:",
             "sUrl": "",

@@ -11,31 +11,6 @@ class c_usuario {
         return json_encode($pdo->fetch(PDO::FETCH_ASSOC));
     }
     
-    public function obtenerAlumnos() {
-        $alumnos = new usuario();
-        $pdo = $alumnos->obtenerAlumnos();
-
-        //return json_encode((array("data" => $pdo->fetchAll(PDO::FETCH_ASSOC))));
-
-        $array_a = $pdo->fetchAll(PDO::FETCH_ASSOC);
-        
-        array_walk($array_a, function (&$elemento, $clave){
-            $name = '<a href="' . $elemento['url'] . '" target="_BLANK">' . $elemento['name'] . '</a>';
-            $fecha = date('d-m-Y', $elemento['time']);
-            $access = $elemento['access'] == 0 ? 'Público' 
-                    : ($elemento['access'] == 1 ? 'Protegido' : 'Privado') ;
-            
-            $elemento['name']       = $name;
-            $elemento['access']     = $access;
-            $elemento['time']       = $fecha;
-        });
-        
-        return json_encode(array(
-            "data" => $array_a
-        ));
-
-    }
-    
     public function obtenerPerfil($post_id) {
         $user = new usuario();
         
@@ -68,9 +43,14 @@ class c_usuario {
         $birthday = $this->sanitizeString($post_birthday);
         if(!empty($post_password)){
             $password = hash('sha512', $this->sanitizeString($post_password));
-            return $user->actualizarPerfil($id, $username, $name, $surname, $birthday, $password);
-        }        
-        return $user->actualizarPerfil($id, $username, $name, $surname, $birthday);
+            if(!$user->actualizarPerfil($id, $username, $name, $surname, $birthday, $password)){
+                echo 1;
+            }
+        }else{     
+            if(!$user->actualizarPerfil($id, $username, $name, $surname, $birthday)){
+                echo 1;
+            }
+        }
     }
     
     public function borrarUsuario($post_id) {

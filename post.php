@@ -72,10 +72,6 @@ switch ($_GET['r']) {
 
     case 'sendMessage':
         $messages = new c_messages();
-//            
-//            $_POST = (array) json_decode( file_get_contents("php://input") );
-//
-//            echo $messages->sendMessage($_POST['text'], $_SESSION['id']);
         echo $messages->sendMessage($_GET['text'], $_SESSION['id']);
         break;
 
@@ -140,8 +136,23 @@ switch ($_GET['r']) {
         break;
 
     case 'obtenerAlumnos':
-        $usuarios = new c_usuario();
-        echo $usuarios->obtenerAlumnos();
+        $dashboard = new c_dashboard();
+        echo $dashboard->obtenerAlumnos();
+        break;
+
+    case 'obtenerProfesores':
+        $dashboard = new c_dashboard();
+        echo $dashboard->obtenerProfesores();
+        break;
+
+    case 'obtenerMensajes':
+        $dashboard = new c_dashboard();
+        echo $dashboard->obtenerMensajes();
+        break;
+
+    case 'obtenerEventos':
+        $dashboard = new c_dashboard();
+        echo $dashboard->obtenerEventos();
         break;
 
     case 'cambiarColor':

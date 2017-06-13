@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-05-2017 a las 00:10:29
+-- Tiempo de generación: 13-06-2017 a las 17:09:46
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 7.0.10
 
@@ -38,8 +38,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `description`, `time`) VALUES
-(1, 'Hello World', 'Este es un evento de Ejemplo', '2017-05-14'),
-(2, 'Again', 'Esto es otro evento de ejemplo', '2017-05-16');
+(1, 'Entregar trabajo Ofimática', 'Hay que entregar el trabajo de ofimática sobre access el próximo día 29 de Mayo.', '2017-05-29'),
+(2, 'Examen Tema 5 de Inglés', 'El profesor ha puesto el examen de inglés el día 5 de Júnio, además ese mismo día hay que entregar la redacción de la página 42.', '2017-06-05');
 
 -- --------------------------------------------------------
 
@@ -49,10 +49,11 @@ INSERT INTO `events` (`id`, `title`, `description`, `time`) VALUES
 
 CREATE TABLE `files` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `name` tinytext COLLATE utf8_unicode_ci NOT NULL,
   `owner` int(11) UNSIGNED NOT NULL,
-  `url` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `time` timestamp NOT NULL,
+  `url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
+  `time` date NOT NULL,
   `access` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -60,10 +61,10 @@ CREATE TABLE `files` (
 -- Volcado de datos para la tabla `files`
 --
 
-INSERT INTO `files` (`id`, `name`, `owner`, `url`, `time`, `access`) VALUES
-(1, 'defalt.exe', 2, 'defalt.exe', '2017-05-17 04:55:31', -1),
-(2, 'Pepe Mola', 2, 'pepe.txt', '2017-05-17 09:36:46', 2),
-(3, 'Pepe Mola Mucho', 2, 'pepe-mola.txt', '2017-05-22 22:06:28', 1);
+INSERT INTO `files` (`id`, `name`, `owner`, `url`, `type`, `time`, `access`) VALUES
+(11, 'Diploma Desarrolo Web (Segunda Parte)', 1, './uploads/7657cf9360f6f9b0cc2fc559c1c47e2a.pdf', 'pdf', '2017-06-12', 2),
+(9, 'Diploma Apps Moviles', 1, './uploads/fde5c6a406b997792eb66fb63f6db791.pdf', 'pdf', '2017-06-12', 0),
+(10, 'Diploma Desarrollo Web (Primera Parte)', 1, './uploads/367fd6906a4902704c15155f1ce8f807.pdf', 'pdf', '2017-06-12', 1);
 
 -- --------------------------------------------------------
 
@@ -78,6 +79,24 @@ CREATE TABLE `messages` (
   `time` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `messages`
+--
+
+INSERT INTO `messages` (`id`, `text`, `author`, `time`) VALUES
+(1, 'Hola', 3, '2017-05-27 00:03:54'),
+(2, 'Hola ¿Donde estabas que no habías venido a primera?', 1, '2017-05-27 00:04:23'),
+(3, 'En el médico, tenía analítica', 3, '2017-05-27 00:04:37'),
+(4, '¿Han puesto algo de deber?', 3, '2017-05-27 00:04:54'),
+(5, 'Si', 1, '2017-05-27 00:04:59'),
+(6, 'De la página 35 la actividad 1,5,7 para el próximo día', 1, '2017-05-27 00:05:23'),
+(7, 'Gracias', 3, '2017-05-27 00:05:36'),
+(8, 'De nada', 1, '2017-05-27 00:05:54'),
+(9, 'XD', 1, '2017-05-27 16:57:15'),
+(10, 'hola', 1, '2017-06-12 21:46:38'),
+(11, 'addass', 1, '2017-06-13 15:32:19'),
+(12, 'hola son las 04:06 13/06/17', 2, '2017-06-13 16:06:08');
+
 -- --------------------------------------------------------
 
 --
@@ -91,8 +110,8 @@ CREATE TABLE `users` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `birthday` date DEFAULT NULL,
-  `color` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
-  `background` varchar(7) COLLATE utf8_unicode_ci NOT NULL,
+  `color` varchar(22) COLLATE utf8_unicode_ci NOT NULL,
+  `background` varchar(22) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(1) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -101,8 +120,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `birthday`, `color`, `background`, `type`) VALUES
-(1, 'student', '11560a1591f0673b879cd0b60adf828aa66aba4b8ad3aa163f1480ef87b86b53c2464dfbdf1cbbef3c9f1e7c0502b840d0ff9116a188a44c2576736c3a65ae99', 'Student', '', '2000-06-23', '#ffffff', '#ff37ff', 0),
-(2, 'admin', '11560a1591f0673b879cd0b60adf828aa66aba4b8ad3aa163f1480ef87b86b53c2464dfbdf1cbbef3c9f1e7c0502b840d0ff9116a188a44c2576736c3a65ae99', 'Admin', '', NULL, '', '0', 2);
+(1, 'user', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Not Root', '2017-06-13', 'rgba(255,0,0,1)', 'rgba(11,0,135,1)', 0),
+(2, 'root', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Root', '2017-06-13', '', '0', 2);
 
 --
 -- Índices para tablas volcadas
@@ -146,17 +165,17 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT de la tabla `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

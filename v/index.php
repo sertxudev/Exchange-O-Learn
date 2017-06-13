@@ -165,23 +165,23 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <h4>Usuario</h4>
-                                    <input id="config_username" type="text" class="form-control" value="" />
+                                    <input id="config_username" type="text" class="form-control" value="" required/>
                                 </div>
                                 <div class="col-md-3">
                                     <h4>Contraseña</h4>
-                                    <input id="config_password" type="password" class="form-control" value="" />
+                                    <input id="config_password" type="password" class="form-control" value="" required/>
                                 </div>
                                 <div class="col-md-3">
                                     <h4>Cumpleaños</h4>
-                                    <input id="config_birthday" type="text" class="form-control" value="" readonly/>
+                                    <input id="config_birthday" type="text" class="form-control" value="" readonly required/>
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Nombre</h4>
-                                    <input id="config_name" type="text" class="form-control" value="" />
+                                    <input id="config_name" type="text" class="form-control" value="" required/>
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Apellidos</h4>
-                                    <input id="config_surname" type="text" class="form-control" value="" />
+                                    <input id="config_surname" type="text" class="form-control" value="" required/>
                                 </div>
                                 <div class="col-md-2" style="height: 73px;">
                                     <button type="button" class="btn btn-primary" ng-click="guardarPerfil()" style="margin-top: 39px">Guardar Perfil</button>
@@ -309,13 +309,13 @@
                     </section>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" style="width: 100%;">
+                            <table class="table table-bordered bordered table-striped datatable" id="profesoresTable" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
-                                        <th>Tipo</th>
-                                        <th>Creación</th>
-                                        <th>Acceso</th>
+                                        <th>Apellidos</th>
+                                        <th>Usuario</th>
+                                        <th>Cumpleaños</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -337,14 +337,15 @@
                     </section>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" style="width: 100%;">
+                            <table class="table table-bordered bordered table-striped datatable" id="mensajesTable" style="width: 100%;">
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
+                                        <th>Fecha de envío</th>
                                         <th>Nombre</th>
                                         <th>Apellidos</th>
-                                        <th>Total Archivos</th>
-                                        <th>Total Mensajes</th>
-                                        <th>Acciones</th>
+                                        <th>Mensaje</th>
+                                        <th><button type="button" onClick="borrarMensajes()" class="btn btn-danger">Eliminar Todos</button></th>
                                     </tr>
                                 </thead>
                                 <tbody id="panelBody">
@@ -365,13 +366,12 @@
                     </section>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" id="alumnosTable" style="width: 100%;">
+                            <table class="table table-bordered bordered table-striped datatable" id="eventosTable" style="width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th>Total Archivos</th>
-                                        <th>Total Mensajes</th>
+                                        <th>Título</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha del evento</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
