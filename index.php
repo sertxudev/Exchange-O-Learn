@@ -7,6 +7,13 @@
     } else {
         include_once './config/config.php';
         
+        if(_bloquear_){
+            if(isset($_SESSION['type']) && ($_SESSION['type'] == 0)){
+                include_once './v/bloqueada.php';
+                exit;
+            }
+        }
+
         if (isset($_SESSION['id']) && $_SESSION['id'] != '') {
             include_once './v/header.php';
             

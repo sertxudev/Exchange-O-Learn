@@ -139,9 +139,44 @@ switch ($_GET['r']) {
         echo $folder->obtenerCarpetaPersonal($_SESSION['id']);
         break;
 
+    case 'obtenerAlumnos':
+        $usuarios = new c_usuario();
+        echo $usuarios->obtenerAlumnos();
+        break;
+
     case 'cambiarColor':
         $user = new c_usuario();
         echo $user->cambiarColor($_GET['color'], $_GET['background'], $_SESSION['id']);
+        break;
+
+    case 'contarAlumnos':
+        $count = new c_contador();
+        echo $count->contarAlumnos();
+        break;
+
+    case 'contarProfesores':
+        $count = new c_contador();
+        echo $count->contarProfesores();
+        break;
+
+    case 'contarMensajes':
+        $count = new c_contador();
+        echo $count->contarMensajes();
+        break;
+
+    case 'contarEventos':
+        $count = new c_contador();
+        echo $count->contarEventos();
+        break;
+
+    case 'bloquearAplicacion':
+        if($_SESSION['type'] > 0){
+            if(_bloquear_){
+                unlink(_RUTA_LOG_.'bloqueado');
+            }else{
+                touch(_RUTA_LOG_.'bloqueado');
+            }
+        }
         break;
 
     case 'logout':

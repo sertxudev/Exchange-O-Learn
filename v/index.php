@@ -26,7 +26,7 @@
                     </li>
                     <?php
                     if ($_SESSION['type'] >= 2) {
-                        echo '<li class="treeview" ng-class="{ active:tab.isSet(4) || tab.isSet(5) || tab.isSet(6) || tab.isSet(7) }">
+                        echo '<li class="treeview" ng-class="{ active:tab.isSet(4) || tab.isSet(5) || tab.isSet(6) || tab.isSet(7) || tab.isSet(8) }">
                         <a ng-click="tab.setTab(4)">
                             <i class="fa fa-dashboard"></i> <span>Panel de Control</span>
                             <span class="pull-right-container">
@@ -34,14 +34,17 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li>
-                                <a ng-click="tab.setTab(5)"><i class="fa fa-lock"></i> Administración</a>
+                            <li ng-class="{ active:tab.isSet(5) }">
+                                <a ng-click="tab.setTab(5)"><i class="fa fa-pencil"></i> Alumnos</a>
                             </li>
-                            <li>
+                            <li ng-class="{ active:tab.isSet(6) }">
                                 <a ng-click="tab.setTab(6)"><i class="fa fa-book"></i> Profesores</a>
                             </li>
-                            <li>
-                                <a ng-click="tab.setTab(7)"><i class="fa fa-pencil"></i> Alumnos</a>
+                            <li ng-class="{ active:tab.isSet(7) }">
+                                <a ng-click="tab.setTab(7)"><i class="fa fa-comments"></i> Mensajes</a>
+                            </li>
+                            <li ng-class="{ active:tab.isSet(8) }">
+                                <a ng-click="tab.setTab(8)"><i class="fa fa-calendar-o"></i> Eventos</a>
                             </li>
                         </ul>
                     </li>';
@@ -187,25 +190,27 @@
                         </div> 
                     </div>
                 </div>
-                <div class="container-fluid" ng-show="tab.isSet(4)" style="padding-top: 15px;">
+
+                <?php if($_SESSION['type'] > 0){ ?>
+                <div class="container-fluid" ng-show="tab.isSet(4)" style="padding-top: 15px;" ng-controller="dashController as module">
                     <section class="content-header">
                         <h1>
                             Dashboard
-                            <small>Control de Panel</small>
+                            <small>Panel de Control</small>
                         </h1>
                     </section>
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{module.cantidadAlumnos}}</h3>
 
                                 <p>Alumnos</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-pencil"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                            <a ng-click="tab.setTab(5)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     
@@ -213,14 +218,14 @@
                         <!-- small box -->
                         <div class="small-box bg-red">
                             <div class="inner">
-                                <h3>6</h3>
+                                <h3>{{module.cantidadProfesores}}</h3>
 
                                 <p>Profesores</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-book"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                            <a ng-click="tab.setTab(6)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     
@@ -228,14 +233,14 @@
                         <!-- small box -->
                         <div class="small-box bg-green">
                             <div class="inner">
-                                <h3>244</h3>
+                                <h3>{{module.cantidadMensajes}}</h3>
 
                                 <p>Mensajes</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-comments"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                            <a ng-click="tab.setTab(7)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     
@@ -243,23 +248,141 @@
                         <!-- small box -->
                         <div class="small-box bg-purple">
                             <div class="inner">
-                                <h3>14</h3>
+                                <h3>{{module.cantidadEventos}}</h3>
 
                                 <p>Eventos</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                            <a ng-click="tab.setTab(8)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                    
-                    <div class="warning-border col-lg-5">
+
+                    <div class="warning-border col-lg-3 col-xs-5">
                         <h3>Bloquear Aplicación</h3>
-                        <button>Bloquear</button>
+                        <button ng-click="bloquear_aplicacion()">Bloquear / Desbloquear</button>
                     </div>
-                    
+
+                    <div class="alert-border col-lg-3 col-xs-5 pull-right">
+                        <h3>Resetear Aplicación</h3>
+                        <button>Resetear</button>
+                    </div>
                 </div>
+                <?php } ?>
+
+                <?php if($_SESSION['type'] > 0){ ?>
+                <div class="container-fluid" ng-show="tab.isSet(5)" style="padding-top: 15px;">
+                    <section class="content-header">
+                        <h1>
+                            Alumnos
+                            <small>Panel de Control</small>
+                        </h1>
+                    </section>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table class="table table-bordered bordered table-striped datatable" id="alumnosTable" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>Usuario</th>
+                                        <th>Cumpleaños</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="panelBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+
+                <?php if($_SESSION['type'] > 0){ ?>                
+                <div class="container-fluid" ng-show="tab.isSet(6)" style="padding-top: 15px;">
+                    <section class="content-header">
+                        <h1>
+                            Profesores
+                            <small>Panel de Control</small>
+                        </h1>
+                    </section>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table class="table table-bordered bordered table-striped datatable" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Creación</th>
+                                        <th>Acceso</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="panelBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+
+                <?php if($_SESSION['type'] > 0){ ?>
+                <div class="container-fluid" ng-show="tab.isSet(7)" style="padding-top: 15px;">
+                    <section class="content-header">
+                        <h1>
+                            Mensajes
+                            <small>Panel de Control</small>
+                        </h1>
+                    </section>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table class="table table-bordered bordered table-striped datatable" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>Total Archivos</th>
+                                        <th>Total Mensajes</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="panelBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+
+                <?php if($_SESSION['type'] > 0){ ?>
+                <div class="container-fluid" ng-show="tab.isSet(8)" style="padding-top: 15px;">
+                    <section class="content-header">
+                        <h1>
+                            Eventos
+                            <small>Panel de Control</small>
+                        </h1>
+                    </section>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table class="table table-bordered bordered table-striped datatable" id="alumnosTable" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>Total Archivos</th>
+                                        <th>Total Mensajes</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="panelBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+
             </section>
         </div>
     </div>
@@ -390,4 +513,4 @@
         </div>
     </div>
 
-    <a type="button" href="./docs/" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>
+    <a type="button" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>

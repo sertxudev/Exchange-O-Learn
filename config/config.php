@@ -14,11 +14,19 @@ if(file_exists(_RUTA_LOG_."depurando")){
     define("_depurar_", false);
 }
 
+/* Bloquear */
+if(file_exists(_RUTA_LOG_."bloqueado")){
+    define("_bloquear_", true);
+    
+}else{
+    define("_bloquear_", false);
+}
+
 /* BBDD */
     define("_HOST_", "localhost");
     define("_BBDD_", "eol");
     define("_USER_", "root");
-    define("_PASS_", "root");
+    define("_PASS_", "estonoloadivinanadie");
     define("_TIPO_", "mysql");
     
 /* CONFIG */

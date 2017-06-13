@@ -35,6 +35,10 @@ class usuario extends ddbb {
     public function obtenerPerfil($id){
         return $this->seleccionar("SELECT username, name, surname, birthday, color FROM users WHERE id='$id'", TRUE);
     }
+
+    public function obtenerAlumnos(){
+        return $this->seleccionar("SELECT username, name, surname, birthday, color FROM users WHERE type=0", TRUE);
+    }
     
     public function cambiarColor($color, $background, $id) {
         return $this->seleccionar("UPDATE users SET color='$color', background='$background' WHERE id='$id'", TRUE);

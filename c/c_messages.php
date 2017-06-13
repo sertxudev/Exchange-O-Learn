@@ -3,10 +3,15 @@
 class c_messages {
 
     public function obtenerMessages() {
+        if(_bloquear_ && $_SESSION['type'] == 0 ){
+            echo 'Access Denied';
+            exit;
+        }
+        
         $messages = new messages();
         $pdo = $messages->obtenerMessages();
-        $return = json_encode($pdo->fetchAll(PDO::FETCH_ASSOC));
-        echo $return;
+        $return = $pdo->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode( array_reverse( $return ) );
     }
     
     public function sendMessage($post_text, $post_id) {

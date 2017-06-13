@@ -31,6 +31,9 @@
             setInterval(
                     function () {
                         $http.get('./post.php?r=obtenerMessages').then(function (response) {
+                            if(response.data == 'Access Denied'){
+                                location.reload();
+                            }
                             module.messages = response.data;
                         });
                     }
@@ -179,6 +182,39 @@
             };
         }]);
 
+    app.controller('dashController', ['$http', '$scope', function ($http, $scope) {
+            var module = this;
+
+            $http.get('./post.php?r=contarAlumnos').then(function (response) {
+                module.cantidadAlumnos = response.data.cantidad;
+            });
+
+            $http.get('./post.php?r=contarProfesores').then(function (response) {
+                module.cantidadProfesores = response.data.cantidad;
+            });
+
+            $http.get('./post.php?r=contarMensajes').then(function (response) {
+                module.cantidadMensajes = response.data.cantidad;
+            });
+
+            $http.get('./post.php?r=contarEventos').then(function (response) {
+                module.cantidadEventos = response.data.cantidad;
+            });
+
+            $scope.bloquear_aplicacion = function () {
+                $http.get('./post.php?r=bloquearAplicacion').then(function (response) {
+                });
+            };
+
+            $scope.guardarPerfil = function () {
+                $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&birthday=' + $('#config_birthday').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
+                    if (response.data == 1) {
+                        window.location = "./";
+                    }
+                });
+            };
+        }]);
+
 })();
 function borrarArchivo(id) {
     $.ajax({
@@ -295,9 +331,42 @@ $(document).ready(function () {
         },
         "bLengthChange": false
     });
-    function mostrarCarpeta(id) {
-
-    }
+    
+    $('#alumnosTable').DataTable({
+        "ajax": "./post.php?r=obtenerAlumnos",
+        "columns": [
+            {"data": "name"},
+            {"data": "surname"},
+            {"data": "username"},
+            {"data": "birthday"},
+            {"data": "acciones"}
+        ],
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron archivos",
+            "sEmptyTable": "No existe ningún archivo",
+            "sInfo": "Mostrando del archivo _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "No hay archivos",
+            "sInfoFiltered": "(filtrados _MAX_ archivos)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        "bLengthChange": false
+    });
 
     $('#colorTexto').colorpicker({
         customClass: 'colorpicker-2x',
