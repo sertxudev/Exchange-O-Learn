@@ -9,7 +9,6 @@
         <aside class="main-sidebar">
             <section class="sidebar">
                 <ul class="sidebar-menu">
-
                     <li ng-class="{ active:tab.isSet(1) }">
                         <a ng-click="tab.setTab(1)"><i class="fa fa-home"></i> <span>Inicio</span></a>
                     </li>
@@ -26,7 +25,8 @@
                     </li>
                     <?php
                     if ($_SESSION['type'] >= 2) {
-                        echo '<li class="treeview" ng-class="{ active:tab.isSet(4) || tab.isSet(5) || tab.isSet(6) || tab.isSet(7) || tab.isSet(8) }">
+                        ?>
+                        <li class="treeview" ng-class="{ active:tab.isSet(4) || tab.isSet(5) || tab.isSet(6) || tab.isSet(7) || tab.isSet(8) }">
                         <a ng-click="tab.setTab(4)">
                             <i class="fa fa-dashboard"></i> <span>Panel de Control</span>
                             <span class="pull-right-container">
@@ -34,20 +34,44 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li ng-class="{ active:tab.isSet(5) }">
+                            <li ng-class="{ active:tab.isSet(5) }" style="display: inline-block;" ng-style="{ width: tab.isSet(5) ? '81%' : '100%' }">
                                 <a ng-click="tab.setTab(5)"><i class="fa fa-pencil"></i> Alumnos</a>
                             </li>
-                            <li ng-class="{ active:tab.isSet(6) }">
+                            <li ng-class="{ active:hover }" ng-show="tab.isSet(5)" style="display: inline-block; float: right; position: absolute;">
+                                <a style="float:right;" ng-click="crearAlumno()"><i class="fa fa-plus"></i></a>
+                            </li>
+
+                            <br>
+
+                            <li ng-class="{ active:tab.isSet(6) }" style="display: inline-block;" ng-style="{ width: tab.isSet(6) ? '81%' : '100%' }">
                                 <a ng-click="tab.setTab(6)"><i class="fa fa-book"></i> Profesores</a>
                             </li>
-                            <li ng-class="{ active:tab.isSet(7) }">
+                            <li ng-class="{ active:hover }" ng-show="tab.isSet(6)" style="display: inline-block; float: right; position: absolute;">
+                                <a style="float:right;" ng-click="crearProfesor()"><i class="fa fa-plus"></i></a>
+                            </li>
+
+                            <br>
+
+                            <li ng-class="{ active:tab.isSet(7) }" style="display: inline-block;" ng-style="{ width: tab.isSet(7) ? '81%' : '100%' }">
                                 <a ng-click="tab.setTab(7)"><i class="fa fa-comments"></i> Mensajes</a>
                             </li>
-                            <li ng-class="{ active:tab.isSet(8) }">
-                                <a ng-click="tab.setTab(8)"><i class="fa fa-calendar-o"></i> Eventos</a>
+                            <li ng-class="{ active:hover }" ng-show="tab.isSet(7)" style="display: inline-block; float: right; position: absolute;">
+                                <a style="float:right;" ng-click="crearMensajes()"><i class="fa fa-plus"></i></a>
                             </li>
+
+                            <br>
+
+                            <li ng-class="{ active:tab.isSet(8) }" style="display: inline-block;" ng-style="{ width: tab.isSet(8) ? '81%' : '100%' }">
+                                <a ng-click="tab.setTab(8)"><i class="fa fa-calendar"></i> Eventos</a>
+                            </li>
+                            <li ng-class="{ active:hover }" ng-show="tab.isSet(8)" style="display: inline-block; float: right; position: absolute;">
+                                <a style="float:right;" ng-click="crearEventos()"><i class="fa fa-plus"></i></a>
+                            </li>
+
+
                         </ul>
-                    </li>';
+                    </li>
+                    <?php
                     }
                     ?>
                     <li>
@@ -509,8 +533,86 @@
                     <button onclick="postEditarArchivo()" class="btn btn-primary">Actualizar</button>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <a type="button" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>
+    <div class="modal fade" id="crearAlumno" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Añadir Alumno</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="alumno_username">Usuario:</label>
+                            <input type="email" class="form-control" id="alumno_username" placeholder="Usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="alumno_pass">Contraseña:</label>
+                            <input type="password" class="form-control" id="alumno_pass" placeholder="Contraseña">
+                        </div>
+                        <div class="form-group">
+                            <label for="alumno_name">Nombre:</label>
+                            <input type="email" class="form-control" id="alumno_name" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="alumno_surnames">Apellidos:</label>
+                            <input type="email" class="form-control" id="alumno_surnames" placeholder="Apellidos">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="crearProfesor" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="event_title">{{module.evento.title}} - {{module.evento.date| date:"dd 'de' MMMM 'del' yyyy"}}</h4>
+                </div>
+                <div class="modal-body" id="event_description"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="crearMensajes" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="event_title">{{module.evento.title}} - {{module.evento.date| date:"dd 'de' MMMM 'del' yyyy"}}</h4>
+                </div>
+                <div class="modal-body" id="event_description"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="crearEventos" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="event_title">{{module.evento.title}} - {{module.evento.date| date:"dd 'de' MMMM 'del' yyyy"}}</h4>
+                </div>
+                <div class="modal-body" id="event_description"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a type="button" href="./docs/" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>

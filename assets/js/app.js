@@ -139,6 +139,22 @@
             $scope.uploadPersonalFiles = function () {
                 $('#uploadPersonalFiles').modal();
             };
+            
+            $scope.crearAlumno = function () {
+                $('#crearAlumno').modal();
+            };
+
+            $scope.crearProfesor = function () {
+                $('#crearProfesor').modal();
+            };
+
+            $scope.crearMensajes = function () {
+                $('#crearMensajes').modal();
+            };
+
+            $scope.crearEventos = function () {
+                $('#crearEventos').modal();
+            };
 
         }]);
 
