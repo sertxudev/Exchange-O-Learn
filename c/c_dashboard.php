@@ -10,8 +10,8 @@ class c_dashboard {
         array_walk($array, function (&$elemento, $clave){
 
             $acciones = '<div class="btn-group" role="group" aria-label="...">
-                            <button type="button" onClick="editarAlumno(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
-                            <button type="button" onClick="borrarAlumno(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
+                            <button type="button" onClick="editarUsuario(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
+                            <button type="button" onClick="borrarUsuario(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
                         </div>';
             
             $elemento['acciones'] = $acciones;
@@ -30,8 +30,8 @@ class c_dashboard {
         array_walk($array, function (&$elemento, $clave){
 
             $acciones = '<div class="btn-group" role="group" aria-label="...">
-                            <button type="button" onClick="editarProfesor(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
-                            <button type="button" onClick="borrarProfesor(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
+                            <button type="button" onClick="editarUsuario(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
+                            <button type="button" onClick="borrarUsuario(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
                         </div>';
             
             $elemento['acciones'] = $acciones;
@@ -52,7 +52,7 @@ class c_dashboard {
             $time = date('H:m d/m/Y', $elemento['time']);
 
             $acciones = '<div class="btn-group" role="group" aria-label="...">
-                            <button type="button" onClick="borrarMensajes(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
+                            <button type="button" onClick="borrarMensaje(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
                         </div>';
             
             $elemento['time'] = $time;
@@ -81,6 +81,45 @@ class c_dashboard {
         return json_encode(array(
             "data" => $array
         ));
+    }
+    
+    public function crearUsuario($post_username, $post_password, $post_name, $post_surname, $post_type){
+        $dashboard = new dashboard();
+        
+        $username = $this->sanitizeString($post_username);
+        $password = hash('sha512', $this->sanitizeString($post_password));
+        $name     = $this->sanitizeString($post_name);
+        $surname  = $this->sanitizeString($post_surname);
+        $type     = $this->sanitizeString($post_type);
+
+        return $dashboard->crearUsuario($username, $password, $name, $surname, $type);
+    }
+    
+    public function borrarUsuario($post_id) {
+        $dashboard = new dashboard();
+        
+        $id = $this->sanitizeString($post_id);
+        
+        return $dashboard->borrarUsuario($id);
+    }
+    
+    public function borrarMensaje($post_id) {
+        $dashboard = new dashboard();
+        
+        $id = $this->sanitizeString($post_id);
+        
+        return $dashboard->borrarMensaje($id);
+    }
+    
+    public function borrarMensajes() {
+        $dashboard = new dashboard();
+        
+        return $dashboard->borrarMensajes();
+    }
+
+    
+    private function sanitizeString($string){
+        return filter_var($string, FILTER_SANITIZE_STRING);
     }
 
 

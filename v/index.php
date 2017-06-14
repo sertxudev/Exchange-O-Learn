@@ -7,7 +7,7 @@
             </a>
         </header>
         <aside class="main-sidebar">
-            <section class="sidebar">
+            <section class="sidebar" style="-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">
                 <ul class="sidebar-menu">
                     <li ng-class="{ active:tab.isSet(1) }">
                         <a ng-click="tab.setTab(1)"><i class="fa fa-home"></i> <span>Inicio</span></a>
@@ -50,16 +50,11 @@
                                 <a style="float:right;" ng-click="crearProfesor()"><i class="fa fa-plus"></i></a>
                             </li>
 
-                            <br>
 
-                            <li ng-class="{ active:tab.isSet(7) }" style="display: inline-block;" ng-style="{ width: tab.isSet(7) ? '81%' : '100%' }">
+                            <li ng-class="{ active:tab.isSet(7) }">
                                 <a ng-click="tab.setTab(7)"><i class="fa fa-comments"></i> Mensajes</a>
                             </li>
-                            <li ng-class="{ active:hover }" ng-show="tab.isSet(7)" style="display: inline-block; float: right; position: absolute;">
-                                <a style="float:right;" ng-click="crearMensajes()"><i class="fa fa-plus"></i></a>
-                            </li>
 
-                            <br>
 
                             <li ng-class="{ active:tab.isSet(8) }" style="display: inline-block;" ng-style="{ width: tab.isSet(8) ? '81%' : '100%' }">
                                 <a ng-click="tab.setTab(8)"><i class="fa fa-calendar"></i> Eventos</a>
@@ -116,22 +111,15 @@
                                 <div class="col-md-12">
                                     <div class="row chat-window material">
                                         <div class="panel">
-                                            <div class="panel-body msg-container-base" id="chat-container">
-                                                <div class="row msg-container" id="message_{{message.id}}" ng-repeat="message in module.messages">
-                                                    <div class="col-md-12 col-xs-12">
-                                                        <div class="chat-msg">
-                                                            <div class="chat-msg-author">
-                                                                <strong>{{message.name}} {{message.surname}}</strong>&nbsp;
-                                                                <span class="date">{{message.time * 1000| date: 'hh:mm a dd/MM/yyyy'}}</span>
-                                                            </div>
-                                                            <p>{{message.text}}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="panel-body msg-container-base" id="chat-container" ng-bind-html="messages">
+
                                             </div>
                                             <div class="panel-footer chat-bottom-bar">
-                                                <div class="input-group col-md-12">
-                                                    <input type="text" id="submit_text" class="form-control input-sm chat-input" placeholder="Enviar un mensaje" />
+                                                <div class="input-group col-md-11" style="display:inline-block">
+                                                    <input type="text" id="submit_text" class="form-control input-sm chat-input" placeholder="Enviar un mensaje">
+                                                </div>
+                                                <div class="input-group col-md-1" style="display:inline-block;float: right;height: calc(70px - 30px);">
+                                                    <button class="btn btn-default" style="height: 100%;">😉</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -333,7 +321,7 @@
                     </section>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" id="profesoresTable" style="width: 100%;">
+                            <table class="table table-bordered bordered table-striped datatable" id="profesorTable" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -547,7 +535,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="alumno_username">Usuario:</label>
-                            <input type="email" class="form-control" id="alumno_username" placeholder="Usuario">
+                            <input type="text" class="form-control" id="alumno_username" placeholder="Usuario">
                         </div>
                         <div class="form-group">
                             <label for="alumno_pass">Contraseña:</label>
@@ -555,16 +543,52 @@
                         </div>
                         <div class="form-group">
                             <label for="alumno_name">Nombre:</label>
-                            <input type="email" class="form-control" id="alumno_name" placeholder="Nombre">
+                            <input type="text" class="form-control" id="alumno_name" placeholder="Nombre">
                         </div>
                         <div class="form-group">
                             <label for="alumno_surnames">Apellidos:</label>
-                            <input type="email" class="form-control" id="alumno_surnames" placeholder="Apellidos">
+                            <input type="text" class="form-control" id="alumno_surnames" placeholder="Apellidos">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Crear</button>
+                    <button type="button" class="btn btn-success" onclick="crearAlumno()">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editarUsuario" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editar Usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modalEditarUsuario"></div>
+                    <div class="box-body">
+                        <input type="hidden" class="form-control" id="usuario_editar_id">
+                        <div class="form-group">
+                            <label for="usuario_editar_username">Usuario:</label>
+                            <input type="text" class="form-control" id="usuario_editar_username" placeholder="Usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario_editar_name">Nombre:</label>
+                            <input type="text" class="form-control" id="usuario_editar_name" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario_editar_surnames">Apellidos:</label>
+                            <input type="text" class="form-control" id="usuario_editar_surnames" placeholder="Apellidos">
+                        </div>
+                        <div class="form-group">
+                            <label for="usuario_editar_birthday">Cumpleaños:</label>
+                            <input type="text" class="form-control" id="usuario_editar_birthday" placeholder="Cumpleaños" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="sendEditarUsuario()">Editar</button>
                 </div>
             </div>
         </div>
@@ -575,31 +599,35 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="event_title">{{module.evento.title}} - {{module.evento.date| date:"dd 'de' MMMM 'del' yyyy"}}</h4>
+                    <h4 class="modal-title">Añadir Profesor</h4>
                 </div>
-                <div class="modal-body" id="event_description"></div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="profesor_username">Usuario:</label>
+                            <input type="text" class="form-control" id="profesor_username" placeholder="Usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor_pass">Contraseña:</label>
+                            <input type="password" class="form-control" id="profesor_pass" placeholder="Contraseña">
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor_name">Nombre:</label>
+                            <input type="text" class="form-control" id="profesor_name" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor_surnames">Apellidos:</label>
+                            <input type="text" class="form-control" id="profesor_surnames" placeholder="Apellidos">
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" onclick="crearProfesor()">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="crearMensajes" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="event_title">{{module.evento.title}} - {{module.evento.date| date:"dd 'de' MMMM 'del' yyyy"}}</h4>
-                </div>
-                <div class="modal-body" id="event_description"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <div class="modal fade" id="crearEventos" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

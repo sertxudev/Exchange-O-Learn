@@ -16,11 +16,39 @@ switch ($_POST['r']) {
         echo $user->login($_POST['username'], $_POST['password']);
         break;
 
-    case 'crear-usuario':
-        if (isset($_SESSION['id']) && $_SESSION['id'] != '') {
-            $user = new c_usuario();
-            echo $user->crearUsuario($_POST['username'], $_POST['password'], $_POST['name'], $_POST['surname'], $_POST['birthday'], $_POST['type']);
-        }
+    case 'crearAlumno':
+        $dashboard = new c_dashboard();
+        echo $dashboard->crearUsuario($_POST['username'], $_POST['password'], $_POST['name'], $_POST['surname'], 0);
+        break;
+
+    case 'editarUsuario':
+        $usuario = new c_usuario();
+        echo $usuario->obtenerPerfil($_POST['id']);
+        break;
+
+    case 'sendEditarUsuario':
+        $usuario = new c_usuario();
+        echo $usuario->actualizarPerfil($_POST['id'], $_POST['username'], $_POST['name'], $_POST['surname'], $_POST['birthday']);
+        break;
+
+    case 'borrarUsuario':
+        $dashboard = new c_dashboard();
+        echo $dashboard->borrarUsuario($_POST['id']);
+        break;
+
+    case 'crearProfesor':
+        $dashboard = new c_dashboard();
+        echo $dashboard->crearUsuario($_POST['username'], $_POST['password'], $_POST['name'], $_POST['surname'], 1);
+        break;
+
+    case 'borrarMensaje':
+        $dashboard = new c_dashboard();
+        echo $dashboard->borrarMensaje($_POST['id']);
+        break;
+
+    case 'borrarMensajes':
+        $dashboard = new c_dashboard();
+        echo $dashboard->borrarMensajes();
         break;
 
     case 'borrarArchivo':

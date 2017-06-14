@@ -20,20 +20,7 @@ class c_usuario {
         return json_encode($pdo->fetch(PDO::FETCH_ASSOC));
     }
     
-    public function crearUsuario($post_username, $post_password, $post_name, $post_surname, $post_birthday, $post_type){
-        $user = new usuario();
-        
-        $username = $this->sanitizeString($post_username);
-        $password = hash('sha512', $this->sanitizeString($post_password));
-        $name     = $this->sanitizeString($post_name);
-        $surname  = $this->sanitizeString($post_surname);
-        $birthday = $this->sanitizeString($post_birthday);
-        $type     = $this->sanitizeString($post_type);
-        
-        $user->crear($username, $password, $name, $surname, $birthday, $type);
-    }
-    
-    public function actualizarPerfil($post_id, $post_username, $post_password, $post_name, $post_surname, $post_birthday){
+    public function actualizarPerfil($post_id, $post_username, $post_name, $post_surname, $post_birthday, $post_password = false){
         $user = new usuario();
         
         $id = $this->sanitizeString($post_id);
@@ -51,14 +38,6 @@ class c_usuario {
                 echo 1;
             }
         }
-    }
-    
-    public function borrarUsuario($post_id) {
-        $user = new usuario();
-        
-        $id = $this->sanitizeString($post_id);
-        
-        $user->borrar($id);
     }
     
     public function login($post_username, $post_password) {

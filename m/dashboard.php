@@ -18,5 +18,22 @@ class dashboard extends ddbb {
         return $this->seleccionar("SELECT * FROM events", TRUE);
     }
 
+    public function crearUsuario($username, $password, $name, $surname, $type){
+        return $this->insertar("INSERT INTO users "
+                . "(username, password, name, surname, type) VALUES "
+                . "('$username', '$password', '$name', '$surname', $type)", TRUE);
+    }
+    
+    public function borrarUsuario($id){
+        return $this->eliminar("DELETE FROM users WHERE id=$id", TRUE);
+    }
+    
+    public function borrarMensaje($id){
+        return $this->eliminar("DELETE FROM messages WHERE id=$id", TRUE);
+    }
+    
+    public function borrarMensajes(){
+        return $this->eliminar("TRUNCATE messages", TRUE);
+    }
 
 }
