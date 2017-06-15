@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2017 a las 17:09:46
+-- Tiempo de generación: 15-06-2017 a las 17:01:59
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 7.0.10
 
@@ -74,28 +74,10 @@ INSERT INTO `files` (`id`, `name`, `owner`, `url`, `type`, `time`, `access`) VAL
 
 CREATE TABLE `messages` (
   `id` int(11) UNSIGNED NOT NULL,
-  `text` text COLLATE utf8_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `author` int(11) UNSIGNED NOT NULL,
   `time` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `messages`
---
-
-INSERT INTO `messages` (`id`, `text`, `author`, `time`) VALUES
-(1, 'Hola', 3, '2017-05-27 00:03:54'),
-(2, 'Hola ¿Donde estabas que no habías venido a primera?', 1, '2017-05-27 00:04:23'),
-(3, 'En el médico, tenía analítica', 3, '2017-05-27 00:04:37'),
-(4, '¿Han puesto algo de deber?', 3, '2017-05-27 00:04:54'),
-(5, 'Si', 1, '2017-05-27 00:04:59'),
-(6, 'De la página 35 la actividad 1,5,7 para el próximo día', 1, '2017-05-27 00:05:23'),
-(7, 'Gracias', 3, '2017-05-27 00:05:36'),
-(8, 'De nada', 1, '2017-05-27 00:05:54'),
-(9, 'XD', 1, '2017-05-27 16:57:15'),
-(10, 'hola', 1, '2017-06-12 21:46:38'),
-(11, 'addass', 1, '2017-06-13 15:32:19'),
-(12, 'hola son las 04:06 13/06/17', 2, '2017-06-13 16:06:08');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -110,8 +92,8 @@ CREATE TABLE `users` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `birthday` date DEFAULT NULL,
-  `color` varchar(22) COLLATE utf8_unicode_ci NOT NULL,
-  `background` varchar(22) COLLATE utf8_unicode_ci NOT NULL,
+  `color` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#333',
+  `background` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#32fea8',
   `type` int(1) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -120,8 +102,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `birthday`, `color`, `background`, `type`) VALUES
-(1, 'user', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Not Root', '2017-06-13', 'rgba(255,0,0,1)', 'rgba(11,0,135,1)', 0),
-(2, 'root', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Root', '2017-06-13', '', '0', 2);
+(1, 'user', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Root', '2017-06-03', 'rgba(255,0,0,1)', 'rgba(11,0,135,1)', 0),
+(2, 'root', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Root', '2017-06-13', '', '0', 2),
+(7, 'profe', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'profe', 'root', NULL, '#333', '#32fea8', 1);
 
 --
 -- Índices para tablas volcadas
@@ -170,12 +153,12 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT de la tabla `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

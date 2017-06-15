@@ -208,6 +208,11 @@ switch ($_GET['r']) {
         echo $count->contarEventos();
         break;
 
+    case 'obtenerEmojis':
+        $emojis = new c_emojis();
+        echo $emojis->obtenerEmojis();
+        break;
+
     case 'bloquearAplicacion':
         if($_SESSION['type'] > 0){
             if(_bloquear_){

@@ -119,7 +119,7 @@
                                                     <input type="text" id="submit_text" class="form-control input-sm chat-input" placeholder="Enviar un mensaje">
                                                 </div>
                                                 <div class="input-group col-md-1" style="display:inline-block;float: right;height: calc(70px - 30px);">
-                                                    <button class="btn btn-default" style="height: 100%;">😉</button>
+                                                    <button class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;">😉</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -638,6 +638,26 @@
                 <div class="modal-body" id="event_description"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalYoutubeVideo" role="dialog">
+        <div class="modal-dialog modal-lg" style="position: absolute;top: 45%;left: 50%;transform: translate(-50%, -50%) !important;">
+            <div class="modal-content">
+                <div class="modal-body" style="font-size: 0;padding:0" id="youtubeVideoEmbed"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modalEmoji" role="dialog" ng-controller="emojiController as modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body" id="emoji_menu">
+                    <div class="input-group col-md-1" style="display:inline-block;width:35px;cursor:default!important;margin: 5px;text-align: center;" ng-repeat="emoji in modal.emojis">
+                        <button class="btn btn-none" ng-click="sendEmoji(emoji)" style="height: 100%;">{{emoji}}</button>
+                    </div>
                 </div>
             </div>
         </div>

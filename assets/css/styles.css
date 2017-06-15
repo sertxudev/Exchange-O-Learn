@@ -8,6 +8,24 @@ table.dataTable td, table.dataTable th {
     vertical-align: middle!important;
 }
 
+.btn-none {
+    background: none;
+    outline: 0;
+    cursor: default!important;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+.btn-none:active, .btn-none:focus {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    outline: 0!important;
+}
+.btn-none:hover {
+    cursor: pointer!important;
+}
+
 .btn-floating {
        bottom: 0;
        position: absolute;

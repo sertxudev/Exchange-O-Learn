@@ -19,7 +19,6 @@
                 module.evento = response.data;
                 $('#event_title').html(response.data.title + ' - ' + response.data.time);
                 $('#event_description').html(response.data.description);
-                $('#mostrarEvento').modal();
             });
         };
     }]);
@@ -27,6 +26,10 @@
     app.controller('chatController', ['$http', '$scope', '$sce', function ($http, $scope, $sce) {
         var module = this;
         var int = 0;
+
+        $scope.openEmojiModal = function () {
+                $('#modalEmoji').modal();
+        };
 
         setInterval(
             function () {
@@ -44,7 +47,6 @@
             if (e.keyCode === 13) {
                 if ($('#submit_text').val()) {
                     $http.post('./post.php?r=sendMessage&text=' + $('#submit_text').val()).then(function (response) {
-                        console.log(response);
                         if (response.data == 1) {
                             $('#submit_text').val('');
                         }
@@ -59,11 +61,28 @@
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                     int++;
                 }
-                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 500) {
+                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 200) {
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                 }
             }
             , 2000);
+    }]);
+
+    app.controller('emojiController', ['$http', '$scope', function ($http, $scope) {
+        var module = this;
+        
+        $http.get('./post.php?r=obtenerEmojis').then(function (response) {
+            module.emojis = response.data;
+        });
+
+        $scope.sendEmoji = function (emoji) {
+            $http.post('./post.php?r=sendMessage&text=' + emoji).then(function (response) {
+                if (response.data == 1) {
+                    $('#modalEmoji').modal('hide');
+                }
+            });
+        };
+
     }]);
 
     app.controller('filesController', ['$http', '$scope', function ($http, $scope) {
@@ -455,8 +474,17 @@ function borrarMensaje(id) {
         });
 }
 
+function showYoutubeVideo(id) {
+
+    $('#youtubeVideoEmbed').html('<iframe src="http://www.youtube.com/embed/' + id + '"frameborder="0" allowfullscreen="" style="width: 100%!important;height: 520px!important;"/>');
+    $('#modalYoutubeVideo').modal('show');
+}
 
 $(document).ready(function () {
+
+    $('#modalYoutubeVideo').on('hidden.bs.modal', function () {
+        $('#youtubeVideoEmbed').html('');
+    });
 
     $("#config_birthday").datepicker({
         dateFormat: 'yy-mm-dd',
