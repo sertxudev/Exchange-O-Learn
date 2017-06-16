@@ -4,6 +4,34 @@
     }
 }
 
+.mailbox-messages table tbody tr td {
+    vertical-align: middle;
+}
+.mailbox-messages table tbody tr td:nth-child(1) {
+    text-align: center;
+    width: 25px;
+}
+.mailbox-messages table tbody tr td:nth-child(2) {
+    text-align: center;
+    width: 25px;
+}
+.mailbox-messages table tbody tr td:nth-child(3) {
+    width: 250px;
+}
+.mailbox-messages table tbody tr td:nth-child(4) {
+    width: 650px;
+}
+.mailbox-controls {
+    height: 35px;
+}
+#personalMail thead {
+    display: none;
+}
+
+.text-yellow {
+    color: #f39c12 !important;
+}
+
 table.dataTable td, table.dataTable th {
     vertical-align: middle!important;
 }

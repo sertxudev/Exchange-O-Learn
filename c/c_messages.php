@@ -12,11 +12,11 @@ class c_messages {
         $pdo = $messages->obtenerMessages();
         $return = $pdo->fetchAll(PDO::FETCH_ASSOC);
         $array = array_reverse($return);
-        //echo json_encode( array_reverse($return) );
         
         array_walk($array, function (&$elemento, $clave){
 
-            //if ( strpos($elemento['text'], '.jpg') !== false ) {
+            $elemento['time'] = date('h:i a d/m/Y', $elemento['time']);
+
             $ext = array('.jpg', '.png', '.gif');
             foreach ($ext as $c){
                 if ( strpos($elemento['text'], $c) !== false ) {
@@ -25,7 +25,15 @@ class c_messages {
             }
 
             if ( substr($elemento['text'], 0, 2) === "&#" ) {
-                $elemento['text'] = '<p style="font-size: 45px;">' . $elemento['text'] . '</p>';
+                $emojis = new c_emojis();
+                $emojis_array = json_decode($emojis->obtenerEmojis());
+
+                foreach($emojis_array as $c => $v){
+                    if($elemento['text'] == $c){
+                        $elemento['text'] = '<p style="font-size: 45px;">' . $v . '</p>';
+                    }
+                }
+
             }
             
             if( strpos( $elemento['text'], "watch?v=" ) !== false ){
@@ -100,6 +108,12 @@ class c_messages {
             if( substr( $elemento['text'], 0, 4 ) === "http" ){
                 $elemento['text'] = '<a target="_BLANK" href="' . $elemento['text'] . '">' . $elemento['text'] . '</a>';
             }
+
+
+
+            if( substr( $elemento['text'], 0, 2 ) === "//" ){
+                $elemento['text'] = '<a target="_BLANK" href="' . $elemento['text'] . '"><img src="' . $elemento['text'] . '/favicon.ico" width="25px" style="display: inline-block;"><span style="margin-left:5px">' . $elemento['text'] . '</span></a>';
+            }
             
         });
 
@@ -124,11 +138,12 @@ class c_messages {
         $emojis = new c_emojis();
         $emojis_array = json_decode($emojis->obtenerEmojis());
 
-        if( in_array($post_text, $emojis_array) ){
-            $utf32  = mb_convert_encoding($post_text, 'UTF-32', 'UTF-8' );
-            $hex4 = bin2hex($utf32);
-            $dec = hexdec($hex4);
-            $text = "&#$dec;";
+        $utf32  = mb_convert_encoding($post_text, 'UTF-32', 'UTF-8' );
+        $hex4 = bin2hex($utf32);
+        $dec = hexdec($hex4);
+        $emoji_hex = "&#$dec;";
+        if( array_key_exists($emoji_hex, $emojis_array) ){
+            $text = $emoji_hex;
         }else{
             $text = $this->sanitizeString($post_text);
         }

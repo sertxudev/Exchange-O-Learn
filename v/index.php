@@ -20,53 +20,69 @@
                         <a style="float:right;" ng-click="uploadPersonalFiles()"><i class="fa fa-upload"></i></a>
                     </li>
 
-                    <li ng-class="{ active:tab.isSet(3) }">
-                        <a ng-click="tab.setTab(3)"><i class="fa fa-gear"></i> <span>Configuración</span></a>
+                    <li></li>
+
+                    <li ng-class="{ active:tab.isSet(3) }" style="display: inline-block;" ng-style="{ width: tab.isSet(3) ? '81%' : '100%' }">
+                        <a ng-click="tab.setTab(3)"><i class="fa fa-envelope"></i> <span>Correo Electrónico</span></a>
+                    </li>
+                    <li ng-class="{ active:hover }" ng-show="tab.isSet(3)" style="display: inline-block; float: right; position: absolute;">
+                        <a style="float:right;"><i class="fa fa-refresh"></i></a>
+                    </li>
+
+                    <li></li>
+
+                    <li ng-class="{ active:tab.isSet(4) }">
+                        <a ng-click="tab.setTab(4)"><i class="fa fa-gear"></i> <span>Configuración</span></a>
                     </li>
                     <?php
                     if ($_SESSION['type'] >= 2) {
                         ?>
-                        <li class="treeview" ng-class="{ active:tab.isSet(4) || tab.isSet(5) || tab.isSet(6) || tab.isSet(7) || tab.isSet(8) }">
-                        <a ng-click="tab.setTab(4)">
-                            <i class="fa fa-dashboard"></i> <span>Panel de Control</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li ng-class="{ active:tab.isSet(5) }" style="display: inline-block;" ng-style="{ width: tab.isSet(5) ? '81%' : '100%' }">
-                                <a ng-click="tab.setTab(5)"><i class="fa fa-pencil"></i> Alumnos</a>
-                            </li>
-                            <li ng-class="{ active:hover }" ng-show="tab.isSet(5)" style="display: inline-block; float: right; position: absolute;">
-                                <a style="float:right;" ng-click="crearAlumno()"><i class="fa fa-plus"></i></a>
-                            </li>
+                        <li class="treeview" ng-class="{ active:tab.isSet(5) || tab.isSet(6) || tab.isSet(7) || tab.isSet(8) || tab.isSet(9) }">
+                            <a ng-click="tab.setTab(5)">
+                                <i class="fa fa-dashboard"></i> <span>Panel de Control</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li ng-class="{ active:tab.isSet(6) }" style="display: inline-block;" ng-style="{ width: tab.isSet(6) ? '81%' : '100%' }">
+                                    <a ng-click="tab.setTab(6)"><i class="fa fa-pencil"></i> Alumnos</a>
+                                </li>
+                                <li ng-class="{ active:hover }" ng-show="tab.isSet(6)" style="display: inline-block; float: right; position: absolute;">
+                                    <a style="float:right;" ng-click="crearAlumno()"><i class="fa fa-plus"></i></a>
+                                </li>
 
-                            <br>
+                                <br>
 
-                            <li ng-class="{ active:tab.isSet(6) }" style="display: inline-block;" ng-style="{ width: tab.isSet(6) ? '81%' : '100%' }">
-                                <a ng-click="tab.setTab(6)"><i class="fa fa-book"></i> Profesores</a>
-                            </li>
-                            <li ng-class="{ active:hover }" ng-show="tab.isSet(6)" style="display: inline-block; float: right; position: absolute;">
-                                <a style="float:right;" ng-click="crearProfesor()"><i class="fa fa-plus"></i></a>
-                            </li>
+                                <li ng-class="{ active:tab.isSet(7) }" style="display: inline-block;" ng-style="{ width: tab.isSet(7) ? '81%' : '100%' }">
+                                    <a ng-click="tab.setTab(7)"><i class="fa fa-book"></i> Profesores</a>
+                                </li>
+                                <li ng-class="{ active:hover }" ng-show="tab.isSet(7)" style="display: inline-block; float: right; position: absolute;">
+                                    <a style="float:right;" ng-click="crearProfesor()"><i class="fa fa-plus"></i></a>
+                                </li>
+
+                                <br>
+
+                                <li ng-class="{ active:tab.isSet(8) }" style="display: inline-block;" ng-style="{ width: tab.isSet(8) ? '81%' : '100%' }">
+                                    <a ng-click="tab.setTab(8)"><i class="fa fa-comments"></i> Mensajes</a>
+                                </li>
+                                <li ng-class="{ active:hover }" ng-show="tab.isSet(8)" style="display: inline-block; float: right; position: absolute;">
+                                    <a style="float:right;" ><i class="fa fa-refresh"></i></a>
+                                </li>
+
+                                <br>
+
+                                <li ng-class="{ active:tab.isSet(9) }" style="display: inline-block;" ng-style="{ width: tab.isSet(9) ? '81%' : '100%' }">
+                                    <a ng-click="tab.setTab(9)"><i class="fa fa-calendar"></i> Eventos</a>
+                                </li>
+                                <li ng-class="{ active:hover }" ng-show="tab.isSet(9)" style="display: inline-block; float: right; position: absolute;">
+                                    <a style="float:right;" ng-click="crearEventos()"><i class="fa fa-plus"></i></a>
+                                </li>
 
 
-                            <li ng-class="{ active:tab.isSet(7) }">
-                                <a ng-click="tab.setTab(7)"><i class="fa fa-comments"></i> Mensajes</a>
-                            </li>
-
-
-                            <li ng-class="{ active:tab.isSet(8) }" style="display: inline-block;" ng-style="{ width: tab.isSet(8) ? '81%' : '100%' }">
-                                <a ng-click="tab.setTab(8)"><i class="fa fa-calendar"></i> Eventos</a>
-                            </li>
-                            <li ng-class="{ active:hover }" ng-show="tab.isSet(8)" style="display: inline-block; float: right; position: absolute;">
-                                <a style="float:right;" ng-click="crearEventos()"><i class="fa fa-plus"></i></a>
-                            </li>
-
-
-                        </ul>
-                    </li>
-                    <?php
+                            </ul>
+                        </li>
+                        <?php
                     }
                     ?>
                     <li>
@@ -138,6 +154,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="container-fluid" ng-show="tab.isSet(2)" style="padding-top: 15px;">
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -157,7 +174,74 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" ng-show="tab.isSet(3)" style="padding-top: 15px;" ng-controller="configController as module">
+
+                <div class="container-fluid" ng-show="tab.isSet(3)" style="padding-top: 15px;">
+                    <section class="content-header">
+                        <h1>
+                            Correo Electrónico
+                            <small>Manda mensajes privados a cualquier usuario de la aplicación</small>
+                        </h1>
+                    </section>
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a class="btn btn-primary btn-block margin-bottom">Nuevo Correo</a>
+                                <br>
+                                <div class="box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Folders</h3>
+
+                                        <div class="box-tools">
+                                            <button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#carpetas"><i class="fa fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body no-padding collapse in" id="carpetas">
+                                        <ul class="nav nav-pills nav-stacked">
+                                            <li class="active"><a href="#"><i class="fa fa-inbox"></i> Bandeja de Entrada
+                                                    <span class="label label-primary pull-right">3</span></a></li>
+                                            <li><a href="#"><i class="fa fa-envelope-o"></i> Enviados</a></li>
+                                            <li><a href="#"><i class="fa fa-file-text-o"></i> Borradores</a></li>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-trash-o"></i> Papelera</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Bandeja de Entrada</h3>
+
+                                    </div>
+                                    <div class="box-body no-padding">
+                                        <div class="table-responsive mailbox-messages" style="width: 100%;">
+
+                                        <table class="table table-bordered bordered table-striped datatable" id="personalMail" style="width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Eliminar</th>
+                                                    <th>Desakato</th>
+                                                    <th>Enviado por</th>
+                                                    <th>Asunto</th>
+                                                    <th>Fecha</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /. box -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                </div>
+
+                <div class="container-fluid" ng-show="tab.isSet(4)" style="padding-top: 15px;" ng-controller="configController as module">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
@@ -203,196 +287,196 @@
                     </div>
                 </div>
 
-                <?php if($_SESSION['type'] > 0){ ?>
-                <div class="container-fluid" ng-show="tab.isSet(4)" style="padding-top: 15px;" ng-controller="dashController as module">
-                    <section class="content-header">
-                        <h1>
-                            Dashboard
-                            <small>Panel de Control</small>
-                        </h1>
-                    </section>
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-aqua">
-                            <div class="inner">
-                                <h3>{{module.cantidadAlumnos}}</h3>
+                <?php if ($_SESSION['type'] > 0) { ?>
+                    <div class="container-fluid" ng-show="tab.isSet(5)" style="padding-top: 15px;" ng-controller="dashController as module">
+                        <section class="content-header">
+                            <h1>
+                                Dashboard
+                                <small>Panel de Control</small>
+                            </h1>
+                        </section>
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>{{module.cantidadAlumnos}}</h3>
 
-                                <p>Alumnos</p>
+                                    <p>Alumnos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                                <a ng-click="tab.setTab(5)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
-                            <div class="icon">
-                                <i class="fa fa-pencil"></i>
+                        </div>
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-red">
+                                <div class="inner">
+                                    <h3>{{module.cantidadProfesores}}</h3>
+
+                                    <p>Profesores</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-book"></i>
+                                </div>
+                                <a ng-click="tab.setTab(6)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
-                            <a ng-click="tab.setTab(5)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>{{module.cantidadMensajes}}</h3>
+
+                                    <p>Mensajes</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-comments"></i>
+                                </div>
+                                <a ng-click="tab.setTab(7)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-purple">
+                                <div class="inner">
+                                    <h3>{{module.cantidadEventos}}</h3>
+
+                                    <p>Eventos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <a ng-click="tab.setTab(8)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="warning-border col-lg-3 col-xs-5">
+                            <h3>Bloquear Aplicación</h3>
+                            <button ng-click="bloquear_aplicacion()">Bloquear / Desbloquear</button>
+                        </div>
+
+                        <div class="alert-border col-lg-3 col-xs-5 pull-right">
+                            <h3>Resetear Aplicación</h3>
+                            <button>Resetear</button>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-red">
-                            <div class="inner">
-                                <h3>{{module.cantidadProfesores}}</h3>
-
-                                <p>Profesores</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-book"></i>
-                            </div>
-                            <a ng-click="tab.setTab(6)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>{{module.cantidadMensajes}}</h3>
-
-                                <p>Mensajes</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-comments"></i>
-                            </div>
-                            <a ng-click="tab.setTab(7)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-purple">
-                            <div class="inner">
-                                <h3>{{module.cantidadEventos}}</h3>
-
-                                <p>Eventos</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <a ng-click="tab.setTab(8)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="warning-border col-lg-3 col-xs-5">
-                        <h3>Bloquear Aplicación</h3>
-                        <button ng-click="bloquear_aplicacion()">Bloquear / Desbloquear</button>
-                    </div>
-
-                    <div class="alert-border col-lg-3 col-xs-5 pull-right">
-                        <h3>Resetear Aplicación</h3>
-                        <button>Resetear</button>
-                    </div>
-                </div>
                 <?php } ?>
 
-                <?php if($_SESSION['type'] > 0){ ?>
-                <div class="container-fluid" ng-show="tab.isSet(5)" style="padding-top: 15px;">
-                    <section class="content-header">
-                        <h1>
-                            Alumnos
-                            <small>Panel de Control</small>
-                        </h1>
-                    </section>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" id="alumnosTable" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th>Usuario</th>
-                                        <th>Cumpleaños</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="panelBody">
-                                </tbody>
-                            </table>
+                <?php if ($_SESSION['type'] > 0) { ?>
+                    <div class="container-fluid" ng-show="tab.isSet(6)" style="padding-top: 15px;">
+                        <section class="content-header">
+                            <h1>
+                                Alumnos
+                                <small>Panel de Control</small>
+                            </h1>
+                        </section>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table class="table table-bordered bordered table-striped datatable" id="alumnosTable" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Usuario</th>
+                                            <th>Cumpleaños</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="panelBody">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
 
-                <?php if($_SESSION['type'] > 0){ ?>                
-                <div class="container-fluid" ng-show="tab.isSet(6)" style="padding-top: 15px;">
-                    <section class="content-header">
-                        <h1>
-                            Profesores
-                            <small>Panel de Control</small>
-                        </h1>
-                    </section>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" id="profesorTable" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th>Usuario</th>
-                                        <th>Cumpleaños</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="panelBody">
-                                </tbody>
-                            </table>
+                <?php if ($_SESSION['type'] > 0) { ?>                
+                    <div class="container-fluid" ng-show="tab.isSet(7)" style="padding-top: 15px;">
+                        <section class="content-header">
+                            <h1>
+                                Profesores
+                                <small>Panel de Control</small>
+                            </h1>
+                        </section>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table class="table table-bordered bordered table-striped datatable" id="profesorTable" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Usuario</th>
+                                            <th>Cumpleaños</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="panelBody">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
 
-                <?php if($_SESSION['type'] > 0){ ?>
-                <div class="container-fluid" ng-show="tab.isSet(7)" style="padding-top: 15px;">
-                    <section class="content-header">
-                        <h1>
-                            Mensajes
-                            <small>Panel de Control</small>
-                        </h1>
-                    </section>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" id="mensajesTable" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Fecha de envío</th>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th>Mensaje</th>
-                                        <th><button type="button" onClick="borrarMensajes()" class="btn btn-danger">Eliminar Todos</button></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="panelBody">
-                                </tbody>
-                            </table>
+                <?php if ($_SESSION['type'] > 0) { ?>
+                    <div class="container-fluid" ng-show="tab.isSet(8)" style="padding-top: 15px;">
+                        <section class="content-header">
+                            <h1>
+                                Mensajes
+                                <small>Panel de Control</small>
+                            </h1>
+                        </section>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table class="table table-bordered bordered table-striped datatable" id="mensajesTable" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Fecha de envío</th>
+                                            <th>Nombre</th>
+                                            <th>Apellidos</th>
+                                            <th>Mensaje</th>
+                                            <th><button type="button" onClick="borrarMensajes()" class="btn btn-danger">Eliminar Todos</button></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="panelBody">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
 
-                <?php if($_SESSION['type'] > 0){ ?>
-                <div class="container-fluid" ng-show="tab.isSet(8)" style="padding-top: 15px;">
-                    <section class="content-header">
-                        <h1>
-                            Eventos
-                            <small>Panel de Control</small>
-                        </h1>
-                    </section>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <table class="table table-bordered bordered table-striped datatable" id="eventosTable" style="width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>Título</th>
-                                        <th>Descripción</th>
-                                        <th>Fecha del evento</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="panelBody">
-                                </tbody>
-                            </table>
+                <?php if ($_SESSION['type'] > 0) { ?>
+                    <div class="container-fluid" ng-show="tab.isSet(9)" style="padding-top: 15px;">
+                        <section class="content-header">
+                            <h1>
+                                Eventos
+                                <small>Panel de Control</small>
+                            </h1>
+                        </section>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table class="table table-bordered bordered table-striped datatable" id="eventosTable" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Título</th>
+                                            <th>Descripción</th>
+                                            <th>Fecha del evento</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="panelBody">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
 
             </section>
@@ -627,7 +711,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="crearEventos" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -642,7 +726,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="modalYoutubeVideo" role="dialog">
         <div class="modal-dialog modal-lg" style="position: absolute;top: 45%;left: 50%;transform: translate(-50%, -50%) !important;">
             <div class="modal-content">
@@ -650,7 +734,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="modalEmoji" role="dialog" ng-controller="emojiController as modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

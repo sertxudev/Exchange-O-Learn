@@ -73,10 +73,12 @@
         
         $http.get('./post.php?r=obtenerEmojis').then(function (response) {
             module.emojis = response.data;
+            console.log(module.emojis);
         });
 
         $scope.sendEmoji = function (emoji) {
             $http.post('./post.php?r=sendMessage&text=' + emoji).then(function (response) {
+                console.log(response);
                 if (response.data == 1) {
                     $('#modalEmoji').modal('hide');
                 }
@@ -512,6 +514,43 @@ $(document).ready(function () {
         monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         firstDay: 1
+    });
+
+    $('#personalMail').DataTable({
+        "ajax": "./post.php?r=obtenerMails",
+        "columns": [
+            { "data": "eliminar" },
+            { "data": "important" },
+            { "data": "from" },
+            { "data": "subject" },
+            { "data": "date" }
+        ],
+        "order": [[4, "desc"]],
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ correos",
+            "sZeroRecords": "No se encontraron correos",
+            "sEmptyTable": "No existe ningún correo",
+            "sInfo": "Mostrando del correo _START_ al _END_ de un total de _TOTAL_",
+            "sInfoEmpty": "No hay correos",
+            "sInfoFiltered": "(filtrados _MAX_ correos)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        "bLengthChange": false
     });
 
     $('#personalFilesTable').DataTable({

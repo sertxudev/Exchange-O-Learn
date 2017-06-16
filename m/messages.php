@@ -3,7 +3,7 @@
 class messages extends ddbb{
     
     public function obtenerMessages() {
-        return $this->seleccionar("SELECT U.name AS name, U.surname AS surname, M.id AS id, M.text AS text, UNIX_TIMESTAMP(M.time) AS time FROM messages AS M JOIN users AS U ON M.author=U.id ORDER BY id DESC LIMIT 15", false);
+        return $this->seleccionar("SELECT U.name AS name, U.surname AS surname, M.id AS id, M.text AS text, UNIX_TIMESTAMP(M.time) AS time FROM messages AS M JOIN users AS U ON M.author=U.id ORDER BY id DESC LIMIT 30", false);
 }
     
     public function sendMessage($text, $id, $time){

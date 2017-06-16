@@ -163,6 +163,11 @@ switch ($_GET['r']) {
         echo $folder->obtenerCarpetaPersonal($_SESSION['id']);
         break;
 
+    case 'obtenerMails':
+        $email = new c_email();
+        echo $email->obtenerEmailsRecibidos($_SESSION['id']);
+        break;
+
     case 'obtenerAlumnos':
         $dashboard = new c_dashboard();
         echo $dashboard->obtenerAlumnos();
@@ -226,5 +231,25 @@ switch ($_GET['r']) {
     case 'logout':
         $user = new c_usuario();
         echo $user->logout();
+        break;
+        
+    case 'foo':
+
+        $emojis = new c_emojis();
+        $emojis_array = json_decode($emojis->mostrarEmojis());
+
+        foreach ($emojis_array as $c) {
+            $utf32  = mb_convert_encoding($c, 'UTF-32', 'UTF-8' );
+            $hex4 = bin2hex($utf32);
+            $dec = hexdec($hex4);
+            $array_key[] = "&#$dec;";
+        }
+
+        $array = array_combine($array_key, $emojis_array);
+        $string = null;
+        foreach ($array as $c => $v) {
+            $string .= '"'.$c.'" => "'.$v.'",';
+        }
+        logger::guardar($string);
         break;
 }
