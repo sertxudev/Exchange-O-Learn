@@ -231,9 +231,117 @@
                     <p>Fusce porttitor diam mauris, in fringilla elit euismod non. Aliquam non justo suscipit, pellentesque felis quis, egestas ante. Nunc quis imperdiet mauris, vitae cursus ante. Aenean vel efficitur ante, ullamcorper tempus massa. Integer ornare urna vitae quam semper fermentum. Mauris in dolor tempus, ultricies quam ac, lacinia nisl. Donec vitae ante sem.</p>
                     <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
 
-                    <h3 id="chat-3">Subtitle 4</h3>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-                    <p>Donec lacinia ultrices venenatis. Duis id aliquam velit, a vehicula quam. Proin iaculis bibendum ex, hendrerit fringilla augue finibus ut. Aliquam sodales turpis vel ex cursus scelerisque. In feugiat justo quis viverra suscipit. Vivamus hendrerit aliquam purus, sit amet ultrices felis. Ut ac nisl pulvinar, tempor odio vel, feugiat ex. Phasellus consequat, leo eget lacinia sagittis, eros tellus pretium tortor, id congue purus augue eu orci. Fusce non eros iaculis, aliquet nulla quis, facilisis mi. Vivamus dictum justo non diam ultricies, sit amet eleifend erat efficitur. Ut porta diam ut dolor tincidunt, interdum placerat odio commodo. Suspendisse egestas sapien erat, et tincidunt magna fermentum sit amet. Donec vitae mi efficitur, tempus nisi ut, lacinia libero. Maecenas auctor odio mi, ac facilisis nisi vehicula efficitur. Ut hendrerit nulla ut nisl porttitor maximus. Pellentesque feugiat bibendum est, ut aliquam velit consequat eu.</p>
+                    <h3 id="chat-3">Características del Chat</h3>
+                    <p>El chat dispone de estilos visuales a parte de funcionalidades a la hora de interpretar el contenido insertado.</p>
+                    <br>
+                    <h4>Estilos Visuales</h4>
+                    <p>Disponemos de colores, además de estilos como negrita, cursiva, subrayado y tachado.</p>
+                    <br>
+                    <h5>Colores</h5>
+                    <br>
+                    <h6 style="color:red">Rojo</h6>
+<pre class="line-numbers"><code class="language-chat">
+/r/{texto}
+
+</code></pre>
+                    <br>
+                    <h6 style="color:blue">Azul</h6>
+<pre class="line-numbers"><code class="language-chat">
+/b/{texto}
+
+</code></pre>
+                    <br>
+                    <h6 style="color:green">Verde</h6>
+<pre class="line-numbers"><code class="language-chat">
+/g/{texto}
+
+</code></pre>
+                    <br>
+                    <h6 style="color:fuchsia">Fucsia</h6>
+<pre class="line-numbers"><code class="language-chat">
+/f/{texto}
+
+</code></pre>
+                    <br>
+                    <h6 style="color:darkviolet">Violeta</h6>
+<pre class="line-numbers"><code class="language-chat">
+/v/{texto}
+
+</code></pre>
+
+                    <br>
+                    <h5>Estilos</h5>
+                    <br>
+                    <h6>Negrita</h6>
+<pre class="line-numbers"><code class="language-chat">
+*{texto}*
+
+</code></pre>
+                    <br>
+                    <h6 style="font-weight: 500;"><i>Cursiva</i></h6>
+<pre class="line-numbers"><code class="language-chat">
+-{texto}-
+
+</code></pre>
+                    <br>
+                    <h6 style="font-weight: 500;"><u>Subrayado</u></h6>
+<pre class="line-numbers"><code class="language-chat">
+_{texto}_
+
+</code></pre>
+                    <br>
+                    <h6 style="font-weight: 500;"><del>Tachado</del></h6>
+<pre class="line-numbers"><code class="language-chat">
+~{texto}~
+
+</code></pre>
+
+</code></pre>
+                    <br>
+                    <h4>Tratamiento del Mensaje</h4>
+                    <p>Dependiendo del contenido del mensaje, este de adaptará al resultado más óptimo</p>
+                    <br>
+                    <h6>Imágenes</h6>
+                    <p>Podemos enviar una imagen con extensión .jpg, .png o .gif a través del chat, para realizarlo debemos introducir la ruta completa de la imágen, ya sea de internet o de nuestra carpeta personal.</p>
+<pre class="line-numbers"><code class="language-chat">
+https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg
+
+</code></pre>
+<pre class="line-numbers"><code class="language-chat">
+https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png
+
+</code></pre>
+<pre class="line-numbers"><code class="language-chat">
+https://upload.wikimedia.org/wikipedia/commons/8/8f/Example.gif
+
+</code></pre>
+                    <br>
+                    <h6>Enlaces</h6>
+<pre class="line-numbers"><code class="language-chat">
+https://www.google.com
+
+</code></pre>
+<pre class="line-numbers"><code class="language-chat">
+http://www.google.com
+
+</code></pre>
+<pre class="line-numbers"><code class="language-chat">
+//www.google.com
+
+</code></pre>
+                    <p>Este último aparte de mostrar un enlace, nos muestra el favicon.ico siempre y cuando exista en el servidor de ese enlace.</p>
+
+                    <br>
+                    <h6>Vídeos</h6>
+                    <p>Se puede también insertar vídeos de youtube introduciendo únicamente el enlace de éste.</p>
+<pre class="line-numbers"><code class="language-chat">
+www.youtube.com/watch?v=M7lc1UVf-VE
+
+</code></pre>
+<pre class="line-numbers"><code class="language-chat">
+youtu.be/M7lc1UVf-VE
+
+</code></pre>
                 </section>
                 <section>
                     

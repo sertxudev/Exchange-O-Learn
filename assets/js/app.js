@@ -73,12 +73,10 @@
         
         $http.get('./post.php?r=obtenerEmojis').then(function (response) {
             module.emojis = response.data;
-            console.log(module.emojis);
         });
 
         $scope.sendEmoji = function (emoji) {
             $http.post('./post.php?r=sendMessage&text=' + emoji).then(function (response) {
-                console.log(response);
                 if (response.data == 1) {
                     $('#modalEmoji').modal('hide');
                 }
@@ -169,8 +167,8 @@
             $('#crearProfesor').modal();
         };
 
-        $scope.crearMensajes = function () {
-            $('#crearMensajes').modal();
+        $scope.recargarMensajes = function () {
+            $('#mensajesTable').DataTable().ajax.reload(null, false);
         };
 
         $scope.crearEventos = function () {
@@ -357,6 +355,9 @@ function editarUsuario(id) {
             $('#usuario_editar_name').val(usuario.name);
             $('#usuario_editar_surnames').val(usuario.surname);
             $('#usuario_editar_birthday').val(usuario.birthday);
+            
+             $('#modalEditarUsuario').html('');
+            
             $('#editarUsuario').modal('show');
         });
 }
@@ -401,6 +402,15 @@ function sendEditarUsuario() {
 }
 
 function borrarUsuario(id) {
+    $('#borrarUsuarioConfirmar').modal();
+    $('#idBorrarUsuario').val(id);
+}
+
+function borrarUsuarioConfirmar(id){
+    $('#borrarUsuarioConfirmar').modal('hide');
+    
+    id = $('#idBorrarUsuario').val();
+    
     $.ajax({
         method: "POST",
         url: "post.php",
@@ -502,6 +512,20 @@ $(document).ready(function () {
         firstDay: 1
     });
 
+    $("#evento_fecha").datepicker({
+        dateFormat: 'yy-mm-dd',
+        yearRange: "-100:+0",
+        changeMonth: true,
+        changeYear: true,
+
+        prevText: 'Ant.',
+        nextText: 'Sig.',
+        currentText: 'Hoy',
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        firstDay: 1
+    });
+    
     $("#usuario_editar_birthday").datepicker({
         dateFormat: 'yy-mm-dd',
         yearRange: "-100:+0",

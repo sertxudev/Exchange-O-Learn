@@ -35,7 +35,7 @@
                         <a ng-click="tab.setTab(4)"><i class="fa fa-gear"></i> <span>Configuración</span></a>
                     </li>
                     <?php
-                    if ($_SESSION['type'] >= 2) {
+                    if ($_SESSION['type'] >= 1) {
                         ?>
                         <li class="treeview" ng-class="{ active:tab.isSet(5) || tab.isSet(6) || tab.isSet(7) || tab.isSet(8) || tab.isSet(9) }">
                             <a ng-click="tab.setTab(5)">
@@ -67,7 +67,7 @@
                                     <a ng-click="tab.setTab(8)"><i class="fa fa-comments"></i> Mensajes</a>
                                 </li>
                                 <li ng-class="{ active:hover }" ng-show="tab.isSet(8)" style="display: inline-block; float: right; position: absolute;">
-                                    <a style="float:right;" ><i class="fa fa-refresh"></i></a>
+                                    <a style="float:right;" ng-click="recargarMensajes()"><i class="fa fa-refresh"></i></a>
                                 </li>
 
                                 <br>
@@ -189,20 +189,20 @@
                                 <br>
                                 <div class="box box-solid">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">Folders</h3>
+                                        <h3 class="box-title">Carpetas</h3>
 
                                         <div class="box-tools">
                                             <button type="button" class="btn btn-box-tool" data-toggle="collapse" data-target="#carpetas"><i class="fa fa-minus"></i></button>
                                         </div>
                                     </div>
                                     <div class="box-body no-padding collapse in" id="carpetas">
-                                        <ul class="nav nav-pills nav-stacked">
-                                            <li class="active"><a href="#"><i class="fa fa-inbox"></i> Bandeja de Entrada
-                                                    <span class="label label-primary pull-right">3</span></a></li>
-                                            <li><a href="#"><i class="fa fa-envelope-o"></i> Enviados</a></li>
-                                            <li><a href="#"><i class="fa fa-file-text-o"></i> Borradores</a></li>
+                                        <ul class="nav nav-stacked" style="font-weight: bold;">
+                                            <li class="active">
+                                                <a href="#"><i class="fa fa-inbox" style="margin-right: 5px;"></i> Bandeja de Entrada
+                                                    <span class="label label-primary pull-right">3</span>
+                                                </a>
                                             </li>
-                                            <li><a href="#"><i class="fa fa-trash-o"></i> Papelera</a></li>
+                                            <li><a href="#"><i class="fa fa-envelope-o" style="margin-right: 5px;"></i> Enviados</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -306,7 +306,7 @@
                                 <div class="icon">
                                     <i class="fa fa-pencil"></i>
                                 </div>
-                                <a ng-click="tab.setTab(5)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                                <a ng-click="tab.setTab(6)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -321,7 +321,7 @@
                                 <div class="icon">
                                     <i class="fa fa-book"></i>
                                 </div>
-                                <a ng-click="tab.setTab(6)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                                <a ng-click="tab.setTab(7)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -336,7 +336,7 @@
                                 <div class="icon">
                                     <i class="fa fa-comments"></i>
                                 </div>
-                                <a ng-click="tab.setTab(7)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                                <a ng-click="tab.setTab(8)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -351,16 +351,16 @@
                                 <div class="icon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <a ng-click="tab.setTab(8)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
+                                <a ng-click="tab.setTab(9)" class="small-box-footer">Configurar <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
-                        <div class="warning-border col-lg-3 col-xs-5">
+                        <div class="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow col-lg-3 col-xs-6 pull-left"><!-- warning-border col-lg-3 col-xs-5 pull-righ -->
                             <h3>Bloquear Aplicación</h3>
                             <button ng-click="bloquear_aplicacion()">Bloquear / Desbloquear</button>
                         </div>
 
-                        <div class="alert-border col-lg-3 col-xs-5 pull-right">
+                        <div class="w3-panel w3-topbar w3-bottombar w3-border-red w3-pale-red col-lg-3 col-xs-6 pull-right"><!-- alert-border col-lg-3 col-xs-5 pull-righ -->
                             <h3>Resetear Aplicación</h3>
                             <button>Resetear</button>
                         </div>
@@ -706,22 +706,55 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="crearProfesor()">Cerrar</button>
+                    <button type="button" class="btn btn-success" onclick="crearProfesor()">Crear</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="borrarUsuarioConfirmar" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Borrar Usuario</h4>
+                </div>
+                <div class="modal-body">¿Seguro que deseas borrar este usuario?
+                    <input type="hidden" id="idBorrarUsuario">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onClick="borrarUsuarioConfirmar()">Continuar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="modal fade" id="crearEventos" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="event_title">{{module.evento.title}} - {{module.evento.date| date:"dd 'de' MMMM 'del' yyyy"}}</h4>
+                    <h4 class="modal-title">Añadir Evento</h4>
                 </div>
-                <div class="modal-body" id="event_description"></div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="profesor_username">Nombre:</label>
+                            <input type="text" class="form-control" id="evento_nombre" placeholder="Usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor_pass">Descripción:</label>
+                            <textarea class="form-control" style="resize: vertical;" id="evento_descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor_name">Fecha:</label>
+                            <input type="text" class="form-control" id="evento_fecha" placeholder="Fecha" readonly>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" onclick="crearEvento()">Crear</button>
                 </div>
             </div>
         </div>
@@ -747,4 +780,4 @@
         </div>
     </div>
 
-    <a type="button" href="./docs/" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>
+    <a type="button" href="./docs/" target="_blank" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>

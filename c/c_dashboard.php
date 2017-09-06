@@ -48,6 +48,18 @@ class c_dashboard {
         $array = $pdo->fetchAll(PDO::FETCH_ASSOC);
         
         array_walk($array, function (&$elemento, $clave){
+            
+            if ( substr($elemento['text'], 0, 2) === "&#" ) {
+                $emojis = new c_emojis();
+                $emojis_array = json_decode($emojis->obtenerEmojis());
+
+                foreach($emojis_array as $c => $v){
+                    if($elemento['text'] == $c){
+                        $elemento['text'] = $v;
+                    }
+                }
+
+            }
 
             $time = date('H:m d/m/Y', $elemento['time']);
 
