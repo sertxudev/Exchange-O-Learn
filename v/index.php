@@ -128,15 +128,14 @@
                                     <div class="row chat-window material">
                                         <div class="panel">
                                             <div class="panel-body msg-container-base" id="chat-container" ng-bind-html="messages">
-
                                             </div>
-                                            <div class="panel-footer chat-bottom-bar">
-                                                <div class="input-group col-md-11" style="display:inline-block">
-                                                    <input type="text" id="submit_text" class="form-control input-sm chat-input" placeholder="Enviar un mensaje">
-                                                </div>
-                                                <div class="input-group col-md-1" style="display:inline-block;float: right;height: calc(70px - 30px);">
-                                                    <button class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;">😉</button>
-                                                </div>
+                                            <div class="panel-footer chat-bottom-bar">                                                
+                                                <div class="input-group input-group-md">
+                                                    <input type="text" class="form-control" id="submit_text" class="form-control input-md chat-input col-md-10" placeholder="Enviar un mensaje">
+                                                    <span class="input-group-btn" style="height: calc(70px - 30px);">
+                                                        <button type="button" class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;">😉</button>
+                                                    </span>
+                                                </div>                                                
                                             </div>
                                         </div>
                                     </div>
