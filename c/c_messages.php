@@ -24,7 +24,7 @@ class c_messages {
                 }
             }
 
-            if ( substr($elemento['text'], 0, 2) === "&#" ) {
+            /*if ( substr($elemento['text'], 0, 2) === "&#" ) {
                 $emojis = new c_emojis();
                 $emojis_array = json_decode($emojis->obtenerEmojis());
 
@@ -34,7 +34,7 @@ class c_messages {
                     }
                 }
 
-            }
+            }*/
             
             if( strpos( $elemento['text'], "watch?v=" ) !== false ){
                 $video_id = explode("watch?v=", $elemento['text']);
@@ -135,7 +135,7 @@ class c_messages {
     
     public function sendMessage($post_text, $post_id) {
         $messages = new messages();
-        $emojis = new c_emojis();
+        /*$emojis = new c_emojis();
         $emojis_array = json_decode($emojis->obtenerEmojis());
 
         $utf32  = mb_convert_encoding($post_text, 'UTF-32', 'UTF-8' );
@@ -144,9 +144,9 @@ class c_messages {
         $emoji_hex = "&#$dec;";
         if( array_key_exists($emoji_hex, $emojis_array) ){
             $text = $emoji_hex;
-        }else{
+        }else{*/
             $text = $this->sanitizeString($post_text);
-        }
+        //}
 
         $id = $this->sanitizeString($post_id);
         

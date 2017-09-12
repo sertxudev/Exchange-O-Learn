@@ -68,11 +68,11 @@
             , 2000);
     }]);
 
-    app.controller('emojiController', ['$http', '$scope', function ($http, $scope) {
+    app.controller('emojiController', ['$http', '$scope', '$sce', function ($http, $scope, $sce) {
         var module = this;
         
         $http.get('./post.php?r=obtenerEmojis').then(function (response) {
-            module.emojis = response.data;
+            $scope.emojis = $sce.trustAsHtml(response.data);
         });
 
         $scope.sendEmoji = function (emoji) {

@@ -770,13 +770,50 @@
     <div class="modal fade" id="modalEmoji" role="dialog" ng-controller="emojiController as modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-body" id="emoji_menu">
-                    <div class="input-group col-md-1" style="display:inline-block;width:35px;cursor:default!important;margin: 5px;text-align: center;" ng-repeat="emoji in modal.emojis">
+                <div class="modal-body" ng-bind-html="emojis">
+<!--                    <div class="input-group col-md-1" style="display:inline-block;width:35px;cursor:default!important;margin: 5px;text-align: center;" ng-repeat="emoji in modal.emojis">
                         <button class="btn btn-none" ng-click="sendEmoji(emoji)" style="height: 100%;">{{emoji}}</button>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
     </div>
+    
+    
+    
+    <!-- REMOVE BEFORE PUBLISHING -->
+        
+    
+        <script type="text/javascript">
+            $(window).on('load',function(){
+                $('#Changelog').modal('show');
+            });
+        </script>
+        
+        <div class="modal fade" id="Changelog" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Changelog</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-body">
+                            <i class="em em-white_check_mark"></i><b> Instant Messaging</b> - Working properly until now <i class="em em-raised_hands"></i><br>
+                            <i class="em em-white_check_mark"></i><b> Upload Files</b> - Feature activated and working properly<br>
+                            <i class="em em-white_check_mark"></i><b> User Configuration</b> - Feature working for you<br>
+                            <i class="em em-warning"></i><b> Diary</b> - Feature activated but not updated<br>
+                            <i class="em em-x"></i><b> Emojis Feature</b> - Feature disabled temporarily<br>
+                            <i class="em em-x"></i><b> Private Messaging Feature</b> - Feature not implemented yet<br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- REMOVE BEFORE PUBLISHING -->
 
     <a type="button" href="./docs/" target="_blank" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>

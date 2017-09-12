@@ -16,6 +16,7 @@
         <link href="./assets/css/datatables.min.css" rel="stylesheet" type="text/css"/>
         <link href="./assets/css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <link href="./assets/css/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="./assets/emojis/emoji.css">
         
         <script src="./assets/js/jquery.min.js"></script>
         <script src="./assets/bootstrap/js/bootstrap.js"></script>
