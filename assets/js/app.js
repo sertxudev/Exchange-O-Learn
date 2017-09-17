@@ -102,7 +102,8 @@
                     { "data": "name" },
                     { "data": "type" },
                     { "data": "time" },
-                    { "data": "access" }
+                    { "data": "access" },
+                    { "data": "acciones" }
                 ],
                 "language": {
                     "sProcessing": "Procesando...",
@@ -165,10 +166,6 @@
 
         $scope.crearProfesor = function () {
             $('#crearProfesor').modal();
-        };
-
-        $scope.recargarMensajes = function () {
-            $('#mensajesTable').DataTable().ajax.reload(null, false);
         };
 
         $scope.crearEventos = function () {
@@ -270,6 +267,18 @@ function borrarArchivo(id) {
         });
 }
 
+function recargarAlumnos() {
+    $('#alumnosTable').DataTable().ajax.reload(null, false);
+}
+
+function recargarProfesores() {
+    $('#profesorTable').DataTable().ajax.reload(null, false);
+}
+
+function recargarMensajes() {
+    $('#mensajesTable').DataTable().ajax.reload(null, false);
+}
+
 function editarArchivo(id) {
     $.ajax({
         method: "POST",
@@ -313,6 +322,17 @@ function postEditarArchivo() {
 }
 
 function crearAlumno() {
+    
+        if (!$('#alumno_username').val()
+        || !$('alumno_pass').val()
+        || !$('#alumno_name').val()
+        || !$('#alumno_surnames').val()
+        || !$('#alumno_birthday').val()) {
+
+        $('#modalCrearUsuario').html('<div class="alert alert-warning fade in alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><strong>Todos los campos son obligatorios.</strong></div>');
+
+    } else {
+    
     $.ajax({
         method: "POST",
         url: "post.php",
@@ -322,19 +342,23 @@ function crearAlumno() {
             username: $('#alumno_username').val(),
             password: $('#alumno_pass').val(),
             name: $('#alumno_name').val(),
-            surname: $('#alumno_surnames').val()
+            surname: $('#alumno_surnames').val(),
+            birthday: $('#alumno_birthday').val()
         }
     })
         .done(function (response) {
             if (response == 1) {
+                $('#crearAlumno').modal('hide');
                 $('#alumno_username').val('');
                 $('#alumno_pass').val('');
                 $('#alumno_name').val('');
                 $('#alumno_surnames').val('');
-                $('#crearAlumno').modal('hide');
+                $('#alumno_birthday').val('');
+                $('#modalCrearUsuario').html();
                 $('#alumnosTable').DataTable().ajax.reload(null, false);
             }
         });
+    }
 }
 
 function editarUsuario(id) {
@@ -511,7 +535,21 @@ $(document).ready(function () {
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         firstDay: 1
     });
+    
+    $("#alumno_birthday").datepicker({
+        dateFormat: 'yy-mm-dd',
+        yearRange: "-100:+0",
+        changeMonth: true,
+        changeYear: true,
 
+        prevText: 'Ant.',
+        nextText: 'Sig.',
+        currentText: 'Hoy',
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        firstDay: 1
+    });
+    
     $("#evento_fecha").datepicker({
         dateFormat: 'yy-mm-dd',
         yearRange: "-100:+0",

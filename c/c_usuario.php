@@ -33,7 +33,7 @@ class c_usuario {
             if(!$user->actualizarPerfil($id, $username, $name, $surname, $birthday, $password)){
                 echo 1;
             }
-        }else{     
+        }else{
             if(!$user->actualizarPerfil($id, $username, $name, $surname, $birthday)){
                 echo 1;
             }

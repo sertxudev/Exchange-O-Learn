@@ -90,7 +90,7 @@ switch ($_GET['r']) {
     
     case 'actualizarPerfil':
         $user = new c_usuario();
-        echo $user->actualizarPerfil($_SESSION['id'], $_GET['username'], $_GET['password'], $_GET['name'], $_GET['surname'], $_GET['birthday']);
+        echo $user->actualizarPerfil($_SESSION['id'], $_GET['username'], $_GET['name'], $_GET['surname'], $_GET['birthday'], $_GET['password']);
         break;
 
     case 'obtenerMessages':
@@ -125,8 +125,9 @@ switch ($_GET['r']) {
 
     case 'uploadFile':
         $finfo = new finfo(FILEINFO_MIME_TYPE);
-//        echo $finfo->file($_FILES['file']['tmp_name']);
-//        exit;
+        //var_dump($_FILES);
+        //echo $finfo->file($_FILES['file']['tmp_name']);
+        //exit;
         $ext = array_search(
                 $finfo->file($_FILES['file']['tmp_name']), array(
             'jpg' => 'image/jpeg',
@@ -135,8 +136,13 @@ switch ($_GET['r']) {
             'pdf' => 'application/pdf',
             'rar' => 'application/x-rar',
             'zip' => 'application/zip',
+            'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'doc' => 'application/msword',
                 ), true);
 
+        if(!file_exists('./uploads')){
+            mkdir('./uploads');
+        }
         $file_name = hash('md5', time());
         $file_url = './uploads/' . $file_name . '.' . $ext;
 

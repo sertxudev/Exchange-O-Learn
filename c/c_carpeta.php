@@ -21,14 +21,28 @@ class c_carpeta {
         $array_a = $pdo->fetchAll(PDO::FETCH_ASSOC);
         
         array_walk($array_a, function (&$elemento, $clave){
-            $name = '<a href="' . $elemento['url'] . '" target="_BLANK">' . $elemento['name'] . '</a>';
             $fecha = date('d-m-Y', $elemento['time']);
             $access = $elemento['access'] == 0 ? 'Público' 
                     : ($elemento['access'] == 1 ? 'Protegido' : 'Privado') ;
+            /*
+           
+             
+             <div class="btn-group" role="group">
+                <button type="button" onClick="editarArchivo(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
+                <button type="button" onClick="borrarArchivo(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
+            </div>             
+             
+              <a class="btn btn-primary" href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '">Descargar</a>
+             */
             
-            $elemento['name']       = $name;
+            $acciones = '<div class="btn-group" role="group">
+                            <a href="' . $elemento['url'] . '" target="_BLANK" class="btn btn-success">Visualizar</a>
+                            <a href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '" class="btn btn-primary">Descargar</a>
+                        </div>';
+            
             $elemento['access']     = $access;
             $elemento['time']       = $fecha;
+            $elemento['acciones']   = $acciones;
         });
         
         return json_encode(array(
@@ -51,7 +65,7 @@ class c_carpeta {
             $access = $elemento['access'] == 0 ? 'Público' 
                     : ($elemento['access'] == 1 ? 'Protegido' : 'Privado') ;
             
-            $acciones = '<div class="btn-group" role="group" aria-label="...">
+            $acciones = '<div class="btn-group" role="group">
                             <button type="button" onClick="editarArchivo(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
                             <button type="button" onClick="borrarArchivo(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
                         </div>';

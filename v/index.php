@@ -46,7 +46,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li ng-class="{ active:tab.isSet(6) }" style="display: inline-block;" ng-style="{ width: tab.isSet(6) ? '81%' : '100%' }">
-                                    <a ng-click="tab.setTab(6)"><i class="fa fa-pencil"></i> Alumnos</a>
+                                    <a ng-click="tab.setTab(6)" onClick="recargarAlumnos()"><i class="fa fa-pencil"></i> Alumnos</a>
                                 </li>
                                 <li ng-class="{ active:hover }" ng-show="tab.isSet(6)" style="display: inline-block; float: right; position: absolute;">
                                     <a style="float:right;" ng-click="crearAlumno()"><i class="fa fa-plus"></i></a>
@@ -55,7 +55,7 @@
                                 <br>
 
                                 <li ng-class="{ active:tab.isSet(7) }" style="display: inline-block;" ng-style="{ width: tab.isSet(7) ? '81%' : '100%' }">
-                                    <a ng-click="tab.setTab(7)"><i class="fa fa-book"></i> Profesores</a>
+                                    <a ng-click="tab.setTab(7)" onClick="recargarProfesores()"><i class="fa fa-book"></i> Profesores</a>
                                 </li>
                                 <li ng-class="{ active:hover }" ng-show="tab.isSet(7)" style="display: inline-block; float: right; position: absolute;">
                                     <a style="float:right;" ng-click="crearProfesor()"><i class="fa fa-plus"></i></a>
@@ -63,11 +63,8 @@
 
                                 <br>
 
-                                <li ng-class="{ active:tab.isSet(8) }" style="display: inline-block;" ng-style="{ width: tab.isSet(8) ? '81%' : '100%' }">
-                                    <a ng-click="tab.setTab(8)"><i class="fa fa-comments"></i> Mensajes</a>
-                                </li>
-                                <li ng-class="{ active:hover }" ng-show="tab.isSet(8)" style="display: inline-block; float: right; position: absolute;">
-                                    <a style="float:right;" ng-click="recargarMensajes()"><i class="fa fa-refresh"></i></a>
+                                <li ng-class="{ active:tab.isSet(8) }" style="display: inline-block;">
+                                    <a ng-click="tab.setTab(8)" onClick="recargarMensajes()"><i class="fa fa-comments"></i> Mensajes</a>
                                 </li>
 
                                 <br>
@@ -499,7 +496,7 @@
     </div>
 
     <div class="modal fade" id="mostrarCarpeta" role="dialog" ng-controller="filesController as modal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -513,6 +510,7 @@
                                 <th>Tipo</th>
                                 <th>Creación</th>
                                 <th>Acceso</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="panelBody">
@@ -553,13 +551,19 @@
                                 </select>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="file_name" class="col-sm-2 control-label">Archivo:</label>
+                            <label for="file_name" class="col-sm-2 control-label">Archivo: </label>
                             <div class="col-sm-10">
-                                <input type="file" class="" name="file" />
-                            </div>
+                                <input type="file" class="" name="file"/>
+                            </div>                            
                         </div>
+                        
+                        <span>Formatos admitidos: <b>jpg, png, gif, pdf, rar, zip</b></span>
+                        <br>
+                        <span>Tamaño POST máximo (post_max_size): <b><?php echo ini_get('post_max_size'); ?></b></span>
+                        <br>
+                        <span>Tamaño subida máximo (upload_max_filesize): <b><?php echo ini_get('upload_max_filesize'); ?></b></span>
 
                     </div>
                     <div class="modal-footer">
@@ -597,7 +601,12 @@
                                 </select>
                             </div>
                         </div>
-                        <input type="hidden" class="form-control" id="file_id">
+                        <div class="form-group">
+                            <span>Tamaño máximo: <?php echo ini_get('post_max_size'); ?></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="file_id">
+                        </div>                        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -615,6 +624,7 @@
                     <h4 class="modal-title">Añadir Alumno</h4>
                 </div>
                 <div class="modal-body">
+                    <div id="modalEditarUsuario"></div>
                     <div class="box-body">
                         <div class="form-group">
                             <label for="alumno_username">Usuario:</label>
@@ -631,6 +641,10 @@
                         <div class="form-group">
                             <label for="alumno_surnames">Apellidos:</label>
                             <input type="text" class="form-control" id="alumno_surnames" placeholder="Apellidos">
+                        </div>
+                        <div class="form-group">
+                            <label for="alumno_birthday">Nombre:</label>
+                            <input type="text" class="form-control" id="alumno_birthday" placeholder="Cumpleaños">
                         </div>
                     </div>
                 </div>
