@@ -49,7 +49,7 @@ class c_dashboard {
         
         array_walk($array, function (&$elemento, $clave){
             
-            if ( substr($elemento['text'], 0, 2) === "&#" ) {
+            /*if ( substr($elemento['text'], 0, 2) === "&#" ) {
                 $emojis = new c_emojis();
                 $emojis_array = json_decode($emojis->obtenerEmojis());
 
@@ -59,7 +59,7 @@ class c_dashboard {
                     }
                 }
 
-            }
+            }*/
 
             $time = date('H:m d/m/Y', $elemento['time']);
 

@@ -38,7 +38,7 @@
                     if ($_SESSION['type'] >= 1) {
                         ?>
                         <li class="treeview" ng-class="{ active:tab.isSet(5) || tab.isSet(6) || tab.isSet(7) || tab.isSet(8) || tab.isSet(9) }">
-                            <a ng-click="tab.setTab(5)">
+                            <a ng-click="tab.setTab(5)" id="panel_control">
                                 <i class="fa fa-dashboard"></i> <span>Panel de Control</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
@@ -255,25 +255,26 @@
                             </div>
                             <hr>
                             <div class="row">
+                                <div class="col-md-12" id="config_alert"></div>
                                 <div class="col-md-3">
                                     <h4>Usuario</h4>
-                                    <input id="config_username" type="text" class="form-control" value="" required/>
+                                    <input id="config_username" type="text" class="form-control"/>
                                 </div>
                                 <div class="col-md-3">
                                     <h4>Contraseña</h4>
-                                    <input id="config_password" type="password" class="form-control" value="" required/>
+                                    <input id="config_password" type="password" class="form-control"/>
                                 </div>
                                 <div class="col-md-3">
                                     <h4>Cumpleaños</h4>
-                                    <input id="config_birthday" type="text" class="form-control" value="" readonly required/>
+                                    <input id="config_birthday" type="text" class="form-control" readonly />
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Nombre</h4>
-                                    <input id="config_name" type="text" class="form-control" value="" required/>
+                                    <input id="config_name" type="text" class="form-control"/>
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Apellidos</h4>
-                                    <input id="config_surname" type="text" class="form-control" value="" required/>
+                                    <input id="config_surname" type="text" class="form-control"/>
                                 </div>
                                 <div class="col-md-2" style="height: 73px;">
                                     <button type="button" class="btn btn-primary" ng-click="guardarPerfil()" style="margin-top: 39px">Guardar Perfil</button>
@@ -537,7 +538,7 @@
                         <div class="form-group">
                             <label for="file_name" class="col-sm-2 control-label">Nombre:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="file_name" placeholder="Nombre">
+                                <input type="text" class="form-control" name="file_name" placeholder="Nombre" required>
                             </div>
                         </div>
 
@@ -559,7 +560,7 @@
                             </div>                            
                         </div>
                         
-                        <span>Formatos admitidos: <b>jpg, png, gif, pdf, rar, zip</b></span>
+                        <span>Formatos admitidos: <b>jpg, png, gif, pdf, rar, zip, doc, docx</b></span>
                         <br>
                         <span>Tamaño POST máximo (post_max_size): <b><?php echo ini_get('post_max_size'); ?></b></span>
                         <br>
@@ -600,9 +601,6 @@
                                     <option value="2">Privado</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <span>Tamaño máximo: <?php echo ini_get('post_max_size'); ?></span>
                         </div>
                         <div class="form-group">
                             <input type="hidden" class="form-control" id="file_id">

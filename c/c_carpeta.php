@@ -33,12 +33,18 @@ class c_carpeta {
             </div>             
              
               <a class="btn btn-primary" href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '">Descargar</a>
-             */
+            */
             
-            $acciones = '<div class="btn-group" role="group">
+            $extensiones = array('jpg', 'png', 'gif', 'pdf', 'mp3', 'mp4');
+            
+            if(array_search($elemento['type'], $extensiones)){
+                $acciones = '<div class="btn-group" role="group">
                             <a href="' . $elemento['url'] . '" target="_BLANK" class="btn btn-success">Visualizar</a>
                             <a href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '" class="btn btn-primary">Descargar</a>
                         </div>';
+            }else{
+                $acciones = '<a href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '" class="btn btn-primary">Descargar</a>';                
+            }
             
             $elemento['access']     = $access;
             $elemento['time']       = $fecha;

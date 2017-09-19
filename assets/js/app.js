@@ -204,45 +204,51 @@
         };
 
         $scope.guardarPerfil = function () {
-            $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&birthday=' + $('#config_birthday').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
-                if (response.data == 1) {
-                    window.location = "./";
-                }
-            });
+            
+            if(!$('#config_username').val()
+                || !$('#config_birthday').val()
+                || !$('#config_name').val()
+                || !$('#config_surname').val()){
+            
+                $('#config_alert').html('<div class="alert alert-warning fade in alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><strong>Todos los campos son obligatorios.</strong></div>');
+            
+            }else{
+                $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&birthday=' + $('#config_birthday').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
+                    if (response.data == 1) {
+                        window.location = "./";
+                    }
+                });
+            }
         };
     }]);
 
     app.controller('dashController', ['$http', '$scope', function ($http, $scope) {
         var module = this;
+        
+        $('#panel_control').on('click', function(){
 
-        $http.get('./post.php?r=contarAlumnos').then(function (response) {
-            module.cantidadAlumnos = response.data.cantidad;
-        });
+            $http.get('./post.php?r=contarAlumnos').then(function (response) {
+                module.cantidadAlumnos = response.data.cantidad;
+            });
 
-        $http.get('./post.php?r=contarProfesores').then(function (response) {
-            module.cantidadProfesores = response.data.cantidad;
-        });
+            $http.get('./post.php?r=contarProfesores').then(function (response) {
+                module.cantidadProfesores = response.data.cantidad;
+            });
 
-        $http.get('./post.php?r=contarMensajes').then(function (response) {
-            module.cantidadMensajes = response.data.cantidad;
-        });
+            $http.get('./post.php?r=contarMensajes').then(function (response) {
+                module.cantidadMensajes = response.data.cantidad;
+            });
 
-        $http.get('./post.php?r=contarEventos').then(function (response) {
-            module.cantidadEventos = response.data.cantidad;
+            $http.get('./post.php?r=contarEventos').then(function (response) {
+                module.cantidadEventos = response.data.cantidad;
+            });
         });
 
         $scope.bloquear_aplicacion = function () {
             $http.get('./post.php?r=bloquearAplicacion').then(function (response) {
             });
         };
-
-        $scope.guardarPerfil = function () {
-            $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&birthday=' + $('#config_birthday').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
-                if (response.data == 1) {
-                    window.location = "./";
-                }
-            });
-        };
+        
     }]);
 
 })();

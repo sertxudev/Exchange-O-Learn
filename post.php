@@ -138,6 +138,12 @@ switch ($_GET['r']) {
             'zip' => 'application/zip',
             'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'doc' => 'application/msword',
+            'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'xls' => 'application/vnd.ms-excel',
+            'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
+            'odt' => 'application/vnd.oasis.opendocument.text',
+            'mp3' => 'audio/mp3',
+            'mp4' => 'video/mp4',
                 ), true);
 
         if(!file_exists('./uploads')){
