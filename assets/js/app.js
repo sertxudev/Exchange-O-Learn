@@ -328,17 +328,16 @@ function postEditarArchivo() {
 }
 
 function crearAlumno() {
-    
+        
         if (!$('#alumno_username').val()
-        || !$('alumno_pass').val()
+        || !$('#alumno_pass').val()
         || !$('#alumno_name').val()
-        || !$('#alumno_surnames').val()
-        || !$('#alumno_birthday').val()) {
+        || !$('#alumno_surnames').val()) {
 
         $('#modalCrearUsuario').html('<div class="alert alert-warning fade in alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><strong>Todos los campos son obligatorios.</strong></div>');
 
     } else {
-    
+        
     $.ajax({
         method: "POST",
         url: "post.php",
@@ -348,8 +347,7 @@ function crearAlumno() {
             username: $('#alumno_username').val(),
             password: $('#alumno_pass').val(),
             name: $('#alumno_name').val(),
-            surname: $('#alumno_surnames').val(),
-            birthday: $('#alumno_birthday').val()
+            surname: $('#alumno_surnames').val()
         }
     })
         .done(function (response) {
@@ -359,7 +357,6 @@ function crearAlumno() {
                 $('#alumno_pass').val('');
                 $('#alumno_name').val('');
                 $('#alumno_surnames').val('');
-                $('#alumno_birthday').val('');
                 $('#modalCrearUsuario').html();
                 $('#alumnosTable').DataTable().ajax.reload(null, false);
             }

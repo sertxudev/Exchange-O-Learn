@@ -641,7 +641,7 @@
                             <input type="text" class="form-control" id="alumno_surnames" placeholder="Apellidos">
                         </div>
                         <div class="form-group">
-                            <label for="alumno_birthday">Nombre:</label>
+                            <label for="alumno_birthday">Cumpleaños:</label>
                             <input type="text" class="form-control" id="alumno_birthday" placeholder="Cumpleaños">
                         </div>
                     </div>
