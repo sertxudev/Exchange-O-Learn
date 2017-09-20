@@ -61,7 +61,7 @@
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                     int++;
                 }
-                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 200) {
+                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 3500) {
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                 }
             }
@@ -74,14 +74,6 @@
         $http.get('./post.php?r=obtenerEmojis').then(function (response) {
             $scope.emojis = $sce.trustAsHtml(response.data);
         });
-
-        $scope.sendEmoji = function (emoji) {
-            $http.post('./post.php?r=sendMessage&text=' + emoji).then(function (response) {
-                if (response.data == 1) {
-                    $('#modalEmoji').modal('hide');
-                }
-            });
-        };
 
     }]);
 
@@ -252,6 +244,24 @@
     }]);
 
 })();
+
+function sendEmoji(emoji) {
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'sendEmoji',
+            emoji: emoji
+        }
+    })
+        .done(function (msg) {
+            if (msg == 1) {
+                $('#modalEmoji').modal('hide');
+            }
+        });
+};
+
 function borrarArchivo(id) {
     $.ajax({
         method: "POST",

@@ -96,15 +96,18 @@
                     <div class="row header-container" id="header-container" ng-controller="colorController as color" style="background-color: {{color.custom.background}}; color: {{color.custom.color}};">
                         <div class="col-md-4 col-sm-4 col-xs-4 header">
                             <i class="fa fa-th-list"></i>
-                            <h2 class="text-nowrap text-center hidden-xs">  Agenda</h2>
+                            &nbsp;
+                            <h2 class="text-nowrap text-center hidden-xs">Agenda</h2>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-4 header">
                             <i class="fa fa-comments"></i>
-                            <h2 class="text-nowrap text-center hidden-xs title">  Chat</h2>
+                            &nbsp;
+                            <h2 class="text-nowrap text-center hidden-xs title">Chat</h2>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-4 header">
                             <i class="fa fa-file-text"></i>
-                            <h2 class="text-nowrap text-center hidden-xs title">  Archivos</h2>
+                            &nbsp;
+                            <h2 class="text-nowrap text-center hidden-xs title">Archivos</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -130,7 +133,7 @@
                                                 <div class="input-group input-group-md">
                                                     <input type="text" class="form-control" id="submit_text" class="form-control input-md chat-input col-md-10" placeholder="Enviar un mensaje">
                                                     <span class="input-group-btn" style="height: calc(70px - 30px);">
-                                                        <button type="button" class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;"><i class="em em-grinning_face_2"></i></button>
+                                                        <button type="button" class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;"><i class="em em_grinning_face_2"></i></button>
                                                     </span>
                                                 </div>                                                
                                             </div>
@@ -811,12 +814,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="box-body">
-                            <i class="em em-white_check_mark"></i><b> Chat</b> - Funcionando <i class="em em-raised_hands"></i><br>
-                            <i class="em em-white_check_mark"></i><b> Subida de Archivos</b> - Activado y funcionando<br>
-                            <i class="em em-white_check_mark"></i><b> Configuración</b> - Funcionando<br>
-                            <i class="em em-warning"></i><b> Agenda</b> - Funcionando pero no actualizado<br>
-                            <i class="em em-x"></i><b> Emojis</b> - Desactivado temporalmente<br>
-                            <i class="em em-x"></i><b> Correo Electrónico</b> - Aún no implementado<br>
+                            <i class="em em_white_check_mark"></i><b> Chat</b> - Funcionando <br>
+                            <i class="em em_white_check_mark"></i><b> Emojis</b> - Activados y banners añadidos<br>
+                            <i class="em em_white_check_mark"></i><b> Subida de Archivos</b> - Activado y funcionando<br>
+                            <i class="em em_white_check_mark"></i><b> Configuración</b> - Funcionando<br>
+                            <i class="em em_warning"></i><b> Agenda</b> - Funcionando pero no actualizado<br>
+                            <i class="em em_x"></i><b> Correo Electrónico</b> - Aún no implementado<br>
                         </div>
                     </div>
                     <div class="modal-footer">

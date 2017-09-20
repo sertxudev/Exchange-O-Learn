@@ -24,24 +24,23 @@ class c_messages {
                 }
             }
 
-            /*if ( substr($elemento['text'], 0, 2) === "&#" ) {
-                $emojis = new c_emojis();
-                $emojis_array = json_decode($emojis->obtenerEmojis());
-
-                foreach($emojis_array as $c => $v){
-                    if($elemento['text'] == $c){
-                        $elemento['text'] = '<p style="font-size: 45px;">' . $v . '</p>';
-                    }
-                }
-
-            }*/
+            if ( substr($elemento['text'], 0, 3) === "em_" ) {
+                $elemento['text'] = '<i style="font-size: 85px;" class="em ' . $elemento['text'] . '"></i>';
+            }
+            
+            if ( substr($elemento['text'], 0, 3) === "ba_" ) {
+                $elemento['text'] = '<i style="font-size: 300px;width: -webkit-fill-available;" class="em ' . $elemento['text'] . '"></i>';
+            }
+            
+            if ( substr($elemento['text'], 0, 1) === "<" && substr($elemento['text'], 0, 9) !== "<i style=" ) {
+                $elemento['text'] = '<code>' .  htmlspecialchars($elemento['text']) . '</code>';
+            }
             
             if( strpos( $elemento['text'], "watch?v=" ) !== false ){
                 $video_id = explode("watch?v=", $elemento['text']);
 
                 $elemento['text'] = '<img src="./assets/img/youtube.png" width="25%" style="position:absolute;right: 0;margin: 15px;bottom: 0;">
                 <img onClick="showYoutubeVideo(\'' . $video_id[1] . '\')" src="http://img.youtube.com/vi/' . $video_id[1] . '/maxresdefault.jpg" width="100%">';
-                
             }
 
             if( strpos( $elemento['text'], "youtu.be/" ) !== false){
@@ -49,7 +48,6 @@ class c_messages {
 
                 $elemento['text'] = '<img src="./assets/img/youtube.png" width="25%" style="position:absolute;right: 0;margin: 15px;bottom: 0;">
                 <img onClick="showYoutubeVideo(\'' . $video_id[1] . '\')" src="http://img.youtube.com/vi/' . $video_id[1] . '/maxresdefault.jpg" width="100%">';
-                
             }
             
             if( substr( $elemento['text'], 0, 1) === "*" ){
@@ -134,25 +132,15 @@ class c_messages {
     }
     
     public function sendMessage($post_text, $post_id) {
-        $messages = new messages();
-        /*$emojis = new c_emojis();
-        $emojis_array = json_decode($emojis->obtenerEmojis());
-
-        $utf32  = mb_convert_encoding($post_text, 'UTF-32', 'UTF-8' );
-        $hex4 = bin2hex($utf32);
-        $dec = hexdec($hex4);
-        $emoji_hex = "&#$dec;";
-        if( array_key_exists($emoji_hex, $emojis_array) ){
-            $text = $emoji_hex;
-        }else{*/
-            $text = $this->sanitizeString($post_text);
-        //}
-
-        $id = $this->sanitizeString($post_id);
         
-        $time = date('Y-m-d H:i:s');
-                
-        return $messages->sendMessage($text, $id, $time);
+        if (!empty($post_text)){
+            $messages = new messages();
+            $text = html_entity_decode($post_text);
+            $id = $this->sanitizeString($post_id);
+            $time = date('Y-m-d H:i:s');
+            return $messages->sendMessage($text, $id, $time);
+        }
+        
     }
     
     private function sanitizeString($string){

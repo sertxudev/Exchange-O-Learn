@@ -49,17 +49,17 @@ class c_dashboard {
         
         array_walk($array, function (&$elemento, $clave){
             
-            /*if ( substr($elemento['text'], 0, 2) === "&#" ) {
-                $emojis = new c_emojis();
-                $emojis_array = json_decode($emojis->obtenerEmojis());
-
-                foreach($emojis_array as $c => $v){
-                    if($elemento['text'] == $c){
-                        $elemento['text'] = $v;
-                    }
-                }
-
-            }*/
+            if ( substr($elemento['text'], 0, 3) === "em_" ) {
+                $elemento['text'] = '<i style="font-size: 35px;" class="em ' . $elemento['text'] . '"></i>';
+            }
+            
+            if ( substr($elemento['text'], 0, 3) === "ba_" ) {
+                $elemento['text'] = '<i style="font-size: 100px;" class="em ' . $elemento['text'] . '"></i>';
+            }
+            
+            if ( substr($elemento['text'], 0, 1) === "<" && substr($elemento['text'], 0, 9) !== "<i style=" ) {
+                $elemento['text'] = '<code>' .  htmlspecialchars($elemento['text']) . '</code>';
+            }
 
             $time = date('H:m d/m/Y', $elemento['time']);
 

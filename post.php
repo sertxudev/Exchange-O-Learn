@@ -65,6 +65,11 @@ switch ($_POST['r']) {
         $folder = new c_carpeta();
         echo $folder->editarArchivo($_POST['id'], $_POST['name'], $_POST['access'], $_SESSION['id']);
         break;
+
+    case 'sendEmoji':
+        $messages = new c_messages();
+        echo $messages->sendMessage($_POST['emoji'], $_SESSION['id']);
+        break;
 }
 
 if (!isset($_GET['r'])) {
