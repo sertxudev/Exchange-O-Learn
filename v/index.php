@@ -130,7 +130,7 @@
                                                 <div class="input-group input-group-md">
                                                     <input type="text" class="form-control" id="submit_text" class="form-control input-md chat-input col-md-10" placeholder="Enviar un mensaje">
                                                     <span class="input-group-btn" style="height: calc(70px - 30px);">
-                                                        <button type="button" class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;">😉</button>
+                                                        <button type="button" class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;"><i class="em em-grinning_face_2"></i></button>
                                                     </span>
                                                 </div>                                                
                                             </div>
@@ -811,16 +811,16 @@
                     </div>
                     <div class="modal-body">
                         <div class="box-body">
-                            <i class="em em-white_check_mark"></i><b> Instant Messaging</b> - Working properly until now <i class="em em-raised_hands"></i><br>
-                            <i class="em em-white_check_mark"></i><b> Upload Files</b> - Feature activated and working properly<br>
-                            <i class="em em-white_check_mark"></i><b> User Configuration</b> - Feature working for you<br>
-                            <i class="em em-warning"></i><b> Diary</b> - Feature activated but not updated<br>
-                            <i class="em em-x"></i><b> Emojis Feature</b> - Feature disabled temporarily<br>
-                            <i class="em em-x"></i><b> Private Messaging Feature</b> - Feature not implemented yet<br>
+                            <i class="em em-white_check_mark"></i><b> Chat</b> - Funcionando <i class="em em-raised_hands"></i><br>
+                            <i class="em em-white_check_mark"></i><b> Subida de Archivos</b> - Activado y funcionando<br>
+                            <i class="em em-white_check_mark"></i><b> Configuración</b> - Funcionando<br>
+                            <i class="em em-warning"></i><b> Agenda</b> - Funcionando pero no actualizado<br>
+                            <i class="em em-x"></i><b> Emojis</b> - Desactivado temporalmente<br>
+                            <i class="em em-x"></i><b> Correo Electrónico</b> - Aún no implementado<br>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info">Close</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

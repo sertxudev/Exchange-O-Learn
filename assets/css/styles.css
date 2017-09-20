@@ -219,7 +219,9 @@ table.dataTable td, table.dataTable th {
 }
 
 .archivo{
-    min-height: 130px;
+    min-height: 115px;
+    max-height: 115px;
+    overflow: overlay;
     padding:0 0 0 0;
     text-align:center;
     margin:0 5px 0 5px;
