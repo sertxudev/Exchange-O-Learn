@@ -8,11 +8,22 @@ class c_dashboard {
         $array = $pdo->fetchAll(PDO::FETCH_ASSOC);
         
         array_walk($array, function (&$elemento, $clave){
-
-            $acciones = '<div class="btn-group" role="group" aria-label="...">
-                            <button type="button" onClick="editarUsuario(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
-                            <button type="button" onClick="borrarUsuario(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
-                        </div>';
+            
+            $acciones = '<div class="btn-group" role="group"><button type="button" onClick="editarUsuario(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>';
+            
+            if($elemento['status'] == 0){
+                $acciones .= '<button type="button" onClick="bloquearUsuario(' . $elemento['id'] . ')" class="btn btn-warning">Bloquear</button>';
+            }elseif($elemento['status'] == 1){
+                $acciones .= '<button type="button" onClick="desbloquearUsuario(' . $elemento['id'] . ')" class="btn btn-success">Desbloquear</button>';
+            }
+            
+            $acciones .= '<button type="button" onClick="borrarUsuario(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button></div>';
+            
+            if($elemento['status'] == 0){
+                $elemento['status'] = 'Activo';
+            }elseif($elemento['status'] == 1){
+                $elemento['status'] = 'Bloqueado';
+            }
             
             $elemento['acciones'] = $acciones;
         });
@@ -29,10 +40,21 @@ class c_dashboard {
         
         array_walk($array, function (&$elemento, $clave){
 
-            $acciones = '<div class="btn-group" role="group" aria-label="...">
-                            <button type="button" onClick="editarUsuario(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
-                            <button type="button" onClick="borrarUsuario(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
-                        </div>';
+            $acciones = '<div class="btn-group" role="group"><button type="button" onClick="editarUsuario(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>';
+            
+            if($elemento['status'] == 0){
+                $acciones .= '<button type="button" onClick="bloquearUsuario(' . $elemento['id'] . ')" class="btn btn-warning">Bloquear</button>';
+            }elseif($elemento['status'] == 1){
+                $acciones .= '<button type="button" onClick="desbloquearUsuario(' . $elemento['id'] . ')" class="btn btn-success">Desbloquear</button>';
+            }
+            
+            $acciones .= '<button type="button" onClick="borrarUsuario(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button></div>';
+            
+            if($elemento['status'] == 0){
+                $elemento['status'] = 'Activo';
+            }elseif($elemento['status'] == 1){
+                $elemento['status'] = 'Bloqueado';
+            }
             
             $elemento['acciones'] = $acciones;
         });

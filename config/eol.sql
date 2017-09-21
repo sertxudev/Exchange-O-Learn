@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 12-09-2017 a las 22:02:27
+-- Tiempo de generación: 21-09-2017 a las 23:49:38
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.0.23
 
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `description`, `time`) VALUES
-(1, 'Entregar trabajo Ofimática', 'Hay que entregar el trabajo de ofimática sobre access el próximo día 29 de Mayo.', '2017-05-29'),
-(2, 'Examen Tema 5 de Inglés', 'El profesor ha puesto el examen de inglés el día 5 de Júnio, además ese mismo día hay que entregar la redacción de la página 42.', '2017-06-05');
+(1, 'Entregar trabajo Ofimática', 'Hay que entregar el trabajo de ofimática sobre access el próximo día 29 de Mayo.', '2017-09-21'),
+(2, 'Examen Tema 5 de Inglés', 'El profesor ha puesto el examen de inglés el día 5 de Júnio, además ese mismo día hay que entregar la redacción de la página 42.', '2017-11-23');
 
 -- --------------------------------------------------------
 
@@ -61,16 +61,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   `time` date NOT NULL,
   `access` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `files`
---
-
-INSERT INTO `files` (`id`, `name`, `owner`, `url`, `type`, `time`, `access`) VALUES
-(11, 'Diploma Desarrolo Web (Segunda Parte)', 1, './uploads/7657cf9360f6f9b0cc2fc559c1c47e2a.pdf', 'pdf', '2017-06-12', 2),
-(9, 'Diploma Apps Moviles', 1, './uploads/fde5c6a406b997792eb66fb63f6db791.pdf', 'pdf', '2017-06-12', 0),
-(10, 'Diploma Desarrollo Web (Primera Parte)', 1, './uploads/367fd6906a4902704c15155f1ce8f807.pdf', 'pdf', '2017-06-12', 1);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -114,15 +105,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `author` int(11) UNSIGNED NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `messages`
---
-
-INSERT INTO `messages` (`id`, `text`, `author`, `time`) VALUES
-(1, 'hola', 20, '2017-09-12 18:45:13'),
-(3, 'hola', 20, '2017-09-12 18:45:50');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -137,22 +120,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `surname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `birthday` date DEFAULT NULL,
   `color` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#333',
   `background` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#32fea8',
   `type` int(1) UNSIGNED NOT NULL,
+  `status` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `birthday`, `color`, `background`, `type`) VALUES
-(1, 'user', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Root', '2017-06-03', '', '', 0),
-(2, 'root', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', 'Root', '2017-06-13', '', '0', 2),
-(20, 'profe', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'Profe', 'Root', NULL, '#333', '#32fea8', 1);
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `surname`, `color`, `background`, `type`, `status`) VALUES
+(1, 'root', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'root', 'root', '#333', '#32fea8', 1, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

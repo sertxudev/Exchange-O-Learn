@@ -15,8 +15,16 @@ class c_evento {
         $id = $this->sanitizeString($post_id);
         
         $pdo = $evento->obtenerEvento($id);
-        $return = json_encode($pdo->fetch(PDO::FETCH_ASSOC));
-        echo $return;
+        $array = array($pdo->fetch(PDO::FETCH_ASSOC));
+        array_walk($array, function (&$elemento, $clave){
+            //strftime("%A, %d de %B de %Y", $miFecha)
+            //$elemento['time'] = date('d \d\e F \d\e\l Y', strtotime($elemento['time']));
+            $elemento['time'] = strftime('%d de %B de %Y', strtotime($elemento['time']));
+        });
+        
+        
+        //return var_dump($array);
+        return json_encode($array);
     }
     
     private function sanitizeString($string){

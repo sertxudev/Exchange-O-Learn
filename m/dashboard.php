@@ -3,11 +3,11 @@
 class dashboard extends ddbb {
     
     public function obtenerAlumnos(){
-        return $this->seleccionar("SELECT id, username, name, surname, birthday, color FROM users WHERE type=0", TRUE);
+        return $this->seleccionar("SELECT id, username, name, surname, status FROM users WHERE type=0", TRUE);
     }
     
     public function obtenerProfesores(){
-        return $this->seleccionar("SELECT id, username, name, surname, birthday, color FROM users WHERE type=1", TRUE);
+        return $this->seleccionar("SELECT id, username, name, surname, status FROM users WHERE type=1", TRUE);
     }
     
     public function obtenerMensajes(){

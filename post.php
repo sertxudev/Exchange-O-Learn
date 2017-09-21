@@ -28,7 +28,7 @@ switch ($_POST['r']) {
 
     case 'sendEditarUsuario':
         $usuario = new c_usuario();
-        echo $usuario->actualizarPerfil($_POST['id'], $_POST['username'], $_POST['name'], $_POST['surname'], $_POST['birthday']);
+        echo $usuario->actualizarPerfil($_POST['id'], $_POST['username'], $_POST['name'], $_POST['surname']);
         break;
 
     case 'borrarUsuario':
@@ -70,6 +70,11 @@ switch ($_POST['r']) {
         $messages = new c_messages();
         echo $messages->sendMessage($_POST['emoji'], $_SESSION['id']);
         break;
+
+    case 'estadoUsuario':
+        $usuario = new c_usuario();
+        echo $usuario->estadoUsuario($_POST['id'], $_POST['estado'], $_SESSION['id']);
+        break;
 }
 
 if (!isset($_GET['r'])) {
@@ -95,7 +100,7 @@ switch ($_GET['r']) {
     
     case 'actualizarPerfil':
         $user = new c_usuario();
-        echo $user->actualizarPerfil($_SESSION['id'], $_GET['username'], $_GET['name'], $_GET['surname'], $_GET['birthday'], $_GET['password']);
+        echo $user->actualizarPerfil($_SESSION['id'], $_GET['username'], $_GET['name'], $_GET['surname'], $_GET['password']);
         break;
 
     case 'obtenerMessages':

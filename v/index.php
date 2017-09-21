@@ -9,7 +9,7 @@
         <aside class="main-sidebar">
             <section class="sidebar" style="-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">
                 <ul class="sidebar-menu">
-                    <li ng-class="{ active:tab.isSet(1) }">
+                    <li ng-class="{ active:tab.isSet(1) }" onclick="scrolldown()">
                         <a ng-click="tab.setTab(1)"><i class="fa fa-home"></i> <span>Inicio</span></a>
                     </li>
 
@@ -122,7 +122,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 module overflow-hidden" ng-controller="chatController as module">
+                        <div class="col-md-4 module module-chat overflow-hidden" ng-controller="chatController as module">
                             <div class="row chat">
                                 <div class="col-md-12">
                                     <div class="row chat-window material">
@@ -259,23 +259,19 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-12" id="config_alert"></div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <h4>Usuario</h4>
                                     <input id="config_username" type="text" class="form-control"/>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <h4>Contraseña</h4>
                                     <input id="config_password" type="password" class="form-control"/>
                                 </div>
-                                <div class="col-md-3">
-                                    <h4>Cumpleaños</h4>
-                                    <input id="config_birthday" type="text" class="form-control" readonly />
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <h4>Nombre</h4>
                                     <input id="config_name" type="text" class="form-control"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <h4>Apellidos</h4>
                                     <input id="config_surname" type="text" class="form-control"/>
                                 </div>
@@ -383,7 +379,7 @@
                                             <th>Nombre</th>
                                             <th>Apellidos</th>
                                             <th>Usuario</th>
-                                            <th>Cumpleaños</th>
+                                            <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -411,7 +407,7 @@
                                             <th>Nombre</th>
                                             <th>Apellidos</th>
                                             <th>Usuario</th>
-                                            <th>Cumpleaños</th>
+                                            <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -643,10 +639,6 @@
                             <label for="alumno_surnames">Apellidos:</label>
                             <input type="text" class="form-control" id="alumno_surnames" placeholder="Apellidos">
                         </div>
-                        <div class="form-group">
-                            <label for="alumno_birthday">Cumpleaños:</label>
-                            <input type="text" class="form-control" id="alumno_birthday" placeholder="Cumpleaños">
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -678,10 +670,6 @@
                         <div class="form-group">
                             <label for="usuario_editar_surnames">Apellidos:</label>
                             <input type="text" class="form-control" id="usuario_editar_surnames" placeholder="Apellidos">
-                        </div>
-                        <div class="form-group">
-                            <label for="usuario_editar_birthday">Cumpleaños:</label>
-                            <input type="text" class="form-control" id="usuario_editar_birthday" placeholder="Cumpleaños" readonly>
                         </div>
                     </div>
                 </div>

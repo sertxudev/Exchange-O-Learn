@@ -16,9 +16,10 @@
 
         $scope.mostrarEvento = function (id) {
             $http.get('./post.php?r=obtenerEvento&id=' + id).then(function (response) {
-                module.evento = response.data;
-                $('#event_title').html(response.data.title + ' - ' + response.data.time);
-                $('#event_description').html(response.data.description);
+                module.evento = response.data[0];
+                $('#event_title').html(response.data[0].title + ' - ' + response.data[0].time);
+                $('#event_description').html(response.data[0].description);
+                $('#mostrarEvento').modal();
             });
         };
     }]);
@@ -61,7 +62,7 @@
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                     int++;
                 }
-                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 600) {
+                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 500) {
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                 }
             }
@@ -182,7 +183,6 @@
         $http.get('./post.php?r=obtenerPerfil').then(function (response) {
             module.perfil = response.data;
             $('#config_username').val(module.perfil.username);
-            $('#config_birthday').val(module.perfil.birthday);
             $('#config_name').val(module.perfil.name);
             $('#config_surname').val(module.perfil.surname);
         });
@@ -198,14 +198,13 @@
         $scope.guardarPerfil = function () {
             
             if(!$('#config_username').val()
-                || !$('#config_birthday').val()
                 || !$('#config_name').val()
                 || !$('#config_surname').val()){
             
                 $('#config_alert').html('<div class="alert alert-warning fade in alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><strong>Todos los campos son obligatorios.</strong></div>');
             
             }else{
-                $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&birthday=' + $('#config_birthday').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
+                $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
                     if (response.data == 1) {
                         window.location = "./";
                     }
@@ -244,6 +243,48 @@
     }]);
 
 })();
+
+function scrolldown(){
+    $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
+}
+
+function bloquearUsuario(id){
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'estadoUsuario',
+            estado: 1,
+            id: id
+        }
+    })
+        .done(function (msg) {
+            if (msg == 1) {
+                recargarAlumnos();
+                recargarProfesores();                
+            }
+        });
+}
+
+function desbloquearUsuario(id){
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'estadoUsuario',
+            estado: 0,
+            id: id
+        }
+    })
+        .done(function (msg) {
+            if (msg == 1) {
+                recargarAlumnos();
+                recargarProfesores();                
+            }
+        });
+}
 
 function sendEmoji(emoji) {
     $.ajax({
@@ -391,7 +432,6 @@ function editarUsuario(id) {
             $('#usuario_editar_pass').val('');
             $('#usuario_editar_name').val(usuario.name);
             $('#usuario_editar_surnames').val(usuario.surname);
-            $('#usuario_editar_birthday').val(usuario.birthday);
             
              $('#modalEditarUsuario').html('');
             
@@ -403,8 +443,7 @@ function sendEditarUsuario() {
 
     if (!$('#usuario_editar_username').val()
         || !$('#usuario_editar_name').val()
-        || !$('#usuario_editar_surnames').val()
-        || !$('#usuario_editar_birthday').val()) {
+        || !$('#usuario_editar_surnames').val()) {
 
         $('#modalEditarUsuario').html('<div class="alert alert-warning fade in alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><strong>Todos los campos son obligatorios.</strong></div>');
 
@@ -419,8 +458,7 @@ function sendEditarUsuario() {
                 id: $('#usuario_editar_id').val(),
                 username: $('#usuario_editar_username').val(),
                 name: $('#usuario_editar_name').val(),
-                surname: $('#usuario_editar_surnames').val(),
-                birthday: $('#usuario_editar_birthday').val()
+                surname: $('#usuario_editar_surnames').val()
             }
         })
             .done(function (response) {
@@ -429,7 +467,6 @@ function sendEditarUsuario() {
                     $('#usuario_editar_username').val('');
                     $('#usuario_editar_name').val('');
                     $('#usuario_editar_surnames').val('');
-                    $('#usuario_editar_birthday').val('');
                     $('#editarUsuario').modal('hide');
                     $('#alumnosTable').DataTable().ajax.reload(null, false);
                     $('#profesorTable').DataTable().ajax.reload(null, false);
@@ -534,35 +571,7 @@ $(document).ready(function () {
     $('#modalYoutubeVideo').on('hidden.bs.modal', function () {
         $('#youtubeVideoEmbed').html('');
     });
-
-    $("#config_birthday").datepicker({
-        dateFormat: 'yy-mm-dd',
-        yearRange: "-100:+0",
-        changeMonth: true,
-        changeYear: true,
-
-        prevText: 'Ant.',
-        nextText: 'Sig.',
-        currentText: 'Hoy',
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        firstDay: 1
-    });
-    
-    $("#alumno_birthday").datepicker({
-        dateFormat: 'yy-mm-dd',
-        yearRange: "-100:+0",
-        changeMonth: true,
-        changeYear: true,
-
-        prevText: 'Ant.',
-        nextText: 'Sig.',
-        currentText: 'Hoy',
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        firstDay: 1
-    });
-    
+        
     $("#evento_fecha").datepicker({
         dateFormat: 'yy-mm-dd',
         yearRange: "-100:+0",
@@ -577,20 +586,6 @@ $(document).ready(function () {
         firstDay: 1
     });
     
-    $("#usuario_editar_birthday").datepicker({
-        dateFormat: 'yy-mm-dd',
-        yearRange: "-100:+0",
-        changeMonth: true,
-        changeYear: true,
-
-        prevText: 'Ant.',
-        nextText: 'Sig.',
-        currentText: 'Hoy',
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        firstDay: 1
-    });
-
     $('#personalMail').DataTable({
         "ajax": "./post.php?r=obtenerMails",
         "columns": [
@@ -670,7 +665,7 @@ $(document).ready(function () {
             { "data": "name" },
             { "data": "surname" },
             { "data": "username" },
-            { "data": "birthday" },
+            { "data": "status" },
             { "data": "acciones" }
         ],
         "language": {
@@ -706,7 +701,7 @@ $(document).ready(function () {
             { "data": "name" },
             { "data": "surname" },
             { "data": "username" },
-            { "data": "birthday" },
+            { "data": "status" },
             { "data": "acciones" }
         ],
         "language": {

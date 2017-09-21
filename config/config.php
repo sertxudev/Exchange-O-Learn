@@ -1,5 +1,7 @@
 <?php
 
+    setlocale(LC_TIME, 'es_ES.UTF-8');
+
 /* Logger */
     define("_RUTA_LOG_", "logs/");
 

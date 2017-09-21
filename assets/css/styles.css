@@ -209,7 +209,7 @@ table.dataTable td, table.dataTable th {
     max-height:100vh;
 }
 
-.module:hover{
+.module-chat{
     box-shadow:0 0 20px 5px #808080;
     z-index:1;
     overflow-y:auto;

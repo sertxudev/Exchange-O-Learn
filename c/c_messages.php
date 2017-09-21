@@ -28,6 +28,15 @@ class c_messages {
                     $elemento['text'] = '<img src="' . $elemento['text'] . '" width="100%">';
                 }
             }
+            
+            if( substr( $elemento['text'], 0, 10) === "/unbanned/" ){
+                $elemento['text'] = '<h5 style="color:blue;font-weight:bold;text-align:center;">Usuario Desbloqueado</h5>';
+            }
+            
+            if( substr( $elemento['text'], 0, 8) === "/banned/" ){
+                $text = explode("/banned/", $elemento['text']);
+                $elemento['text'] = '<h5 style="color:red;font-weight:bold;text-align:center;">Usuario Bloqueado</h5>';
+            }
 
             if ( substr($elemento['text'], 0, 3) === "em_" ) {
                 $elemento['text'] = '<i style="font-size: 65px;" class="em ' . $elemento['text'] . '"></i>';
@@ -59,10 +68,7 @@ class c_messages {
             }
 
             if( substr( $elemento['text'], 0, 1) === "_" ){
-                if( substr( $elemento['text'], -1, 1) === "_" ){
-                    $text = explode("_", $elemento['text']);
-                    $elemento['text'] = '<u>' . $text[1] . '</u>';
-                }
+                
             }
 
             if( substr( $elemento['text'], 0, 1) === "-" ){
@@ -108,8 +114,6 @@ class c_messages {
                 $elemento['text'] = '<a target="_BLANK" href="' . $elemento['text'] . '">' . $elemento['text'] . '</a>';
             }
 
-
-
             if( substr( $elemento['text'], 0, 2 ) === "//" ){
                 $elemento['text'] = '<a target="_BLANK" href="' . $elemento['text'] . '"><img src="' . $elemento['text'] . '/favicon.ico" width="25px" style="display: inline-block;"><span style="margin-left:5px">' . $elemento['text'] . '</span></a>';
             }
@@ -135,11 +139,19 @@ class c_messages {
     public function sendMessage($post_text, $post_id) {
         
         if (!empty($post_text)){
-            $messages = new messages();
-            $text = html_entity_decode($post_text);
             $id = $this->sanitizeString($post_id);
-            $time = date('Y-m-d H:i:s');
-            return $messages->sendMessage($text, $id, $time);
+            
+            $user = new usuario();
+            
+            $pdo = $user->consultarEstado($id);
+            $return = $pdo->fetch(PDO::FETCH_ASSOC);
+            
+            if($return['status'] == 0){
+                $messages = new messages();
+                $text = html_entity_decode($post_text);
+                $time = date('Y-m-d H:i:s');
+                return $messages->sendMessage($text, $id, $time);
+            }
         }
         
     }

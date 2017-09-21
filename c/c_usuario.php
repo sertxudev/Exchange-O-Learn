@@ -20,21 +20,20 @@ class c_usuario {
         return json_encode($pdo->fetch(PDO::FETCH_ASSOC));
     }
     
-    public function actualizarPerfil($post_id, $post_username, $post_name, $post_surname, $post_birthday, $post_password = false){
+    public function actualizarPerfil($post_id, $post_username, $post_name, $post_surname, $post_password = false){
         $user = new usuario();
         
         $id = $this->sanitizeString($post_id);
         $username = $this->sanitizeString($post_username);
         $name     = $this->sanitizeString($post_name);
         $surname  = $this->sanitizeString($post_surname);
-        $birthday = $this->sanitizeString($post_birthday);
         if(!empty($post_password)){
             $password = hash('sha512', $this->sanitizeString($post_password));
-            if(!$user->actualizarPerfil($id, $username, $name, $surname, $birthday, $password)){
+            if(!$user->actualizarPerfil($id, $username, $name, $surname, $password)){
                 echo 1;
             }
         }else{
-            if(!$user->actualizarPerfil($id, $username, $name, $surname, $birthday)){
+            if(!$user->actualizarPerfil($id, $username, $name, $surname)){
                 echo 1;
             }
         }
@@ -82,8 +81,36 @@ class c_usuario {
         
         return json_encode($return);
     }
-
-        private function sanitizeString($string){
+    
+    public function estadoUsuario($post_id, $post_estado, $post_session){
+        $user = new usuario();
+        
+        $id         = $this->sanitizeString($post_id);
+        $estado     = $this->sanitizeString($post_estado);
+        $session    = $this->sanitizeString($post_session);
+        if($session == $id){
+            return 0;
+        }
+        $pdo = $user->estadoUsuario($id, $estado);
+        $return = $pdo->fetch(PDO::FETCH_ASSOC) ? 0 : 1;
+        
+        if($return == 1){
+            $messages = new messages();
+            
+            if($estado == 1){
+                $text = '/banned/';
+            }elseif($estado == 0){
+                $text = '/unbanned/';
+            }
+            
+            $time = date('Y-m-d H:i:s');
+            $messages->sendMessage($text, $id, $time);
+        }
+        
+        return json_encode($return);
+    }
+    
+    private function sanitizeString($string){
         return filter_var($string, FILTER_SANITIZE_STRING);
     }
     
