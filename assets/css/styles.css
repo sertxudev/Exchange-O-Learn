@@ -175,7 +175,8 @@ table.dataTable td, table.dataTable th {
 }
 
 .archivo:hover{
-    box-shadow:inset 2px 0px 10px #808080;
+    /*box-shadow:inset 2px 0px 10px #808080;*/
+	filter: hue-rotate(150deg);
     z-index:2;
 }
 

@@ -16,6 +16,11 @@ class c_messages {
         array_walk($array, function (&$elemento, $clave){
 
             $elemento['time'] = date('h:i a d/m/Y', $elemento['time']);
+            
+            if ( substr($elemento['text'], 0, 1) === "<" ) {
+
+                $elemento['text'] = '<code>' . htmlspecialchars($elemento['text']) . '</code>';
+            }
 
             $ext = array('.jpg', '.png', '.gif');
             foreach ($ext as $c){
@@ -25,15 +30,11 @@ class c_messages {
             }
 
             if ( substr($elemento['text'], 0, 3) === "em_" ) {
-                $elemento['text'] = '<i style="font-size: 85px;" class="em ' . $elemento['text'] . '"></i>';
+                $elemento['text'] = '<i style="font-size: 65px;" class="em ' . $elemento['text'] . '"></i>';
             }
             
             if ( substr($elemento['text'], 0, 3) === "ba_" ) {
-                $elemento['text'] = '<i style="font-size: 300px;width: -webkit-fill-available;" class="em ' . $elemento['text'] . '"></i>';
-            }
-            
-            if ( substr($elemento['text'], 0, 1) === "<" && substr($elemento['text'], 0, 9) !== "<i style=" ) {
-                $elemento['text'] = '<code>' .  htmlspecialchars($elemento['text']) . '</code>';
+                $elemento['text'] = '<i style="font-size: 21.2em;width: -webkit-fill-available;" class="em ' . $elemento['text'] . '"></i>';
             }
             
             if( strpos( $elemento['text'], "watch?v=" ) !== false ){

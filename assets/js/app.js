@@ -61,7 +61,7 @@
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                     int++;
                 }
-                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 3500) {
+                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 600) {
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                 }
             }
@@ -525,7 +525,7 @@ function borrarMensaje(id) {
 
 function showYoutubeVideo(id) {
 
-    $('#youtubeVideoEmbed').html('<iframe src="http://www.youtube.com/embed/' + id + '"frameborder="0" allowfullscreen="" style="width: 100%!important;height: 520px!important;"/>');
+    $('#youtubeVideoEmbed').html('<iframe src="//www.youtube.com/embed/' + id + '"frameborder="0" allowfullscreen="" style="width: 100%!important;height: 520px!important;"/>');
     $('#modalYoutubeVideo').modal('show');
 }
 
