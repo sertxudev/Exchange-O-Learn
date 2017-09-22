@@ -74,6 +74,7 @@ class c_emojis {
             'ba_10',
             'ba_11',
             'ba_12',
+            'ba_13',
         );
         
         foreach ($array_grupo_1 as $v) {

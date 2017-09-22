@@ -45,8 +45,8 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li ng-class="{ active:tab.isSet(6) }" style="display: inline-block;" ng-style="{ width: tab.isSet(6) ? '81%' : '100%' }">
-                                    <a ng-click="tab.setTab(6)" onClick="recargarAlumnos()"><i class="fa fa-pencil"></i> Alumnos</a>
+                                <li ng-class="{ active:tab.isSet(6) }" onClick="recargarAlumnos()" style="display: inline-block;" ng-style="{ width: tab.isSet(6) ? '81%' : '100%' }">
+                                    <a ng-click="tab.setTab(6)"><i class="fa fa-pencil"></i> Alumnos</a>
                                 </li>
                                 <li ng-class="{ active:hover }" ng-show="tab.isSet(6)" style="display: inline-block; float: right; position: absolute;">
                                     <a style="float:right;" ng-click="crearAlumno()"><i class="fa fa-plus"></i></a>
@@ -54,8 +54,8 @@
 
                                 <br>
 
-                                <li ng-class="{ active:tab.isSet(7) }" style="display: inline-block;" ng-style="{ width: tab.isSet(7) ? '81%' : '100%' }">
-                                    <a ng-click="tab.setTab(7)" onClick="recargarProfesores()"><i class="fa fa-book"></i> Profesores</a>
+                                <li ng-class="{ active:tab.isSet(7) }" onClick="recargarProfesores()" style="display: inline-block;" ng-style="{ width: tab.isSet(7) ? '81%' : '100%' }">
+                                    <a ng-click="tab.setTab(7)"><i class="fa fa-book"></i> Profesores</a>
                                 </li>
                                 <li ng-class="{ active:hover }" ng-show="tab.isSet(7)" style="display: inline-block; float: right; position: absolute;">
                                     <a style="float:right;" ng-click="crearProfesor()"><i class="fa fa-plus"></i></a>
@@ -784,7 +784,7 @@
     
     
     
-    <!-- REMOVE BEFORE PUBLISHING -->
+    <!-- REMOVE BEFORE PUBLISHING 
         
     
         <script type="text/javascript">

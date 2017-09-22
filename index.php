@@ -9,7 +9,9 @@
         
         if(_bloquear_){
             if(isset($_SESSION['type']) && ($_SESSION['type'] == 0)){
+            	include_once './v/header.php';
                 include_once './v/bloqueada.php';
+			    include_once './v/footer.php';
                 exit;
             }
         }

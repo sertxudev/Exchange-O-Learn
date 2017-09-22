@@ -277,10 +277,13 @@
 }
 
 .ba_11 {
-    background-image: url("banners/11.png")
+    background-image: url("banners/11.jpg")
 }
-
 
 .ba_12 {
     background-image: url("banners/12.png")
+}
+
+.ba_13 {
+    background-image: url("banners/13.png")
 }

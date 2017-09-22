@@ -19,7 +19,6 @@ if(file_exists(_RUTA_LOG_."depurando")){
 /* Bloquear */
 if(file_exists(_RUTA_LOG_."bloqueado")){
     define("_bloquear_", true);
-    
 }else{
     define("_bloquear_", false);
 }

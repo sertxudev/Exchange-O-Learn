@@ -62,7 +62,7 @@
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                     int++;
                 }
-                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 500) {
+                if ($('#chat-container').scrollTop() + $('#chat-container').innerHeight() >= $('#chat-container')[0].scrollHeight - 450) {
                     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
                 }
             }
@@ -281,7 +281,7 @@ function desbloquearUsuario(id){
         .done(function (msg) {
             if (msg == 1) {
                 recargarAlumnos();
-                recargarProfesores();                
+                recargarProfesores();
             }
         });
 }

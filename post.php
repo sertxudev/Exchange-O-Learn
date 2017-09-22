@@ -11,6 +11,12 @@ if (!isset($_POST['r'])) {
 // Rutas POST
 switch ($_POST['r']) {
 
+    case 'bloqueado':
+        if(_bloquear_ == false){
+			echo 0;
+		}
+        break;
+
     case 'login':
         $user = new c_usuario();
         echo $user->login($_POST['username'], $_POST['password']);
