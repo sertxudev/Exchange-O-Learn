@@ -13,8 +13,8 @@ switch ($_POST['r']) {
 
     case 'bloqueado':
         if(_bloquear_ == false){
-			echo 0;
-		}
+            echo 0;
+        }
         break;
 
     case 'login':
@@ -81,6 +81,11 @@ switch ($_POST['r']) {
         $usuario = new c_usuario();
         echo $usuario->estadoUsuario($_POST['id'], $_POST['estado'], $_SESSION['id']);
         break;
+    
+    case 'contarEmailsRecibidos':
+        $email = new c_email();
+        echo $email->contarEmailsRecibidos($_SESSION['id']);
+        break;
 }
 
 if (!isset($_GET['r'])) {
@@ -128,7 +133,12 @@ switch ($_GET['r']) {
         $folder = new c_carpeta();
         echo $folder->obtenerCarpeta($_GET['id'], $_SESSION['type']);
         break;
-
+    
+    case 'obtenerEmailsRecibidos':
+        $email = new c_email();
+        echo $email->obtenerEmailsRecibidos($_SESSION['id']);
+        break;
+    
     case 'obtenerUsuario':
         $user = new c_usuario();
         echo $user->obtenerUsuario($_GET['id']);
@@ -189,11 +199,6 @@ switch ($_GET['r']) {
     case 'obtenerCarpetaPersonal':
         $folder = new c_carpeta();
         echo $folder->obtenerCarpetaPersonal($_SESSION['id']);
-        break;
-
-    case 'obtenerMails':
-        $email = new c_email();
-        echo $email->obtenerEmailsRecibidos($_SESSION['id']);
         break;
 
     case 'obtenerAlumnos':

@@ -34,15 +34,18 @@ class c_email {
 
             $elemento['eliminar'] = '<button type="button" onClick="borrarEmail('.$elemento['id'].')" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>';
             $elemento['from'] = $elemento['name_from'].' '.$elemento['surname_from'];
+            
             if($elemento['important']){
                 $elemento['important'] = '<i class="fa fa-star text-yellow"></i>';
             }else{
                 $elemento['important'] = '<i class="fa fa-star-o text-yellow"></i>';
             }
+            
             if(!$elemento['isread']){
                 $elemento['subject'] = '<b>'.$elemento['subject'].'</b>';
             }
-            $elemento['date'] = date('h:i a d/m/Y', $elemento['date']);
+            
+            $elemento['date'] = date('d/m/Y', $elemento['date']) . '&nbsp;' . date('h:i', $elemento['date']) . '&nbsp;' . date('a', $elemento['date']);
 
         });
         
@@ -51,14 +54,16 @@ class c_email {
         ));
     }
 
-    public function obtenerEmailsEliminados($post_id){
-
+    public function contarEmailsRecibidos($post_id) {
+        $id = $this->sanitizeString($post_id);
+        
+        $email = new email();
+        $pdo = $email->contarEmailsRecibidos($id);
+        $return = $pdo->fetch(PDO::FETCH_ASSOC);
+        
+        return $return['unread'];
     }
-
-    public function obtenerEmailsBorrador($post_id){
-
-    }
-
+    
     public function obtenerEmail($post_id){
 
     }

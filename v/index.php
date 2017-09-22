@@ -22,11 +22,8 @@
 
                     <li></li>
 
-                    <li ng-class="{ active:tab.isSet(3) }" style="display: inline-block;" ng-style="{ width: tab.isSet(3) ? '81%' : '100%' }">
+                    <li ng-class="{ active:tab.isSet(3) }" onclick="recargarMails()">
                         <a ng-click="tab.setTab(3)"><i class="fa fa-envelope"></i> <span>Correo Electrónico</span></a>
-                    </li>
-                    <li ng-class="{ active:hover }" ng-show="tab.isSet(3)" style="display: inline-block; float: right; position: absolute;">
-                        <a style="float:right;"><i class="fa fa-refresh"></i></a>
                     </li>
 
                     <li></li>
@@ -174,7 +171,7 @@
                     </div>
                 </div>
 
-                <div class="container-fluid" ng-show="tab.isSet(3)" style="padding-top: 15px;">
+                <div class="container-fluid" ng-controller="mailsController as module" ng-show="tab.isSet(3)" style="padding-top: 15px;">
                     <section class="content-header">
                         <h1>
                             Correo Electrónico
@@ -197,8 +194,7 @@
                                     <div class="box-body no-padding collapse in" id="carpetas">
                                         <ul class="nav nav-stacked" style="font-weight: bold;">
                                             <li class="active">
-                                                <a href="#"><i class="fa fa-inbox" style="margin-right: 5px;"></i> Bandeja de Entrada
-                                                    <span class="label label-primary pull-right">3</span>
+                                                <a href="#"><i class="fa fa-inbox" style="margin-right: 5px;"></i> Bandeja de Entrada<span class="label label-primary pull-right" id="unreadMails"></span>
                                                 </a>
                                             </li>
                                             <li><a href="#"><i class="fa fa-envelope-o" style="margin-right: 5px;"></i> Enviados</a></li>

@@ -133,6 +133,10 @@
         };
     }]);
 
+    app.controller('mailsController', ['$http', '$scope', function ($http, $scope) {
+        var module = this;
+        
+    }]);
 
     app.controller('TabController', ['$scope', '$http', function ($scope, $http) {
         this.tab = 1;
@@ -248,6 +252,20 @@ function scrolldown(){
     $('#chat-container').animate({ scrollTop: $('#chat-container').prop("scrollHeight") }, 1000);
 }
 
+function recargarMails(){
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'contarEmailsRecibidos'
+        }
+    })
+        .done(function (msg) {
+            $('#unreadMails').text(msg);
+            console.log(msg);
+        });
+}
 function bloquearUsuario(id){
     $.ajax({
         method: "POST",
@@ -587,7 +605,7 @@ $(document).ready(function () {
     });
     
     $('#personalMail').DataTable({
-        "ajax": "./post.php?r=obtenerMails",
+        "ajax": "./post.php?r=obtenerEmailsRecibidos",
         "columns": [
             { "data": "eliminar" },
             { "data": "important" },
@@ -620,7 +638,7 @@ $(document).ready(function () {
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
         },
-        "bLengthChange": false
+        "bLengthChange": true
     });
 
     $('#personalFilesTable').DataTable({
