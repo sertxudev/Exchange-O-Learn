@@ -86,6 +86,31 @@ switch ($_POST['r']) {
         $email = new c_email();
         echo $email->contarEmailsRecibidos($_SESSION['id']);
         break;
+    
+    case 'obtenerEmail':
+        $email = new c_email();
+        echo $email->obtenerEmail($_POST['id'], $_SESSION['id']);
+        break;
+    
+    case 'enviarCrearMail':
+        $email = new c_email();
+        echo $email->enviarEmail($_SESSION['id'], $_POST['to'], $_SESSION['type'], $_POST['subject'], $_POST['text']);
+        break;
+    
+    case 'obtenerPosiblesDestinatarios':
+        $email = new c_email();
+        echo $email->obtenerPosiblesDestinatarios();
+        break;
+    
+    case 'crearEvento':
+        $email = new c_evento();
+        echo $email->crearEvento($_POST['nombre'], $_POST['descripcion'], $_POST['fecha']);
+        break;
+    
+    case 'borrarEvento':
+        $email = new c_evento();
+        echo $email->borrarEvento($_POST['id']);
+        break;
 }
 
 if (!isset($_GET['r'])) {
@@ -137,6 +162,11 @@ switch ($_GET['r']) {
     case 'obtenerEmailsRecibidos':
         $email = new c_email();
         echo $email->obtenerEmailsRecibidos($_SESSION['id']);
+        break;
+    
+    case 'obtenerEmailsEnviados':
+        $email = new c_email();
+        echo $email->obtenerEmailsEnviados($_SESSION['id']);
         break;
     
     case 'obtenerUsuario':
@@ -253,11 +283,13 @@ switch ($_GET['r']) {
 
     case 'bloquearAplicacion':
         if($_SESSION['type'] > 0){
-            if(_bloquear_){
-                unlink(_RUTA_LOG_.'bloqueado');
-            }else{
-                touch(_RUTA_LOG_.'bloqueado');
-            }
+            touch(_RUTA_LOG_.'bloqueado');
+        }
+        break;
+
+    case 'desbloquearAplicacion':
+        if($_SESSION['type'] > 0){
+            unlink(_RUTA_LOG_.'bloqueado');
         }
         break;
 

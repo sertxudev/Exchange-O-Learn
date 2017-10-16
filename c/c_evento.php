@@ -17,14 +17,27 @@ class c_evento {
         $pdo = $evento->obtenerEvento($id);
         $array = array($pdo->fetch(PDO::FETCH_ASSOC));
         array_walk($array, function (&$elemento, $clave){
-            //strftime("%A, %d de %B de %Y", $miFecha)
-            //$elemento['time'] = date('d \d\e F \d\e\l Y', strtotime($elemento['time']));
             $elemento['time'] = strftime('%d de %B de %Y', strtotime($elemento['time']));
         });
-        
-        
-        //return var_dump($array);
         return json_encode($array);
+    }
+    
+    public function crearEvento($post_nombre, $post_descripcion, $post_fecha) {
+        $evento = new evento();
+        
+        $nombre = $this->sanitizeString($post_nombre);
+        $descripcion = $this->sanitizeString($post_descripcion);
+        $fecha = $this->sanitizeString($post_fecha);
+        
+        return $evento->crearEvento($nombre, $descripcion, $fecha);
+    }
+    
+    public function borrarEvento($post_id) {
+        $evento = new evento();
+        
+        $id = $this->sanitizeString($post_id);
+        
+        return $evento->borrarEvento($id);
     }
     
     private function sanitizeString($string){

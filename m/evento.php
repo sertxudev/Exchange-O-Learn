@@ -10,4 +10,12 @@ class evento extends ddbb {
         $now = time();
         return $this->seleccionar("SELECT * FROM events WHERE id='$id'", TRUE);
     }
+    
+    public function crearEvento($nombre, $descripcion, $fecha){
+        return $this->insertar("INSERT INTO events (title, description, time) VALUES ('$nombre', '$descripcion', '$fecha')", TRUE);
+    }
+    
+    public function borrarEvento($id){
+        return $this->insertar("DELETE FROM events WHERE id='$id'", TRUE);
+    }
 }

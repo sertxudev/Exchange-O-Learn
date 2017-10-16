@@ -28,5 +28,8 @@
         <script src="./assets/js/datatables.min.js" type="text/javascript"></script>
         <script src="./assets/js/jquery-ui.js" type="text/javascript"></script>
         
+        <script src="./assets/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script src="./assets/ckeditor/config.js" type="text/javascript"></script>
+        
         <script src="./assets/js/app.js"></script>
     </head>

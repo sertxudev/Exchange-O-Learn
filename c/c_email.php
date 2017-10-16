@@ -10,29 +10,8 @@ class c_email {
         $pdo = $email->obtenerEmailsRecibidos($id);
         $array = $pdo->fetchAll(PDO::FETCH_ASSOC);
 
-        /*
-            <tr>
-                <td><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button></td>
-                <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                </td>
-                <td class="mailbox-attachment"></td>
-                <td class="mailbox-date">5 mins ago</td>
-            </tr>
-
-
-            SELECT M.id AS id, M.subject AS subject, 
-                M.text AS text, M.date AS date, U1.name as name_to, U1.surname as surname_to, 
-                U2.name as name_from, U2.surname as surname_from, 
-                M.isread AS isread, M.status AS status, M.important as important 
-
-
-        */
-
         array_walk($array, function (&$elemento, $clave){
 
-            $elemento['eliminar'] = '<button type="button" onClick="borrarEmail('.$elemento['id'].')" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>';
             $elemento['from'] = $elemento['name_from'].' '.$elemento['surname_from'];
             
             if($elemento['important']){
@@ -42,8 +21,38 @@ class c_email {
             }
             
             if(!$elemento['isread']){
-                $elemento['subject'] = '<b>'.$elemento['subject'].'</b>';
+                $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><b>'.$elemento['subject'].'</b></a>';
+            }else{
+                $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')">'.$elemento['subject'].'</a>';
             }
+            
+            $elemento['date'] = date('d/m/Y', $elemento['date']) . '&nbsp;' . date('h:i', $elemento['date']) . '&nbsp;' . date('a', $elemento['date']);
+
+        });
+        
+        return json_encode(array(
+            "data" => $array
+        ));
+    }
+    
+    public function obtenerEmailsEnviados($post_id){
+        $id = $this->sanitizeString($post_id);
+        
+        $email = new email();
+        $pdo = $email->obtenerEmailsEnviados($id);
+        $array = $pdo->fetchAll(PDO::FETCH_ASSOC);
+
+        array_walk($array, function (&$elemento, $clave){
+
+            $elemento['to'] = $elemento['name_to'].' '.$elemento['surname_to'];
+            
+            if($elemento['important']){
+                $elemento['important'] = '<i class="fa fa-star text-yellow"></i>';
+            }else{
+                $elemento['important'] = '<i class="fa fa-star-o text-yellow"></i>';
+            }
+            
+            $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')">'.$elemento['subject'].'</a>';
             
             $elemento['date'] = date('d/m/Y', $elemento['date']) . '&nbsp;' . date('h:i', $elemento['date']) . '&nbsp;' . date('a', $elemento['date']);
 
@@ -64,18 +73,45 @@ class c_email {
         return $return['unread'];
     }
     
-    public function obtenerEmail($post_id){
+    public function obtenerEmail($post_email_id, $post_id){
+        $id = $this->sanitizeString($post_id);
+        $email_id = $this->sanitizeString($post_email_id);
 
+        $email = new email();
+        $email->marcarLeidoEmail($email_id);
+        $pdo = $email->obtenerEmail($email_id, $id);
+        $array = array($pdo->fetch(PDO::FETCH_ASSOC));
+
+        array_walk($array, function (&$elemento, $clave){
+            $elemento['date'] = date('h:i a d/m/Y', $elemento['date']);
+        });
+        return json_encode($array[0]);
     }
+    
+    public function obtenerPosiblesDestinatarios(){
+        $email = new email();
+        $pdo = $email->obtenerPosiblesDestinatarios();
+        $array = $pdo->fetchAll(PDO::FETCH_ASSOC);
 
-    public function enviarEmails(){
-
+        $result = '';
+        foreach ($array as $key => $value) {
+            $result .= '<option value="'.$value['id'].'">'.$value['name'].' '.$value['surname'].'</option>';
+        }
+        
+        return $result;
     }
+    
+    public function enviarEmail($post_id, $post_toid, $post_important, $post_subject, $post_text){
+        $id         = $this->sanitizeString($post_id);
+        $toid       = $this->sanitizeString($post_toid);
+        $important  = $this->sanitizeString($post_important);
+        $subject    = $this->sanitizeString($post_subject);
 
-    public function obtenerEmails(){
-
+        $email = new email();
+        return $email->enviarEmail($id, $toid, $important, $subject, $post_text);
+        
     }
-
+    
     private function sanitizeString($string){
         return filter_var($string, FILTER_SANITIZE_STRING);
     }

@@ -23,7 +23,7 @@
                     <li></li>
 
                     <li ng-class="{ active:tab.isSet(3) }" onclick="recargarMails()">
-                        <a ng-click="tab.setTab(3)"><i class="fa fa-envelope"></i> <span>Correo Electrónico</span></a>
+                        <a ng-click="tab.setTab(3)"><i class="fa fa-envelope"></i> <span>Correo Electrónico <span class="pull-right badge" id="unreadMails_badge"></span></span></a>
                     </li>
 
                     <li></li>
@@ -67,7 +67,7 @@
                                 <br>
 
                                 <li ng-class="{ active:tab.isSet(9) }" style="display: inline-block;" ng-style="{ width: tab.isSet(9) ? '81%' : '100%' }">
-                                    <a ng-click="tab.setTab(9)"><i class="fa fa-calendar"></i> Eventos</a>
+                                    <a ng-click="tab.setTab(9)" onclick="recargarEventos()"><i class="fa fa-calendar"></i> Eventos</a>
                                 </li>
                                 <li ng-class="{ active:hover }" ng-show="tab.isSet(9)" style="display: inline-block; float: right; position: absolute;">
                                     <a style="float:right;" ng-click="crearEventos()"><i class="fa fa-plus"></i></a>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
 
-                <div class="container-fluid" ng-controller="mailsController as module" ng-show="tab.isSet(3)" style="padding-top: 15px;">
+                <div class="container-fluid" ng-controller="mailsController as carpeta" ng-show="tab.isSet(3)" style="padding-top: 15px;">
                     <section class="content-header">
                         <h1>
                             Correo Electrónico
@@ -181,7 +181,7 @@
                     <section class="content">
                         <div class="row">
                             <div class="col-md-3">
-                                <a class="btn btn-primary btn-block margin-bottom">Nuevo Correo</a>
+                                <a class="btn btn-primary btn-block margin-bottom" onclick="openCrearMail()">Nuevo Correo</a>
                                 <br>
                                 <div class="box box-solid">
                                     <div class="box-header with-border">
@@ -193,16 +193,17 @@
                                     </div>
                                     <div class="box-body no-padding collapse in" id="carpetas">
                                         <ul class="nav nav-stacked" style="font-weight: bold;">
-                                            <li class="active">
-                                                <a href="#"><i class="fa fa-inbox" style="margin-right: 5px;"></i> Bandeja de Entrada<span class="label label-primary pull-right" id="unreadMails"></span>
-                                                </a>
+                                            <li ng-class="{ active:carpeta.isSet(1) }">
+                                                <a ng-click="carpeta.setTab(1)" onclick="recargarMails()"><i class="fa fa-inbox" style="margin-right: 5px;"></i> Bandeja de Entrada <span class="label label-primary pull-right" id="unreadMails_label"></span></a>
                                             </li>
-                                            <li><a href="#"><i class="fa fa-envelope-o" style="margin-right: 5px;"></i> Enviados</a></li>
+                                            <li ng-class="{ active:carpeta.isSet(2) }">
+                                                <a ng-click="carpeta.setTab(2)" onclick="recargarMailsEnviados()"><i class="fa fa-envelope-o" style="margin-right: 5px;"></i> Enviados</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-9" ng-show="carpeta.isSet(1)">
                                 <div class="box box-primary">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">Bandeja de Entrada</h3>
@@ -211,28 +212,50 @@
                                     <div class="box-body no-padding">
                                         <div class="table-responsive mailbox-messages" style="width: 100%;">
 
-                                        <table class="table table-bordered bordered table-striped datatable" id="personalMail" style="width: 100%;">
-                                            <thead>
-                                                <tr>
-                                                    <th>Eliminar</th>
-                                                    <th>Desakato</th>
-                                                    <th>Enviado por</th>
-                                                    <th>Asunto</th>
-                                                    <th>Fecha</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                            <table class="table table-bordered bordered table-striped datatable" id="personalMail" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Important</th>
+                                                        <th>Enviado por</th>
+                                                        <th>Asunto</th>
+                                                        <th>Fecha</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /. box -->
                             </div>
-                            <!-- /.col -->
+                            <div class="col-md-9" ng-show="carpeta.isSet(2)">
+                                <div class="box box-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Enviados</h3>
+
+                                    </div>
+                                    <div class="box-body no-padding">
+                                        <div class="table-responsive mailbox-messages" style="width: 100%;">
+
+                                            <table class="table table-bordered bordered table-striped datatable" id="personalMailEnviados" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Important</th>
+                                                        <th>Enviado a</th>
+                                                        <th>Asunto</th>
+                                                        <th>Fecha</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.row -->
                     </section>
                 </div>
 
@@ -349,7 +372,7 @@
 
                         <div class="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow col-lg-3 col-xs-6 pull-left"><!-- warning-border col-lg-3 col-xs-5 pull-righ -->
                             <h3>Bloquear Aplicación</h3>
-                            <button ng-click="bloquear_aplicacion()">Bloquear / Desbloquear</button>
+                            <button ng-click="bloquear_aplicacion()" class="pull-left">Bloquear</button><button ng-click="desbloquear_aplicacion()" class="pull-right">Desbloquear</button>
                         </div>
 
                         <div class="w3-panel w3-topbar w3-bottombar w3-border-red w3-pale-red col-lg-3 col-xs-6 pull-right"><!-- alert-border col-lg-3 col-xs-5 pull-righ -->
@@ -428,7 +451,6 @@
                                 <table class="table table-bordered bordered table-striped datatable" id="mensajesTable" style="width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Fecha de envío</th>
                                             <th>Nombre</th>
                                             <th>Apellidos</th>
@@ -475,6 +497,29 @@
         </div>
     </div>
 
+
+
+    <div class="modal fade" id="viewMailModal" role="dialog">
+        <div class="modal-dialog modal-lg" style="position: absolute;top: 45%;left: 50%;transform: translate(-50%, -50%) !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mail_subject"></h4>
+                    <br>
+                    <h5 class="modal-title">
+                        <span id="mail_from" class="pull-left"></span>
+                        <br>
+                        <span id="mail_to" class="pull-left"></span>
+                        <span id="mail_date" class="pull-right"></span>
+                    </h5>
+                </div>
+                <div class="modal-body" id="mail_text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="mostrarEvento" role="dialog">
         <div class="modal-dialog">
@@ -547,14 +592,14 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="file_name" class="col-sm-2 control-label">Archivo: </label>
                             <div class="col-sm-10">
                                 <input type="file" class="" name="file"/>
                             </div>                            
                         </div>
-                        
+
                         <span>Formatos admitidos: <b>jpg, png, gif, pdf, rar, zip, doc, docx</b></span>
                         <br>
                         <span>Tamaño POST máximo (post_max_size): <b><?php echo ini_get('post_max_size'); ?></b></span>
@@ -710,24 +755,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="borrarUsuarioConfirmar" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Borrar Usuario</h4>
-                </div>
-                <div class="modal-body">¿Seguro que deseas borrar este usuario?
-                    <input type="hidden" id="idBorrarUsuario">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onClick="borrarUsuarioConfirmar()">Continuar</button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <div class="modal fade" id="crearEventos" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -758,6 +785,36 @@
         </div>
     </div>
 
+    <div class="modal fade" id="crearMail" role="dialog">
+        <div class="modal-dialog modal-lg" style="position: absolute;top: 45%;left: 50%;transform: translate(-50%, -50%) !important;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Borrador</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="newMail_to">Para:</label>
+                            <select id="newMail_to" class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newMail_subject">Asunto:</label>
+                            <input type="text" class="form-control" id="newMail_subject" placeholder="Asunto">
+                        </div>
+                        <div class="form-group">
+                            <label for="newMail_text">Texto:</label>
+                            <textarea class="form-control" style="resize: vertical;" id="newMail_text"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="enviarCrearMail()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="modalYoutubeVideo" role="dialog">
         <div class="modal-dialog modal-lg" style="position: absolute;top: 45%;left: 50%;transform: translate(-50%, -50%) !important;">
             <div class="modal-content">
@@ -769,50 +826,9 @@
     <div class="modal fade" id="modalEmoji" role="dialog" ng-controller="emojiController as modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-body" ng-bind-html="emojis">
-<!--                    <div class="input-group col-md-1" style="display:inline-block;width:35px;cursor:default!important;margin: 5px;text-align: center;" ng-repeat="emoji in modal.emojis">
-                        <button class="btn btn-none" ng-click="sendEmoji(emoji)" style="height: 100%;">{{emoji}}</button>
-                    </div>-->
-                </div>
+                <div class="modal-body" ng-bind-html="emojis"></div>
             </div>
         </div>
     </div>
-    
-    
-    
-    <!-- REMOVE BEFORE PUBLISHING 
-        
-    
-        <script type="text/javascript">
-            $(window).on('load',function(){
-                $('#Changelog').modal('show');
-            });
-        </script>
-        
-        <div class="modal fade" id="Changelog" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Changelog</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="box-body">
-                            <i class="em em_white_check_mark"></i><b> Chat</b> - Funcionando <br>
-                            <i class="em em_white_check_mark"></i><b> Emojis</b> - Activados y banners añadidos<br>
-                            <i class="em em_white_check_mark"></i><b> Subida de Archivos</b> - Activado y funcionando<br>
-                            <i class="em em_white_check_mark"></i><b> Configuración</b> - Funcionando<br>
-                            <i class="em em_warning"></i><b> Agenda</b> - Funcionando pero no actualizado<br>
-                            <i class="em em_x"></i><b> Correo Electrónico</b> - Aún no implementado<br>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <!-- REMOVE BEFORE PUBLISHING -->
 
     <a type="button" href="./docs/" target="_blank" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>

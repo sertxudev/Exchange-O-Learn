@@ -12,19 +12,20 @@
     width: 25px;
 }
 .mailbox-messages table tbody tr td:nth-child(2) {
-    text-align: center;
-    width: 25px;
-}
-.mailbox-messages table tbody tr td:nth-child(3) {
     width: 250px;
 }
-.mailbox-messages table tbody tr td:nth-child(4) {
+.mailbox-messages table tbody tr td:nth-child(3) {
     width: 650px;
 }
 .mailbox-controls {
     height: 35px;
 }
+
 #personalMail thead {
+    display: none;
+}
+
+#personalMailEnviados thead {
     display: none;
 }
 
