@@ -5,7 +5,6 @@ if (!empty($_POST)) {
         $conexion = new PDO($_POST['type'] . ":dbname=" . $_POST['database'] . ";host=" . $_POST['address'], $_POST['db_username'], $_POST['db_password']);
         $conexion->query("SET NAMES 'utf8'");
 
-
         if (isset($_POST['usr_username']) && !empty($_POST['usr_username']) && isset($_POST['usr_password']) && !empty($_POST['usr_password'])) {
 
             $type           = $_POST['type'];
@@ -30,10 +29,12 @@ if (!empty($_POST)) {
             $conexion->query("CREATE TABLE `users` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,`password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,`name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,`surname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,`color` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#333',`background` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#32fea8',`type` int(1) UNSIGNED NOT NULL,`status` int(1) NOT NULL DEFAULT '0',PRIMARY KEY (`id`),UNIQUE KEY `username` (`username`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
             
             // Insertar usuario
-            $conexion->query("INSERT INTO `users` (`username`, `password`, `name`, `surname`, `type`) VALUES('$user_username', '$user_pass_hash', '$user_name', '$user_surname', 1)");
+            $conexion->query("INSERT INTO `users` (`username`, `password`, `name`, `surname`, `type`) VALUES('$user_username', '$user_pass_hash', '$user_name', '$user_surname', 2)");
             
             $str = <<<EOF
 <?php
+
+    setlocale(LC_TIME, 'es_ES.UTF-8');
 
 /* Logger */
     define("_RUTA_LOG_", "logs/");
@@ -49,13 +50,26 @@ if(file_exists(_RUTA_LOG_."depurando")){
     define("_depurar_", false);
 }
 
+/* Bloquear */
+if(file_exists(_RUTA_LOG_."bloqueado")){
+    define("_bloquear_", true);
+}else{
+    define("_bloquear_", false);
+}
+
 /* BBDD */
     define("_HOST_", "$address");
     define("_BBDD_", "$database");
     define("_USER_", "$db_username");
     define("_PASS_", "$db_password");
     define("_TIPO_", "$type");
-
+                    
+/* Root User */
+    define("_USER_USERNAME_", "$user_username");
+    define("_USER_PASSWORD_", "$user_password");
+    define("_USER_NAME_", "$user_name");
+    define("_USER_SURNAME_", "$user_surname");
+                    
 /* Autoloader */
     spl_autoload_register(function (\$clase) {
         if(strstr(\$clase, 'c_')) {
@@ -64,25 +78,18 @@ if(file_exists(_RUTA_LOG_."depurando")){
             include 'm/' . \$clase . '.php';
         }
     });
+
 EOF;
 
             file_put_contents('./config/config.php', $str);
-            include_once './config/config.php';
-            $login = c_usuario();
-            $login->login($user_username, $user_password);
-            header('Location: ./');
+            echo 1;
+        }else{
+            echo 0;
         }
     } catch (PDOException $e) {
-        $return = 'Falló la conexión: ' . $e->getMessage();
+        echo 'Falló la conexión: ' . $e->getMessage();
     }
-
-    if (!isset($return)) {
-        $return = 1;
-    }
-
-    echo $return;
-
-    exit;
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -95,7 +102,6 @@ EOF;
         <link rel="stylesheet" href="./assets/fonts/font-awesome.min.css">
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/chat.css">
-        <!--<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>-->
         <script src="./assets/js/jquery.min.js" type="text/javascript"></script>
     </head>
     <body>
@@ -103,8 +109,6 @@ EOF;
             <div class="jumbotron" style="margin-top: 35px">
                 <h1 style="font-size:3.5em">Instalador de Exchange O' Learn</h1>
                 <p>Para poder instalar esta aplicación es necesario tener conexión a internet</p>
-                <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
-
             </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 form-horizontal">
@@ -211,7 +215,8 @@ EOF;
                         }
                     })
                             .done(function (msg) {
-                                if (msg == 1) {
+                                console.log(msg);
+                                if (msg == 0) {
                                     $('#address').attr('disabled', true).parent().parent().addClass('has-success').removeClass('has-error');
                                     $('#database').attr('disabled', true).parent().parent().addClass('has-success').removeClass('has-error');
                                     $('#type').attr('disabled', true).parent().parent().addClass('has-success').removeClass('has-error');
@@ -256,10 +261,14 @@ EOF;
                             }
                         })
                                 .done(function (msg) {
+                                    console.log(msg);
+                                    if(msg == 1){
+                                        location.reload();
+                                    }
                                 });
-                        alert("Este proceso puede durar unos minutos, por favor espere.");
+                        alert("Se reiniciará la página para que pueda iniciar sesión.");
                     }else{
-                        alert("Las contraseñas no coinciden");
+                        alert("Las contraseñas no coinciden.");
                     }
                 });
 

@@ -389,15 +389,18 @@
                             </div>
                         </div>
 
-                        <div class="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow col-lg-3 col-xs-6 pull-left"><!-- warning-border col-lg-3 col-xs-5 pull-righ -->
+                        <div class="w3-panel w3-topbar w3-bottombar w3-border-yellow w3-pale-yellow col-lg-3 col-xs-6 pull-left">
                             <h3>Bloquear Aplicación</h3>
-                            <button ng-click="bloquear_aplicacion()" class="pull-left">Bloquear</button><button ng-click="desbloquear_aplicacion()" class="pull-right">Desbloquear</button>
+                            <button ng-click="bloquear_aplicacion()" class="pull-left btn btn-warning">Bloquear</button>
+                            <button ng-click="desbloquear_aplicacion()" class="pull-right btn btn-success">Desbloquear</button>
                         </div>
 
-                        <div class="w3-panel w3-topbar w3-bottombar w3-border-red w3-pale-red col-lg-3 col-xs-6 pull-right"><!-- alert-border col-lg-3 col-xs-5 pull-righ -->
+                    <?php if ($_SESSION['type'] > 1) { ?>
+                        <div class="w3-panel w3-topbar w3-bottombar w3-border-red w3-pale-red col-lg-3 col-xs-6 pull-right">
                             <h3>Resetear Aplicación</h3>
-                            <button>Resetear</button>
+                            <button onclick="resetear()" class="btn btn-danger" style="width:100%">Resetear</button>
                         </div>
+                    <?php } ?>
                     </div>
                 <?php } ?>
 

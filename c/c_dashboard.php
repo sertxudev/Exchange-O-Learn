@@ -150,7 +150,12 @@ class c_dashboard {
         
         return $dashboard->borrarMensajes();
     }
-
+    
+    public function resetear() {
+        $dashboard = new dashboard();
+        
+        return $dashboard->resetear();
+    }
     
     private function sanitizeString($string){
         return filter_var($string, FILTER_SANITIZE_STRING);

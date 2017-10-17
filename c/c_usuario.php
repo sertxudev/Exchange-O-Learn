@@ -42,10 +42,7 @@ class c_usuario {
     public function login($post_username, $post_password) {
         $user = new usuario();
         
-        //$username = $this->sanitizeString($post_username);
-        //$password = hash('sha512', $this->sanitizeString($post_password));
         $password = hash('sha512', $post_password);
-        //$pdo = $user->login($username, $password);
         $pdo = $user->login($post_username, $password);
         $return = $pdo->fetch(PDO::FETCH_ASSOC);
         

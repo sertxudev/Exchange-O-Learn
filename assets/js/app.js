@@ -7,7 +7,7 @@
                 module.custom = response.data;
             });
         }]);
-    
+
     app.controller('mobileController', ['$http', '$scope', function ($http, $scope) {
             this.mobile = 1;
             this.setTab = function (num) {
@@ -198,7 +198,7 @@
             });
 
             $scope.guardarColor = function () {
-                
+
                 var r = confirm("¿Desea guardar los cambios?");
                 if (r == true) {
                     $http.get('./post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val()).then(function (response) {
@@ -246,18 +246,48 @@
             });
 
             $scope.bloquear_aplicacion = function () {
-                $http.get('./post.php?r=bloquearAplicacion').then(function (response) {
-                });
+                var r = confirm("¿Seguro que desea bloquear la aplicación?");
+                if (r == true) {
+                    $http.get('./post.php?r=bloquearAplicacion');
+                }
             };
 
             $scope.desbloquear_aplicacion = function () {
-                $http.get('./post.php?r=desbloquearAplicacion').then(function (response) {
-                });
+                var r = confirm("¿Seguro que desea desbloquear la aplicación?");
+                if (r == true) {
+                    $http.get('./post.php?r=desbloquearAplicacion');
+                }
             };
 
         }]);
 
 })();
+
+function resetear() {
+    var r = confirm("¿Seguro que desea reiniciar la aplicación?");
+    if (r == true) {
+        var r = confirm("Esta acción borrará todos los datos de la aplicación. ¿Continuamos?");
+        if (r == true) {
+            var r = confirm("Los datós NO se podrán recuperar. ¿Está seguro de lo que hace?");
+            if (r == true) {
+                alert("Se van a vaciar todas las tablas, para volver a configurar la aplicación solo podrá iniciar sesión con el usuario root que se creó al instalar la aplicación.");
+                $.ajax({
+                    method: "POST",
+                    url: "post.php",
+
+                    data: {
+                        r: 'resetear'
+                    }
+                })
+                        .done(function (msg) {
+                            if (msg == 1) {
+                                location.reload();
+                            }
+                        });
+            }
+        }
+    }
+}
 
 function scrolldown() {
     $('#chat-container').animate({scrollTop: $('#chat-container').prop("scrollHeight")}, 1000);
@@ -336,7 +366,7 @@ function enviarCrearMail() {
                         recargarMailsEnviados();
                     }
                 });
-    }else{
+    } else {
         alert("Todos los campos son obligatorios");
     }
 }
@@ -629,7 +659,7 @@ function sendEditarUsuario() {
                             $('#profesorTable').DataTable().ajax.reload(null, false);
                         }
                     });
-            }
+        }
     } else {
         alert("Todos los campos son obligatorios");
     }

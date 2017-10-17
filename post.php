@@ -111,6 +111,13 @@ switch ($_POST['r']) {
         $email = new c_evento();
         echo $email->borrarEvento($_POST['id']);
         break;
+    
+    case 'resetear':
+        $dashboard = new c_dashboard();
+        echo $dashboard->resetear();
+        $user = new c_usuario();
+        $user->logout();
+        break;
 }
 
 if (!isset($_GET['r'])) {
@@ -296,25 +303,5 @@ switch ($_GET['r']) {
     case 'logout':
         $user = new c_usuario();
         echo $user->logout();
-        break;
-        
-    case 'foo':
-
-        $emojis = new c_emojis();
-        $emojis_array = json_decode($emojis->mostrarEmojis());
-
-        foreach ($emojis_array as $c) {
-            $utf32  = mb_convert_encoding($c, 'UTF-32', 'UTF-8' );
-            $hex4 = bin2hex($utf32);
-            $dec = hexdec($hex4);
-            $array_key[] = "&#$dec;";
-        }
-
-        $array = array_combine($array_key, $emojis_array);
-        $string = null;
-        foreach ($array as $c => $v) {
-            $string .= '"'.$c.'" => "'.$v.'",';
-        }
-        logger::guardar($string);
         break;
 }

@@ -20,10 +20,18 @@ class c_email {
                 $elemento['important'] = '<i class="fa fa-star-o text-yellow"></i>';
             }
             
-            if(!$elemento['isread']){
-                $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><b>'.$elemento['subject'].'</b></a>';
+            if((strlen(trim($elemento['subject'])) == 0)){
+                if(!$elemento['isread']){
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><b><i>(Sin Asunto)</i></b></a>';
+                }else{
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><i>(Sin Asunto)</i></a>';
+                }
             }else{
-                $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')">'.$elemento['subject'].'</a>';
+                if(!$elemento['isread']){
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><b>'.$elemento['subject'].'</b></a>';
+                }else{
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')">'.$elemento['subject'].'</a>';
+                }
             }
             
             $elemento['date'] = date('d/m/Y', $elemento['date']) . '&nbsp;' . date('h:i', $elemento['date']) . '&nbsp;' . date('a', $elemento['date']);

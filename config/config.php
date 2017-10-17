@@ -29,17 +29,13 @@ if(file_exists(_RUTA_LOG_."bloqueado")){
     define("_USER_", "root");
     define("_PASS_", "root");
     define("_TIPO_", "mysql");
-    
-/* CONFIG */
-//    define('_USR_ALUMNO_',0);
-//    define('_USR_PROFESOR_',1);
-//    define('_USR_ADMIN_',2);
-//    
-//    define('_FILE_PUBLIC_',0);
-//    define('_FILE_PROTECTED_',1);
-//    define('_FILE_PRIVATE_',2);
-//    
-    
+                    
+/* Root User */
+    define("_USER_USERNAME_", "admin");
+    define("_USER_PASSWORD_", "admin");
+    define("_USER_NAME_", "admin");
+    define("_USER_SURNAME_", "admin");
+                    
 /* Autoloader */
     spl_autoload_register(function ($clase) {
         if(strstr($clase, 'c_')) {

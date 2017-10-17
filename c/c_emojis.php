@@ -2,9 +2,7 @@
 
 class c_emojis {
     
-    public function obtenerEmojis() {
-        //echo '<h4><li>Caras</li></h4>';
-        
+    public function obtenerEmojis() {        
         $array_grupo_1 = array(
             'em_angel_face',
             'em_anguished_face',
@@ -78,7 +76,7 @@ class c_emojis {
         );
         
         foreach ($array_grupo_1 as $v) {
-            echo '<i onClick="sendEmoji(\'' . $v . '\')" style="font-size: 45px;" class="em ' . $v . '"></i>';
+            echo '<i onClick="sendEmoji(\'' . $v . '\')" style="font-size: 35px;" class="em ' . $v . '"></i>';
         }
         echo '<hr>';
         

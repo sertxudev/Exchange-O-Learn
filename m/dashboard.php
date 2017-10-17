@@ -35,5 +35,15 @@ class dashboard extends ddbb {
     public function borrarMensajes(){
         return $this->eliminar("TRUNCATE messages", TRUE);
     }
-
+    
+    public function resetear(){
+        $this->eliminar("TRUNCATE messages", TRUE);
+        $this->eliminar("TRUNCATE events", TRUE);
+        $this->eliminar("TRUNCATE files", TRUE);
+        array_map('unlink', glob("./uploads/*"));
+        $this->eliminar("TRUNCATE mails", TRUE);
+        $this->eliminar("TRUNCATE users", TRUE);
+        return $this->insertar("INSERT INTO users (username, password, name, surname, type) VALUES('"._USER_USERNAME_."', '".hash('sha512',_USER_PASSWORD_)."', '"._USER_NAME_."', '"._USER_SURNAME_."', 2)");
+    }
+    
 }
