@@ -89,26 +89,45 @@
 
         <div class="content-wrapper">
             <section class="content">
-                <div class="container-fluid" ng-show="tab.isSet(1)">
+                <div class="container-fluid" ng-show="tab.isSet(1)" ng-controller="mobileController as mobile">
                     <div class="row header-container" id="header-container" ng-controller="colorController as color" style="background-color: {{color.custom.background}}; color: {{color.custom.color}};">
-                        <div class="col-md-4 col-sm-4 col-xs-4 header">
-                            <i class="fa fa-th-list"></i>
-                            &nbsp;
-                            <h2 class="text-nowrap text-center hidden-xs">Agenda</h2>
+                        <div class="hidden-lg hidden-md">
+                            <div class="col-md-4 col-sm-4 col-xs-4 header" ng-click="mobile.setTab(1)">
+                                <i class="fa fa-th-list"></i>
+                                &nbsp;
+                                <h2 class="text-nowrap text-center hidden-xs title">Agenda</h2>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 header" ng-click="mobile.setTab(2)">
+                                <i class="fa fa-comments"></i>
+                                &nbsp;
+                                <h2 class="text-nowrap text-center hidden-xs title">Chat</h2>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 header" ng-click="mobile.setTab(3)">
+                                <i class="fa fa-file-text"></i>
+                                &nbsp;
+                                <h2 class="text-nowrap text-center hidden-xs title">Archivos</h2>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-4 header">
-                            <i class="fa fa-comments"></i>
-                            &nbsp;
-                            <h2 class="text-nowrap text-center hidden-xs title">Chat</h2>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-4 header">
-                            <i class="fa fa-file-text"></i>
-                            &nbsp;
-                            <h2 class="text-nowrap text-center hidden-xs title">Archivos</h2>
+                        <div class="hidden-sm hidden-xs">
+                            <div class="col-md-4 col-sm-4 col-xs-4 header">
+                                <i class="fa fa-th-list"></i>
+                                &nbsp;
+                                <h2 class="text-nowrap text-center title">Agenda</h2>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 header">
+                                <i class="fa fa-comments"></i>
+                                &nbsp;
+                                <h2 class="text-nowrap text-center title">Chat</h2>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 header">
+                                <i class="fa fa-file-text"></i>
+                                &nbsp;
+                                <h2 class="text-nowrap text-center title">Archivos</h2>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 module" ng-controller="eventsController as module">
+                        <div class="col-md-4 module" ng-controller="eventsController as module" ng-class="{ 'hidden-sm hidden-xs':mobile.isSet(2) || mobile.isSet(3) }">
                             <div class="row evento" ng-repeat="event in module.events" ng-click="mostrarEvento(event.id)">
                                 <div class="col-lg-3 col-md-3 date">
                                     <h2 class="day"> {{event.time| date:'dd'}} </h2><span>{{event.time| date:'MMMM'}} {{event.time| date:'yyyy'}}</span></div>
@@ -119,7 +138,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4 module module-chat overflow-hidden" ng-controller="chatController as module">
+                        <div class="col-md-4 module module-chat overflow-hidden" ng-controller="chatController as module" ng-class="{ 'hidden-sm hidden-xs':mobile.isSet(1) || mobile.isSet(3) }">
                             <div class="row chat">
                                 <div class="col-md-12">
                                     <div class="row chat-window material">
@@ -139,7 +158,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 module" ng-controller="filesController as module">
+                        <div class="col-md-4 module" ng-controller="filesController as module" ng-class="{ 'hidden-sm hidden-xs':mobile.isSet(1) || mobile.isSet(2) }">
                             <div class="row archivos">
 
                                 <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo" ng-repeat="carpetas in module.carpetas" ng-click="mostrarCarpeta(carpetas.id)">
@@ -831,4 +850,4 @@
         </div>
     </div>
 
-    <a type="button" href="./docs/" target="_blank" class="btn-floating"><img src="./assets/img/anonimouse.png" height="75px"></a>
+    <a type="button" href="./docs/" target="_blank" class="btn-floating hidden-sm hidden-xs"><img src="./assets/img/anonimouse.png" height="75px"></a>

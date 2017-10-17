@@ -7,6 +7,16 @@
                 module.custom = response.data;
             });
         }]);
+    
+    app.controller('mobileController', ['$http', '$scope', function ($http, $scope) {
+            this.mobile = 1;
+            this.setTab = function (num) {
+                this.mobile = num;
+            };
+            this.isSet = function (num) {
+                return this.mobile == num;
+            };
+        }]);
 
     app.controller('eventsController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
@@ -175,11 +185,6 @@
     app.controller('uploadPersonalFilesController', ['$http', '$scope', function ($http, $scope) {
             var module = this;
 
-            $scope.borrarArchivo = function (id) {
-                $http.get('./post.php?r=borrarArchivoPersonal&id=' + id).then(function (response) {
-                    module.files = response.data;
-                });
-            };
         }]);
 
     app.controller('configController', ['$http', '$scope', function ($http, $scope) {
@@ -193,27 +198,27 @@
             });
 
             $scope.guardarColor = function () {
-                $http.get('./post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val()).then(function (response) {
-                    if (response.data == 1) {
-                        window.location = "./";
-                    }
-                });
+                
+                var r = confirm("¿Desea guardar los cambios?");
+                if (r == true) {
+                    $http.get('./post.php?r=cambiarColor&color=' + $('#colorTexto').val() + '&background=' + $('#colorFondo').val()).then(function (response) {
+                        if (response.data == 1) {
+                            window.location = "./";
+                        }
+                    });
+                }
             };
 
             $scope.guardarPerfil = function () {
 
-                if (!$('#config_username').val()
-                        || !$('#config_name').val()
-                        || !$('#config_surname').val()) {
-
-                    $('#config_alert').html('<div class="alert alert-warning fade in alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><strong>Todos los campos son obligatorios.</strong></div>');
-
-                } else {
+                if ($('#config_username').val() && $('#config_name').val() && $('#config_surname').val()) {
                     $http.get('./post.php?r=actualizarPerfil&username=' + $('#config_username').val() + '&password=' + $('#config_password').val() + '&name=' + $('#config_name').val() + '&surname=' + $('#config_surname').val()).then(function (response) {
                         if (response.data == 1) {
                             window.location = "./";
                         }
                     });
+                } else {
+                    alert("Todos los campos son obligatorios, excepto la contraseña. Si no se establece una contraseña continuará la actual.");
                 }
             };
         }]);
@@ -244,7 +249,7 @@
                 $http.get('./post.php?r=bloquearAplicacion').then(function (response) {
                 });
             };
-                
+
             $scope.desbloquear_aplicacion = function () {
                 $http.get('./post.php?r=desbloquearAplicacion').then(function (response) {
                 });
@@ -309,27 +314,31 @@ function viewMail(id) {
 }
 
 function enviarCrearMail() {
-    $.ajax({
-        method: "POST",
-        url: "post.php",
+    if ($('#newMail_to').val() && $('#newMail_subject').val() && CKEDITOR.instances['newMail_text'].getData()) {
+        $.ajax({
+            method: "POST",
+            url: "post.php",
 
-        data: {
-            r: 'enviarCrearMail',
-            to: $('#newMail_to').val(),
-            subject: $('#newMail_subject').val(),
-            text: CKEDITOR.instances['newMail_text'].getData()
-        }
-    })
-            .done(function (response) {
-                if (response == 1) {
-                    $('#newMail_to').val('');
-                    $('#newMail_subject').val('');
-                    CKEDITOR.instances['newMail_text'].setData('');
-                    $('#crearMail').modal('hide');
-                    recargarMails();
-                    recargarMailsEnviados();
-                }
-            });
+            data: {
+                r: 'enviarCrearMail',
+                to: $('#newMail_to').val(),
+                subject: $('#newMail_subject').val(),
+                text: CKEDITOR.instances['newMail_text'].getData()
+            }
+        })
+                .done(function (response) {
+                    if (response == 1) {
+                        $('#newMail_to').val('');
+                        $('#newMail_subject').val('');
+                        CKEDITOR.instances['newMail_text'].setData('');
+                        $('#crearMail').modal('hide');
+                        recargarMails();
+                        recargarMailsEnviados();
+                    }
+                });
+    }else{
+        alert("Todos los campos son obligatorios");
+    }
 }
 
 function crearEvento() {
@@ -510,25 +519,26 @@ function editarArchivo(id) {
 }
 
 function postEditarArchivo() {
-    $.ajax({
-        method: "POST",
-        url: "post.php",
+    var r = confirm("¿Desea guardar los cambios?");
+    if (r == true) {
+        $.ajax({
+            method: "POST",
+            url: "post.php",
 
-        data: {
-            r: 'editarArchivo',
-            id: $('#file_id').val(),
-            name: $('#file_name').val(),
-            access: $('#file_access').val()
-        }
-    })
-            .done(function (msg) {
-                if (msg == 0) {
+            data: {
+                r: 'editarArchivo',
+                id: $('#file_id').val(),
+                name: $('#file_name').val(),
+                access: $('#file_access').val()
+            }
+        })
+                .done(function () {
                     $('#file_name').val('');
                     $('#file_access').val('');
                     $('#modalEditarArchivo').modal('hide');
                     $('#personalFilesTable').DataTable().ajax.reload(null, false);
-                }
-            });
+                });
+    }
 }
 
 function crearAlumno() {
@@ -593,38 +603,35 @@ function editarUsuario(id) {
 }
 
 function sendEditarUsuario() {
+    if ($('#usuario_editar_username').val() && $('#usuario_editar_name').val() && $('#usuario_editar_surnames').val()) {
+        var r = confirm("¿Desea guardar los cambios?");
+        if (r == true) {
+            $.ajax({
+                method: "POST",
+                url: "post.php",
 
-    if (!$('#usuario_editar_username').val()
-            || !$('#usuario_editar_name').val()
-            || !$('#usuario_editar_surnames').val()) {
-
-        $('#modalEditarUsuario').html('<div class="alert alert-warning fade in alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a><strong>Todos los campos son obligatorios.</strong></div>');
-
-    } else {
-
-        $.ajax({
-            method: "POST",
-            url: "post.php",
-
-            data: {
-                r: 'sendEditarUsuario',
-                id: $('#usuario_editar_id').val(),
-                username: $('#usuario_editar_username').val(),
-                name: $('#usuario_editar_name').val(),
-                surname: $('#usuario_editar_surnames').val()
+                data: {
+                    r: 'sendEditarUsuario',
+                    id: $('#usuario_editar_id').val(),
+                    username: $('#usuario_editar_username').val(),
+                    name: $('#usuario_editar_name').val(),
+                    surname: $('#usuario_editar_surnames').val()
+                }
+            })
+                    .done(function (response) {
+                        if (response == 1) {
+                            $('#usuario_editar_id').val('');
+                            $('#usuario_editar_username').val('');
+                            $('#usuario_editar_name').val('');
+                            $('#usuario_editar_surnames').val('');
+                            $('#editarUsuario').modal('hide');
+                            $('#alumnosTable').DataTable().ajax.reload(null, false);
+                            $('#profesorTable').DataTable().ajax.reload(null, false);
+                        }
+                    });
             }
-        })
-                .done(function (response) {
-                    if (response == 1) {
-                        $('#usuario_editar_id').val('');
-                        $('#usuario_editar_username').val('');
-                        $('#usuario_editar_name').val('');
-                        $('#usuario_editar_surnames').val('');
-                        $('#editarUsuario').modal('hide');
-                        $('#alumnosTable').DataTable().ajax.reload(null, false);
-                        $('#profesorTable').DataTable().ajax.reload(null, false);
-                    }
-                });
+    } else {
+        alert("Todos los campos son obligatorios");
     }
 }
 
