@@ -52,6 +52,6 @@ class email extends ddbb{
     }
     
     public function obtenerPosiblesDestinatarios(){
-        return $this->seleccionar("SELECT id, name, surname FROM users", TRUE);
+        return $this->seleccionar("SELECT id, name, surname FROM users WHERE type!=2", TRUE);
     }
 }

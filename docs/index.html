@@ -26,61 +26,66 @@
         <!-- Sidebar -->
         <aside class="sidebar sidebar-boxed sidebar-dark">
 
-            <a class="sidebar-brand" href="./"><img src="./assets/img/anonimouse.png" alt="Anonimouse" height="175px"></a>
+            <a class="sidebar-brand" href="#"><img class="sidebar-logo" src="./assets/img/anonimouse.png" alt="Anonimouse"></a>
 
             <ul class="nav sidenav dropable">
                 <li><a href="#introduccion">Introducción</a></li>
                 <li><a href="#instalacion">Instalación</a></li>
 
                 <li>
-                    <a href="#configuracion">Configuración</a>
+                    <a href="#profesores">Profesores</a>
                     <ul>
-                        <li>
-                            <a href="#profesores">Profesores</a>
+                        <li><a href="#profesores-1">Primeros Pasos</a></li>
+                        <li><a href="#profesores-2">Características</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#alumnos">Alumnos</a>
+                    <ul>
+                        <li><a href="#alumnos-1">Primeros Pasos</a></li>
+                        <li><a href="#alumnos-2">Características</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#agenda">Agenda</a>
+                    <ul>
+                        <li><a href="#agenda-1">Primeros Pasos</a></li>
+                        <li><a href="#agenda-2">Características</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#chat">Chat</a>
+                    <ul>
+                        <li><a href="#chat-1">Primeros Pasos</a></li>
+                        <li><a href="#chat-2">Características Chat</a>
                             <ul>
-                                <li><a href="#profesores-1">Primeros Pasos</a></li>
-                                <li><a href="#profesores-2">Añadir/Editar Profesores</a></li>
-                                <li><a href="#profesores-3">Características Profesores</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#alumnos">Alumnos</a>
-                            <ul>
-                                <li><a href="#alumnos-1">Primeros Pasos</a></li>
-                                <li><a href="#alumnos-2">Añadir/Editar Alumnos</a></li>
-                                <li><a href="#alumnos-3">Características Alumnos</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#agenda">Agenda</a>
-                            <ul>
-                                <li><a href="#agenda-1">Primeros Pasos</a></li>
-                                <li><a href="#agenda-2">Añadir/Editar Eventos</a></li>
-                                <li><a href="#agenda-3">Características Eventos</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#chat">Chat</a>
-                            <ul>
-                                <li><a href="#chat-1">Primeros Pasos</a></li>
-                                <li><a href="#chat-2">Añadir/Editar Chat</a></li>
-                                <li><a href="#chat-3">Características Chat</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#archivos">Archivos</a>
-                            <ul>
-                                <li><a href="#archivos-1">Primeros Pasos</a></li>
-                                <li><a href="#archivos-2">Subir Archivos</a></li>
-                                <li><a href="#archivos-3">Compartir Archivos</a></li>
-                                <li><a href="#archivos-4">Características Archivos</a></li>
-                            </ul>
+                                <li><a href="#chat-2-1">test</a></li>
+                            </ul>                        
                         </li>
                     </ul>
                 </li>
-                <li><a href="#reiniciar">Reiniciar</a></li>
+                <li>
+                    <a href="#archivos">Archivos</a>
+                    <ul>
+                        <li><a href="#archivos-1">Primeros Pasos</a></li>
+                        <li><a href="#archivos-2">Subir Archivos</a></li>
+                        <li><a href="#archivos-3">Compartir Archivos</a></li>
+                        <li><a href="#archivos-4">Características Archivos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#archivos">Correo Electrónico</a>
+                    <ul>
+                        <li><a href="#archivos-1">Primeros Pasos</a></li>
+                        <li><a href="#archivos-2">Recibir Correos</a></li>
+                        <li><a href="#archivos-3">Enviar Correos</a></li>
+                        <li><a href="#archivos-4">Características Correo</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#reinstalar">Reinstalar</a></li>
             </ul>
-            
+
 
         </aside>
         <!-- END Sidebar -->
@@ -92,7 +97,7 @@
             <div class="banner auto-size" style="background-color: #5cc7b2">
                 <div class="container-fluid text-white">
                     <h1><strong>Exchange O' Learn</strong> - Documentación</h1>
-                    <h5>Documentación de instalación y configuración de Exchange O' Learn.</h5>
+                    <h5>Documentación de la aplicación Exchange O' Learn.</h5>
                 </div>
             </div>
             <!-- END Banner -->
@@ -104,241 +109,270 @@
             <!-- Main content -->
             <article class="main-content" role="main">
 
-                <p class="lead">Exchange O' Learn es una aplicación web SPA (Single Page Applicacion) diseñada especialmente para colegios e institutos, instalando esta aplicación en la red interna podemos aprovechar la velocidad de ésta para la transferencia eficaz de archivos.
-                    Maybe you want to have a single page documentation and use sidebar navigation for navigating inside the page. So this sample layouts are for you. Even maybe you'd like to use top navigation bar for navigating between your pages.</p>
-
                 <section>
                     <h2 id="introduccion">Introducción</h2>
-                    <p>While this page is enough to see through its code and get start with it, but you can see the page code structure in below. Make sure you'll have <code>data-spy=&quot;scroll&quot; data-target=&quot;.sidebar&quot; data-offset=&quot;200&quot;</code> attribute in <code>&lt;body&gt;</code> tag.</p>
-
-<pre class="line-numbers"><code class="language-markup">
-&lt;!-- This is an example code --&gt;
-&lt;!-- Insert here code snippets --&gt;
-
-</code></pre>
-
+                    <p>
+                        Exchange O' Learn es una aplicación web SPA (Single Page Applicacion) diseñada especialmente para colegios e institutos, instalando esta aplicación en la red interna podemos aprovechar la velocidad de ésta para la transferencia eficaz de archivos, comunicaciones internas y control de eventos.
+                    </p>
                 </section>
 
 
                 <section>
                     <h2 id="instalacion">Instalación</h2>
-                    <p>Checkout different variation of sidebars that you have for single page documentation.</p>
+                    <p>
+                        Para proceder a la instalación del programa, debemos descargar la última versión estable.
+                        Podemos acceder al <code><a target="_BLANK" href="//github.com/sertxudeveloper/Exchange-O-Learn/tree/release">repositorio</a></code>, 
+                        o bien descargar la última versión directamente <code><a target="_BLANK" href="//github.com/sertxudeveloper/Exchange-O-Learn/archive/release.zip">release.zip</a></code>.
+                    </p>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="promo">
-                                <h3>Default</h3>
-                            </div>
-                        </div>
+                    <p>
+                        Una vez descargado, lo extraemos en la carpeta deseada, si al extraerla nos crea una carpeta llamada <code>Exchange-O-Learn-release</code>, 
+                        deberemos sacar los archivos de la misma, de forma que queden los archivos en la carpeta deseada.
+                    </p>
 
-                        <div class="col-md-4">
-                            <div class="promo">
-                                <h3>Side line</h3>
-                            </div>
-                        </div>
+                    <p>
+                        Para este ejemplo, supongamos que hemos extraido el programa en localhost, accedemos a la dirección <code>http://localhost/</code>, el programa detecta que no se ha instalado ya que no detecta un archivo de configuración, de forma que nos carga el instalador.
+                        En esta pantalla debemos introducir los datos de nuestra base de datos, la misma aplicación comprobará si se puede conectar o no, de esta forma, nos aseguramos que se ha configurado correctamente la base de datos.
+                    </p>
 
-                        <div class="col-md-4">
-                            <div class="promo">
-                                <h3>Boxed sidebar</h3>
-                            </div>
-                        </div>
-                    </div>
+                    <p>
+                        Una vez configurada la base de datos, pasamos a configurar el usuario root, hay que destacar que este usuario tiene control absoluto de la aplicación, por lo que solo lo debemos utilizar para introducir a los profesores y para <a href="#reinstalar">reinstalar</a> la aplicación.
+                    </p>
 
-                </section>
-
-
-                <section>
-                    <h2 id="configuracion">Configuración</h2>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-                    <p>Fusce porttitor diam mauris, in fringilla elit euismod non. Aliquam non justo suscipit, pellentesque felis quis, egestas ante. Nunc quis imperdiet mauris, vitae cursus ante. Aenean vel efficitur ante, ullamcorper tempus massa. Integer ornare urna vitae quam semper fermentum. Mauris in dolor tempus, ultricies quam ac, lacinia nisl. Donec vitae ante sem.</p>
+                    <p>
+                        Ya hemos terminado la instalación, la aplicación nos ha generado las tablas necesarias y el usuario root, ahora ya podemos pasar a utilizar la aplicación.
+                    </p>
 
                 </section>
+
                 <section>
-                    
                     <h2 id="profesores">Profesores</h2>
-                    <p>Nulla nec leo sit amet enim vestibulum imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer ac purus ac nisl scelerisque feugiat. Sed ultricies rhoncus congue. Vivamus sagittis, ligula vitae ornare pretium, lectus tellus mattis leo, non ultricies urna odio eu justo. Suspendisse euismod varius ante sed vehicula. Phasellus dignissim hendrerit auctor. Nulla et vulputate ipsum. Aenean ultricies sed libero ac finibus. Donec ornare vestibulum orci, non porta dui pharetra quis. Maecenas luctus risus velit. Ut in aliquam urna. Ut luctus lorem in massa egestas, a mollis diam auctor. Maecenas mollis dui eu ipsum dictum fringilla. Nunc nisl magna, vestibulum vel purus eu, feugiat luctus elit.</p>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-
-                    <h3 id="profesores-1">Subtitle 2</h3>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-                    <p>Integer egestas ante id justo mollis feugiat ac vel metus. Nunc pulvinar scelerisque faucibus. Aenean at libero hendrerit, feugiat felis suscipit, facilisis justo. Praesent laoreet rutrum velit vitae facilisis. Fusce ac consectetur leo. Praesent dapibus interdum arcu, et hendrerit mi imperdiet eget. Morbi volutpat, leo id interdum aliquet, massa justo vestibulum nisl, eget posuere velit diam ac nibh. Duis tellus enim, porttitor id lectus vitae, tristique congue odio. Duis elementum porttitor nibh et porta. Suspendisse potenti.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="profesores-2">Subtitle 3</h3>
-                    <p>Fusce porttitor diam mauris, in fringilla elit euismod non. Aliquam non justo suscipit, pellentesque felis quis, egestas ante. Nunc quis imperdiet mauris, vitae cursus ante. Aenean vel efficitur ante, ullamcorper tempus massa. Integer ornare urna vitae quam semper fermentum. Mauris in dolor tempus, ultricies quam ac, lacinia nisl. Donec vitae ante sem.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="profesores-3">Subtitle 4</h3>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-                    <p>Donec lacinia ultrices venenatis. Duis id aliquam velit, a vehicula quam. Proin iaculis bibendum ex, hendrerit fringilla augue finibus ut. Aliquam sodales turpis vel ex cursus scelerisque. In feugiat justo quis viverra suscipit. Vivamus hendrerit aliquam purus, sit amet ultrices felis. Ut ac nisl pulvinar, tempor odio vel, feugiat ex. Phasellus consequat, leo eget lacinia sagittis, eros tellus pretium tortor, id congue purus augue eu orci. Fusce non eros iaculis, aliquet nulla quis, facilisis mi. Vivamus dictum justo non diam ultricies, sit amet eleifend erat efficitur. Ut porta diam ut dolor tincidunt, interdum placerat odio commodo. Suspendisse egestas sapien erat, et tincidunt magna fermentum sit amet. Donec vitae mi efficitur, tempus nisi ut, lacinia libero. Maecenas auctor odio mi, ac facilisis nisi vehicula efficitur. Ut hendrerit nulla ut nisl porttitor maximus. Pellentesque feugiat bibendum est, ut aliquam velit consequat eu.</p>
-                </section>
-                <section>
+                    <p>
+                        Tras instalar la aplicación debemos pasar a añadir a los profesores, estos usuarios tienen acceso a funciones de administración, de forma que depende de ellos el correcto uso de la aplicación.
+                    </p>
                     
+                    
+                    <h3 id="profesores-1">Primeros Pasos</h3>
+                    <p>
+                        Para añadir a los profesores, debemos acceder a <code>Panel de Control > Profesores</code>, una vez aquí ya podemos añadirlos manualmente, para añadirlos, tenemos un botón <code>+</code> al lado de <code>Profesores</code> ubicado en el <code>Panel de Control</code>.
+                    </p>
+
+                    <p>
+                        Una vez creado uno de los profesores, vemos que aparece inmediatamente en la tabla de profesores, una vez aparece ahí, podemos realizar varias tareas, podemos editar un profesor ya creado, bloquearlo o eliminarlo. El bloqueo por usuario lo veremos más adelante en el chat.
+                    </p>
+
+                    <h3 id="profesores-2">Características</h3>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%;float: left;">
+                                <span>Un profesor puede </span>
+                                <ul>
+                                    <li>Crear/Editar eventos</li>
+                                    <li>Enviar/Eliminar mensajes en el chat</li>
+                                    <li>Crear/Editar alumnos</li>
+                                    <li>Bloquear/Desbloquear alumnos</li>
+                                    <li>Crear/Editar profesores</li>
+                                    <li>Bloquear/Desbloquear profesores</li>
+                                    <li>Subir/Editar archivos</li>
+                                    <li>Bloquear/Desbloquear la aplicación</li>
+                                    <li>Enviar/Recibir correos</li>
+                                </ul>
+                            </td>
+                            <td style="width: 45%;float: right;">
+                                <span>Un profesor no puede </span>
+                                <ul>
+                                    <li>Reinstalar la aplicación</li>
+                                    <li>Cambiar la contraseña a los alumnos</li>
+                                    <li>Cambiar la contraseña a los profesores</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+
                     <h2 id="alumnos">Alumnos</h2>
-                    <p>Nulla nec leo sit amet enim vestibulum imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer ac purus ac nisl scelerisque feugiat. Sed ultricies rhoncus congue. Vivamus sagittis, ligula vitae ornare pretium, lectus tellus mattis leo, non ultricies urna odio eu justo. Suspendisse euismod varius ante sed vehicula. Phasellus dignissim hendrerit auctor. Nulla et vulputate ipsum. Aenean ultricies sed libero ac finibus. Donec ornare vestibulum orci, non porta dui pharetra quis. Maecenas luctus risus velit. Ut in aliquam urna. Ut luctus lorem in massa egestas, a mollis diam auctor. Maecenas mollis dui eu ipsum dictum fringilla. Nunc nisl magna, vestibulum vel purus eu, feugiat luctus elit.</p>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-
-                    <h3 id="alumnos-1">Subtitle 2</h3>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-                    <p>Integer egestas ante id justo mollis feugiat ac vel metus. Nunc pulvinar scelerisque faucibus. Aenean at libero hendrerit, feugiat felis suscipit, facilisis justo. Praesent laoreet rutrum velit vitae facilisis. Fusce ac consectetur leo. Praesent dapibus interdum arcu, et hendrerit mi imperdiet eget. Morbi volutpat, leo id interdum aliquet, massa justo vestibulum nisl, eget posuere velit diam ac nibh. Duis tellus enim, porttitor id lectus vitae, tristique congue odio. Duis elementum porttitor nibh et porta. Suspendisse potenti.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="alumnos-2">Subtitle 3</h3>
-                    <p>Fusce porttitor diam mauris, in fringilla elit euismod non. Aliquam non justo suscipit, pellentesque felis quis, egestas ante. Nunc quis imperdiet mauris, vitae cursus ante. Aenean vel efficitur ante, ullamcorper tempus massa. Integer ornare urna vitae quam semper fermentum. Mauris in dolor tempus, ultricies quam ac, lacinia nisl. Donec vitae ante sem.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="alumnos-3">Subtitle 4</h3>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-                    <p>Donec lacinia ultrices venenatis. Duis id aliquam velit, a vehicula quam. Proin iaculis bibendum ex, hendrerit fringilla augue finibus ut. Aliquam sodales turpis vel ex cursus scelerisque. In feugiat justo quis viverra suscipit. Vivamus hendrerit aliquam purus, sit amet ultrices felis. Ut ac nisl pulvinar, tempor odio vel, feugiat ex. Phasellus consequat, leo eget lacinia sagittis, eros tellus pretium tortor, id congue purus augue eu orci. Fusce non eros iaculis, aliquet nulla quis, facilisis mi. Vivamus dictum justo non diam ultricies, sit amet eleifend erat efficitur. Ut porta diam ut dolor tincidunt, interdum placerat odio commodo. Suspendisse egestas sapien erat, et tincidunt magna fermentum sit amet. Donec vitae mi efficitur, tempus nisi ut, lacinia libero. Maecenas auctor odio mi, ac facilisis nisi vehicula efficitur. Ut hendrerit nulla ut nisl porttitor maximus. Pellentesque feugiat bibendum est, ut aliquam velit consequat eu.</p>
+                    <p>
+                        Después de introducir los profesores, podemos pasar a añadir a los alumnos, los alumnos tienen menos permisos que los profesores, pero tienen acceso a una gran cantidad de funcionalidades.
+                    </p>
+                    <h3 id="alumnos-1">Primeros Pasos</h3>
+                    <p>
+                        Para añadir a los alumnos, el proceso es casi igual al de añadir los profesores, tenemos que ir a <code>Panel de Control > Alumnos</code>, al igual que antes, ha aparecido un <code>+</code> para añadir a los alumnos.
+                    </p>
+                    
+                    <h3 id="alumnos-2">Características</h3>
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%;float: left;">
+                                <span>Un alumno puede </span>
+                                <ul>
+                                    <li>Enviar mensajes en el chat</li>
+                                    <li>Subir/Editar archivos</li>
+                                    <li>Enviar/Recibir correos</li>
+                                </ul>
+                            </td>
+                            <td style="width: 45%;float: right;">
+                                <span>Un alumno no puede </span>
+                                <ul>
+                                    <li>Reinstalar la aplicación</li>
+                                    <li>Cambiar la contraseña a los alumnos</li>
+                                    <li>Cambiar la contraseña a los profesores</li>
+                                    <li>Crear/Editar eventos</li>
+                                    <li>Crear/Editar alumnos</li>
+                                    <li>Eliminar mensajes en el chat</li>
+                                    <li>Bloquear/Desbloquear alumnos</li>
+                                    <li>Crear/Editar profesores</li>
+                                    <li>Bloquear/Desbloquear profesores</li>
+                                    <li>Bloquear/Desbloquear la aplicación</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
                 </section>
                 <section>
-                    
+
                     <h2 id="agenda">Agenda</h2>
-                    <p>Nulla nec leo sit amet enim vestibulum imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer ac purus ac nisl scelerisque feugiat. Sed ultricies rhoncus congue. Vivamus sagittis, ligula vitae ornare pretium, lectus tellus mattis leo, non ultricies urna odio eu justo. Suspendisse euismod varius ante sed vehicula. Phasellus dignissim hendrerit auctor. Nulla et vulputate ipsum. Aenean ultricies sed libero ac finibus. Donec ornare vestibulum orci, non porta dui pharetra quis. Maecenas luctus risus velit. Ut in aliquam urna. Ut luctus lorem in massa egestas, a mollis diam auctor. Maecenas mollis dui eu ipsum dictum fringilla. Nunc nisl magna, vestibulum vel purus eu, feugiat luctus elit.</p>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-
-                    <h3 id="agenda-1">Subtitle 2</h3>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-                    <p>Integer egestas ante id justo mollis feugiat ac vel metus. Nunc pulvinar scelerisque faucibus. Aenean at libero hendrerit, feugiat felis suscipit, facilisis justo. Praesent laoreet rutrum velit vitae facilisis. Fusce ac consectetur leo. Praesent dapibus interdum arcu, et hendrerit mi imperdiet eget. Morbi volutpat, leo id interdum aliquet, massa justo vestibulum nisl, eget posuere velit diam ac nibh. Duis tellus enim, porttitor id lectus vitae, tristique congue odio. Duis elementum porttitor nibh et porta. Suspendisse potenti.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="agenda-2">Subtitle 3</h3>
-                    <p>Fusce porttitor diam mauris, in fringilla elit euismod non. Aliquam non justo suscipit, pellentesque felis quis, egestas ante. Nunc quis imperdiet mauris, vitae cursus ante. Aenean vel efficitur ante, ullamcorper tempus massa. Integer ornare urna vitae quam semper fermentum. Mauris in dolor tempus, ultricies quam ac, lacinia nisl. Donec vitae ante sem.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="agenda-3">Subtitle 4</h3>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-                    <p>Donec lacinia ultrices venenatis. Duis id aliquam velit, a vehicula quam. Proin iaculis bibendum ex, hendrerit fringilla augue finibus ut. Aliquam sodales turpis vel ex cursus scelerisque. In feugiat justo quis viverra suscipit. Vivamus hendrerit aliquam purus, sit amet ultrices felis. Ut ac nisl pulvinar, tempor odio vel, feugiat ex. Phasellus consequat, leo eget lacinia sagittis, eros tellus pretium tortor, id congue purus augue eu orci. Fusce non eros iaculis, aliquet nulla quis, facilisis mi. Vivamus dictum justo non diam ultricies, sit amet eleifend erat efficitur. Ut porta diam ut dolor tincidunt, interdum placerat odio commodo. Suspendisse egestas sapien erat, et tincidunt magna fermentum sit amet. Donec vitae mi efficitur, tempus nisi ut, lacinia libero. Maecenas auctor odio mi, ac facilisis nisi vehicula efficitur. Ut hendrerit nulla ut nisl porttitor maximus. Pellentesque feugiat bibendum est, ut aliquam velit consequat eu.</p>
+                    <p>
+                        La agenda es una de las funciones básicas de la aplicación, aquí podremos crear para posteriormente consultar los eventos, la finalidad de la agenda es informar a los usuarios de los eventos, tales como exámenes, fechas de entrega de trabajos, fiestas, etc. Cada profesor puede publicar sus propios eventos.
+                    </p>
+                    
+                    <h3 id="agenda-1">Primeros Pasos</h3>
+                    <p>
+                        Para crear eventos, tenemos que ir a <code>Panel de Control > Eventos</code>, al lado de la opción que hemos seleccionado ha aparecido un <code>+</code> para añadir los eventos que queramos.
+                    </p>
+                    
+                    <h3 id="agenda-2">Características</h3>
+                    <p>
+                        La agenda es común para todos los usuarios, es por eso, que solo los profesores pueden añadir los eventos, los eventos ya pasados desaparecen automáticamente de la agenda, aunque siguen existiendo en la base de datos, y los profesores pueden verlo en la tabla de <code>Eventos</code>.
+                    </p>
                 </section>
                 <section>
-                    
+
                     <h2 id="chat">Chat</h2>
-                    <p>Nulla nec leo sit amet enim vestibulum imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer ac purus ac nisl scelerisque feugiat. Sed ultricies rhoncus congue. Vivamus sagittis, ligula vitae ornare pretium, lectus tellus mattis leo, non ultricies urna odio eu justo. Suspendisse euismod varius ante sed vehicula. Phasellus dignissim hendrerit auctor. Nulla et vulputate ipsum. Aenean ultricies sed libero ac finibus. Donec ornare vestibulum orci, non porta dui pharetra quis. Maecenas luctus risus velit. Ut in aliquam urna. Ut luctus lorem in massa egestas, a mollis diam auctor. Maecenas mollis dui eu ipsum dictum fringilla. Nunc nisl magna, vestibulum vel purus eu, feugiat luctus elit.</p>
-                    <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
-
-                    <h3 id="chat-1">Subtitle 2</h3>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-                    <p>Integer egestas ante id justo mollis feugiat ac vel metus. Nunc pulvinar scelerisque faucibus. Aenean at libero hendrerit, feugiat felis suscipit, facilisis justo. Praesent laoreet rutrum velit vitae facilisis. Fusce ac consectetur leo. Praesent dapibus interdum arcu, et hendrerit mi imperdiet eget. Morbi volutpat, leo id interdum aliquet, massa justo vestibulum nisl, eget posuere velit diam ac nibh. Duis tellus enim, porttitor id lectus vitae, tristique congue odio. Duis elementum porttitor nibh et porta. Suspendisse potenti.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="chat-2">Subtitle 3</h3>
-                    <p>Fusce porttitor diam mauris, in fringilla elit euismod non. Aliquam non justo suscipit, pellentesque felis quis, egestas ante. Nunc quis imperdiet mauris, vitae cursus ante. Aenean vel efficitur ante, ullamcorper tempus massa. Integer ornare urna vitae quam semper fermentum. Mauris in dolor tempus, ultricies quam ac, lacinia nisl. Donec vitae ante sem.</p>
-                    <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
-
-                    <h3 id="chat-3">Características del Chat</h3>
+                    <p>
+                        El chat es una de las funcionalidades más exigente y más utilizada, aquí tanto alumnos como profesores pueden enviar mensajes.
+                    </p>
+                    
+                    <h3 id="chat-1">Primeros Pasos</h3>
+                    <p>
+                        El chat está ubicado en el <code>Inicio</code> de la aplicación, el chat tiene unas funciones que permite muchas más opciones a la hora de enviar un mensaje, además también tiene emojis.
+                    </p>
+                    
+                    <h3 id="chat-2">Características</h3>
                     <p>El chat dispone de estilos visuales a parte de funcionalidades a la hora de interpretar el contenido insertado.</p>
                     <br>
-                    <h4>Estilos Visuales</h4>
+                    <h4 id="chat-2-1">Estilos Visuales</h4>
                     <p>Disponemos de colores, además de estilos como negrita, cursiva, subrayado y tachado.</p>
                     <br>
                     <h5>Colores</h5>
                     <br>
                     <h6 style="color:red">Rojo</h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 /r/{texto}
 
 </code></pre>
                     <br>
                     <h6 style="color:blue">Azul</h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 /b/{texto}
 
 </code></pre>
                     <br>
                     <h6 style="color:green">Verde</h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 /g/{texto}
 
 </code></pre>
                     <br>
                     <h6 style="color:fuchsia">Fucsia</h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 /f/{texto}
 
 </code></pre>
                     <br>
                     <h6 style="color:darkviolet">Violeta</h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 /v/{texto}
 
 </code></pre>
 
                     <br>
-                    <h5>Estilos</h5>
+                    <h5 id="chat-2-2">Estilos</h5>
                     <br>
                     <h6>Negrita</h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 *{texto}*
 
 </code></pre>
                     <br>
                     <h6 style="font-weight: 500;"><i>Cursiva</i></h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 -{texto}-
 
 </code></pre>
                     <br>
                     <h6 style="font-weight: 500;"><u>Subrayado</u></h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 _{texto}_
 
 </code></pre>
                     <br>
                     <h6 style="font-weight: 500;"><del>Tachado</del></h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 ~{texto}~
 
 </code></pre>
-
-</code></pre>
                     <br>
-                    <h4>Tratamiento del Mensaje</h4>
+                    <h4 id="chat-2-3">Tratamiento del Mensaje</h4>
                     <p>Dependiendo del contenido del mensaje, este de adaptará al resultado más óptimo</p>
                     <br>
-                    <h6>Imágenes</h6>
+                    <h6 id="chat-2-4">Imágenes</h6>
                     <p>Podemos enviar una imagen con extensión .jpg, .png o .gif a través del chat, para realizarlo debemos introducir la ruta completa de la imágen, ya sea de internet o de nuestra carpeta personal.</p>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg
 
 </code></pre>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png
 
 </code></pre>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 https://upload.wikimedia.org/wikipedia/commons/8/8f/Example.gif
 
 </code></pre>
                     <br>
                     <h6>Enlaces</h6>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 https://www.google.com
 
 </code></pre>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 http://www.google.com
 
 </code></pre>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 //www.google.com
 
 </code></pre>
                     <p>Este último aparte de mostrar un enlace, nos muestra el favicon.ico siempre y cuando exista en el servidor de ese enlace.</p>
 
                     <br>
-                    <h6>Vídeos</h6>
+                    <h6 id="chat-2-5">Vídeos</h6>
                     <p>Se puede también insertar vídeos de youtube introduciendo únicamente el enlace de éste.</p>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 www.youtube.com/watch?v=M7lc1UVf-VE
 
 </code></pre>
-<pre class="line-numbers"><code class="language-chat">
+                    <pre class="line-numbers"><code class="language-chat">
 youtu.be/M7lc1UVf-VE
 
 </code></pre>
                 </section>
                 <section>
-                    
+
                     <h2 id="archivos">Archivos</h2>
                     <p>Nulla nec leo sit amet enim vestibulum imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer ac purus ac nisl scelerisque feugiat. Sed ultricies rhoncus congue. Vivamus sagittis, ligula vitae ornare pretium, lectus tellus mattis leo, non ultricies urna odio eu justo. Suspendisse euismod varius ante sed vehicula. Phasellus dignissim hendrerit auctor. Nulla et vulputate ipsum. Aenean ultricies sed libero ac finibus. Donec ornare vestibulum orci, non porta dui pharetra quis. Maecenas luctus risus velit. Ut in aliquam urna. Ut luctus lorem in massa egestas, a mollis diam auctor. Maecenas mollis dui eu ipsum dictum fringilla. Nunc nisl magna, vestibulum vel purus eu, feugiat luctus elit.</p>
                     <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
@@ -355,7 +389,7 @@ youtu.be/M7lc1UVf-VE
                     <h3 id="archivos-3">Subtitle 4</h3>
                     <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
                     <p>Donec lacinia ultrices venenatis. Duis id aliquam velit, a vehicula quam. Proin iaculis bibendum ex, hendrerit fringilla augue finibus ut. Aliquam sodales turpis vel ex cursus scelerisque. In feugiat justo quis viverra suscipit. Vivamus hendrerit aliquam purus, sit amet ultrices felis. Ut ac nisl pulvinar, tempor odio vel, feugiat ex. Phasellus consequat, leo eget lacinia sagittis, eros tellus pretium tortor, id congue purus augue eu orci. Fusce non eros iaculis, aliquet nulla quis, facilisis mi. Vivamus dictum justo non diam ultricies, sit amet eleifend erat efficitur. Ut porta diam ut dolor tincidunt, interdum placerat odio commodo. Suspendisse egestas sapien erat, et tincidunt magna fermentum sit amet. Donec vitae mi efficitur, tempus nisi ut, lacinia libero. Maecenas auctor odio mi, ac facilisis nisi vehicula efficitur. Ut hendrerit nulla ut nisl porttitor maximus. Pellentesque feugiat bibendum est, ut aliquam velit consequat eu.</p>
-                
+
                     <h3 id="archivos-4">Subtitle 4</h3>
                     <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
                     <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
@@ -364,8 +398,8 @@ youtu.be/M7lc1UVf-VE
                     <p>Donec lacinia ultrices venenatis. Duis id aliquam velit, a vehicula quam. Proin iaculis bibendum ex, hendrerit fringilla augue finibus ut. Aliquam sodales turpis vel ex cursus scelerisque. In feugiat justo quis viverra suscipit. Vivamus hendrerit aliquam purus, sit amet ultrices felis. Ut ac nisl pulvinar, tempor odio vel, feugiat ex. Phasellus consequat, leo eget lacinia sagittis, eros tellus pretium tortor, id congue purus augue eu orci. Fusce non eros iaculis, aliquet nulla quis, facilisis mi. Vivamus dictum justo non diam ultricies, sit amet eleifend erat efficitur. Ut porta diam ut dolor tincidunt, interdum placerat odio commodo. Suspendisse egestas sapien erat, et tincidunt magna fermentum sit amet. Donec vitae mi efficitur, tempus nisi ut, lacinia libero. Maecenas auctor odio mi, ac facilisis nisi vehicula efficitur. Ut hendrerit nulla ut nisl porttitor maximus. Pellentesque feugiat bibendum est, ut aliquam velit consequat eu.</p>
                 </section>
                 <section>
-                    
-                    <h2 id="reiniciar">Reiniciar</h2>
+
+                    <h2 id="reinstalar">Reinstalar</h2>
                     <p>Nulla nec leo sit amet enim vestibulum imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer ac purus ac nisl scelerisque feugiat. Sed ultricies rhoncus congue. Vivamus sagittis, ligula vitae ornare pretium, lectus tellus mattis leo, non ultricies urna odio eu justo. Suspendisse euismod varius ante sed vehicula. Phasellus dignissim hendrerit auctor. Nulla et vulputate ipsum. Aenean ultricies sed libero ac finibus. Donec ornare vestibulum orci, non porta dui pharetra quis. Maecenas luctus risus velit. Ut in aliquam urna. Ut luctus lorem in massa egestas, a mollis diam auctor. Maecenas mollis dui eu ipsum dictum fringilla. Nunc nisl magna, vestibulum vel purus eu, feugiat luctus elit.</p>
                     <p>Phasellus dictum magna eget enim suscipit ornare. Sed in mollis nibh. Quisque odio tortor, molestie eget ullamcorper a, aliquam faucibus nisi. Sed mi risus, semper tincidunt ultrices ac, aliquet vel elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at mi bibendum, congue risus ac, eleifend ex. Sed malesuada eros eget purus varius molestie. Pellentesque aliquet sapien nec turpis tincidunt vehicula. Vestibulum nisi nulla, vulputate ac nibh quis, feugiat rhoncus nunc. Nullam et magna tempus lacus tincidunt laoreet non in ex. Donec auctor accumsan iaculis. Duis cursus eleifend efficitur. Cras placerat nisi magna, at varius sem bibendum sed.</p>
                 </section>
@@ -374,7 +408,7 @@ youtu.be/M7lc1UVf-VE
             </article>
             <!-- END Main content -->
         </main>
-        
+
         <!-- Scripts -->
         <script src="./assets/js/theDocs.all.min.js"></script>
         <script src="./assets/js/custom.js"></script>
