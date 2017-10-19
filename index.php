@@ -18,25 +18,15 @@
 
         if (isset($_SESSION['id']) && $_SESSION['id'] != '') {
             include_once './v/header.php';
-            
-            if (isset($_GET['r'])) {
-                
-                switch ($_GET['r']) {
-                    case 'admin':
-                        include_once './v/admin.php';
-                        break;
-                    default :
-                        include_once './v/index.php';
-                        break;
-                }
-                
-            }else{
-                include_once './v/index.php';
-            }
+            include_once './v/index.php';
 
         } else {
             include_once './v/login.php';
         }
     }
 
+    if(isset($_SESSION['error'])){
+        echo '<script>setTimeout(function(){ alert("' . $_SESSION['error'] . '"); }, 1000);</script>';
+        unset($_SESSION['error']);
+    }
     include_once './v/footer.php';

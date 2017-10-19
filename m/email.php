@@ -34,7 +34,7 @@ class email extends ddbb{
         return $this->seleccionar("SELECT M.id AS id, M.subject AS subject, 
         M.text AS text, UNIX_TIMESTAMP(M.date) AS date, 
         U2.name as name_from, U2.surname as surname_from, 
-        U2.name as name_to, U2.surname as surname_to, 
+        U1.name as name_to, U1.surname as surname_to, 
         M.important as important 
         
         FROM mails AS M 
@@ -48,7 +48,8 @@ class email extends ddbb{
     }
     
     public function enviarEmail($id, $toid, $important, $subject, $text){
-        return $this->insertar("INSERT INTO mails (id_from, id_to, important, subject, text) VALUES ('$id', '$toid', '$important', '$subject', '$text')", TRUE);
+        $now = date('Y-m-d H:i:s');
+        return $this->insertar("INSERT INTO mails (id_from, id_to, important, subject, text, date) VALUES ('$id', '$toid', '$important', '$subject', '$text', '$now')", TRUE);
     }
     
     public function obtenerPosiblesDestinatarios(){

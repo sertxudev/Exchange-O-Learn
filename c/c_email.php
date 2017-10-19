@@ -22,15 +22,15 @@ class c_email {
             
             if((strlen(trim($elemento['subject'])) == 0)){
                 if(!$elemento['isread']){
-                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><b><i>(Sin Asunto)</i></b></a>';
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].', 0)"><b><i>(Sin Asunto)</i></b></a>';
                 }else{
-                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><i>(Sin Asunto)</i></a>';
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].', 0)"><i>(Sin Asunto)</i></a>';
                 }
             }else{
                 if(!$elemento['isread']){
-                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')"><b>'.$elemento['subject'].'</b></a>';
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].', 0)"><b>'.$elemento['subject'].'</b></a>';
                 }else{
-                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')">'.$elemento['subject'].'</a>';
+                    $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].', 0)">'.$elemento['subject'].'</a>';
                 }
             }
             
@@ -60,7 +60,12 @@ class c_email {
                 $elemento['important'] = '<i class="fa fa-star-o text-yellow"></i>';
             }
             
-            $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].')">'.$elemento['subject'].'</a>';
+            if((strlen(trim($elemento['subject'])) == 0)){
+                $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].', 1)"><i>(Sin Asunto)</i></a>';
+            }else{
+                $elemento['subject'] = '<a onClick="viewMail('.$elemento['id'].', 1)">'.$elemento['subject'].'</a>';
+
+            }
             
             $elemento['date'] = date('d/m/Y', $elemento['date']) . '&nbsp;' . date('h:i', $elemento['date']) . '&nbsp;' . date('a', $elemento['date']);
 
@@ -81,12 +86,17 @@ class c_email {
         return $return['unread'];
     }
     
-    public function obtenerEmail($post_email_id, $post_id){
+    public function obtenerEmail($post_email_id, $post_flag, $post_id){
         $id = $this->sanitizeString($post_id);
         $email_id = $this->sanitizeString($post_email_id);
+        $flag = $this->sanitizeString($post_flag);
 
         $email = new email();
-        $email->marcarLeidoEmail($email_id);
+        
+        if($flag == 0){
+            $email->marcarLeidoEmail($email_id);
+        }
+
         $pdo = $email->obtenerEmail($email_id, $id);
         $array = array($pdo->fetch(PDO::FETCH_ASSOC));
 

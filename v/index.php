@@ -623,7 +623,7 @@
                             </div>                            
                         </div>
 
-                        <span>Formatos admitidos: <b>jpg, png, gif, pdf, rar, zip, doc, docx</b></span>
+                        <span>Formatos admitidos: <b>jpg, png, gif, pdf, rar, zip, doc, docx, xlsx, xls, ods, odt, mp3, mp4</b></span>
                         <br>
                         <span>Tamaño POST máximo (post_max_size): <b><?php echo ini_get('post_max_size'); ?></b></span>
                         <br>

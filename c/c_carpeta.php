@@ -35,9 +35,9 @@ class c_carpeta {
               <a class="btn btn-primary" href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '">Descargar</a>
             */
             
-            $extensiones = array('jpg', 'png', 'gif', 'pdf', 'mp3', 'mp4');
+            $extensiones = array('png', 'jpg', 'gif', 'pdf', 'mp3', 'mp4');
             
-            if(array_search($elemento['type'], $extensiones)){
+            if(array_search($elemento['type'], $extensiones) !== false){
                 $acciones = '<div class="btn-group" role="group">
                             <a href="' . $elemento['url'] . '" target="_BLANK" class="btn btn-success">Visualizar</a>
                             <a href="' . $elemento['url'] . '" download="' . $elemento['name'] . '.' . $elemento['type'] . '" class="btn btn-primary">Descargar</a>

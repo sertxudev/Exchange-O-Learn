@@ -310,21 +310,19 @@ function recargarMails() {
                 }
                 $('#unreadMails_label').text(msg);
                 $('#personalMail').DataTable().ajax.reload(null, false);
+                $('#personalMailEnviados').DataTable().ajax.reload(null, false);
             });
 }
 
-function recargarMailsEnviados() {
-    $('#personalMail').DataTable().ajax.reload(null, false);
-}
-
-function viewMail(id) {
+function viewMail(id, flag) {
     $.ajax({
         method: "POST",
         url: "post.php",
 
         data: {
             r: 'obtenerEmail',
-            id: id
+            id: id,
+            flag: flag
         }
     })
             .done(function (msg) {
@@ -363,7 +361,6 @@ function enviarCrearMail() {
                         CKEDITOR.instances['newMail_text'].setData('');
                         $('#crearMail').modal('hide');
                         recargarMails();
-                        recargarMailsEnviados();
                     }
                 });
     } else {

@@ -14,17 +14,17 @@ if (!empty($_POST)) {
             $db_password    = $_POST['db_password'];
             
             $user_username  = $_POST['usr_username'];
-            $user_password  = $_POST['usr_username'];
+            $user_password  = $_POST['usr_password'];
             $user_pass_hash = hash('sha512', $user_password);
-            $user_name      = $_POST['usr_username'];
-            $user_surname   = $_POST['usr_username'];
+            $user_name      = $_POST['usr_name'];
+            $user_surname   = $_POST['usr_surname'];
 
             // TODO
 
             // Crear las tablas
             $conexion->query("CREATE TABLE `events` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`title` varchar(30) COLLATE utf8_unicode_ci NOT NULL,`description` tinytext COLLATE utf8_unicode_ci NOT NULL,`time` date NOT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
             $conexion->query("CREATE TABLE `files` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`name` tinytext COLLATE utf8_unicode_ci NOT NULL,`owner` int(11) UNSIGNED NOT NULL,`url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,`type` varchar(8) COLLATE utf8_unicode_ci NOT NULL,`time` date NOT NULL,`access` int(11) NOT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-            $conexion->query("CREATE TABLE `mails` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,`id_to` int(11) UNSIGNED NOT NULL,`id_from` int(11) UNSIGNED NOT NULL,`subject` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,`text` text COLLATE utf8mb4_unicode_ci NOT NULL,`date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,`isread` tinyint(1) NOT NULL DEFAULT '0',`important` tinyint(1) NOT NULL DEFAULT '0',PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
+            $conexion->query("CREATE TABLE `mails` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,`id_to` int(11) UNSIGNED NOT NULL,`id_from` int(11) UNSIGNED NOT NULL,`subject` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,`text` text COLLATE utf8mb4_unicode_ci NOT NULL,`date` datetime NOT NULL,`isread` tinyint(1) NOT NULL DEFAULT '0',`important` tinyint(1) NOT NULL DEFAULT '0',PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
             $conexion->query("CREATE TABLE `messages` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`text` text COLLATE utf8mb4_unicode_ci NOT NULL,`author` int(11) UNSIGNED NOT NULL,`time` datetime NOT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
             $conexion->query("CREATE TABLE `users` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,`password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,`name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,`surname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,`color` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#333',`background` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#32fea8',`type` int(1) UNSIGNED NOT NULL,`status` int(1) NOT NULL DEFAULT '0',PRIMARY KEY (`id`),UNIQUE KEY `username` (`username`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
             
@@ -33,7 +33,7 @@ if (!empty($_POST)) {
             
             $str = <<<EOF
 <?php
-
+    date_default_timezone_set('Europe/Madrid');
     setlocale(LC_TIME, 'es_ES.UTF-8');
 
 /* Logger */
@@ -132,7 +132,6 @@ EOF;
                         <div class="col-sm-8">
                             <select id="type" class="form-control">
                                 <option value="mysql">MySQL</option>
-                                <option value="posgresql">PosgreSQL</option>
                             </select>                            
                         </div>
                     </div>

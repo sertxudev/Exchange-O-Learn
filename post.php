@@ -89,7 +89,7 @@ switch ($_POST['r']) {
     
     case 'obtenerEmail':
         $email = new c_email();
-        echo $email->obtenerEmail($_POST['id'], $_SESSION['id']);
+        echo $email->obtenerEmail($_POST['id'], $_POST['flag'], $_SESSION['id']);
         break;
     
     case 'enviarCrearMail':
@@ -222,12 +222,15 @@ switch ($_GET['r']) {
 
                 $folder = new c_carpeta();
                 $folder->subirArchivo($_POST['file_name'], $file_url, $ext, $_SESSION['id'], $_POST['file_access']);
+                $_SESSION['error'] = 'Archivo subido correctamente';
                 header("Location: ./");
             } else {
-                echo 'Se ha producido un error al subir el archivo';
+                $_SESSION['error'] = 'Se ha producido un error al subir el archivo';
+                header('location: ./');
             }
         } else {
-            echo 'Archivo no válido';
+            $_SESSION['error'] = 'Archivo no válido';
+            header('location: ./');
         }
 
 
