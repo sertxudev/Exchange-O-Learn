@@ -364,6 +364,7 @@ a:focus {
 @media (max-width: 1023px) {
     .main-header {
         position: relative;
+        display: none;
     }
     .main-header .logo,
     .main-header .navbar {

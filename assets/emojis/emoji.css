@@ -9,281 +9,206 @@
 }
 
 .em_angel_face {
-    background-image: url("emojis/angel_face.png")
+    background-image: url("images/angel_face.png")
 }
 
 .em_anguished_face {
-    background-image: url("emojis/anguished_face.png")
+    background-image: url("images/anguished_face.png")
 }
 
-.em_anxious_with_sweat_face {
-    background-image: url("emojis/anxious_with_sweat_face.png")
+.em_anxious_face_with_sweat {
+    background-image: url("images/anxious_face_with_sweat.png")
 }
 
 .em_beaming_face {
-    background-image: url("emojis/beaming_face.png")
+    background-image: url("images/beaming_face.png")
 }
 
+
 .em_blowing_kiss_face {
-    background-image: url("emojis/blowing_kiss_face.png")
+    background-image: url("images/blowing_kiss_face.png")
 }
 
 .em_blush_heart_eyes_face {
-    background-image: url("emojis/blush_heart_eyes_face.png")
+    background-image: url("images/blush_heart_eyes_face.png")
 }
 
 .em_confused_face {
-    background-image: url("emojis/confused_face.png")
+    background-image: url("images/confused_face.png")
 }
 
 .em_crossed_fingers_face {
-    background-image: url("emojis/crossed_fingers_face.png")
+    background-image: url("images/crossed_fingers_face.png")
 }
 
 .em_disappointed_face {
-    background-image: url("emojis/disappointed_face.png")
+    background-image: url("images/disappointed_face.png")
+}
+
+.em_face_savoring_food {
+    background-image: url("images/face_savoring_food.png")
 }
 
 .em_fearful_face {
-    background-image: url("emojis/fearful_face.png")
+    background-image: url("images/fearful_face.png")
 }
 
 .em_finger_glasses_face {
-    background-image: url("emojis/finger_glasses_face.png")
+    background-image: url("images/finger_glasses_face.png")
+}
+
+.em_frowning_face {
+    background-image: url("images/frowning_face.png")
 }
 
 .em_frowning_open_mouth_face {
-    background-image: url("emojis/frowning_open_mouth_face.png")
+    background-image: url("images/frowning_open_mouth_face.png")
 }
 
 .em_grimacing_face {
-    background-image: url("emojis/grimacing_face.png")
+    background-image: url("images/grimacing_face.png")
 }
 
-.em_grinning_face_1 {
-    background-image: url("emojis/grinning_face_1.png")
+.em_grinning_face {
+    background-image: url("images/grinning_face.png")
 }
 
-.em_grinning_face_2 {
-    background-image: url("emojis/grinning_face_2.png")
+.em_grinning_face_with_big_eyes {
+    background-image: url("images/grinning_face_with_big_eyes.png")
 }
 
-.em_grinning_face_3 {
-    background-image: url("emojis/grinning_face_3.png")
+.em_grinning_face_with_big_mouth {
+    background-image: url("images/grinning_face_with_big_mouth.png")
 }
 
-.em_grinning_face_4 {
-    background-image: url("emojis/grinning_face_4.png")
+.em_grinning_face_with_smiling_eyes {
+    background-image: url("images/grinning_face_with_smiling_eyes.png")
 }
 
-.em_grinning_with_sweat_face {
-    background-image: url("emojis/grinning_with_sweat_face.png")
+.em_grinning_face_with_sweat {
+    background-image: url("images/grinning_face_with_sweat.png")
 }
 
-.em_heart_eyes_face {
-    background-image: url("emojis/heart_eyes_face.png")
+.em_grinning_squinting_face {
+    background-image: url("images/grinning_squinting_face.png")
 }
 
 .em_hide_face {
-    background-image: url("emojis/hide_face.png")
+    background-image: url("images/hide_face.png")
 }
 
 .em_hushed_face {
-    background-image: url("emojis/hushed_face.png")
+    background-image: url("images/hushed_face.png")
 }
 
 .em_joke_face {
-    background-image: url("emojis/joke_face.png")
+    background-image: url("images/joke_face.png")
 }
 
 .em_joy_face {
-    background-image: url("emojis/joy_face.png")
+    background-image: url("images/joy_face.png")
 }
 
-.em_kissing_face {
-    background-image: url("emojis/kissing_face.png")
+.em_kissing_face_with_smiling_eyes {
+    background-image: url("images/kissing_face_with_smiling_eyes.png")
 }
 
-.em_laughing_face {
-    background-image: url("emojis/laughing_face.png")
+.em_mid_slightly_smiling_face {
+    background-image: url("images/mid_slightly_smiling_face.png")
 }
 
 .em_middle_finger_face {
-    background-image: url("emojis/middle_finger_face.png")
-}
-
-.em_murder_face {
-    background-image: url("emojis/murder_face.png")
+    background-image: url("images/middle_finger_face.png")
 }
 
 .em_neutral_face {
-    background-image: url("emojis/neutral_face.png")
+    background-image: url("images/neutral_face.png")
 }
 
 .em_no_finger_face {
-    background-image: url("emojis/no_finger_face.png")
+    background-image: url("images/no_finger_face.png")
 }
 
 .em_no_listen_face {
-    background-image: url("emojis/no_listen_face.png")
+    background-image: url("images/no_listen_face.png")
 }
 
 .em_no_mouth_face {
-    background-image: url("emojis/no_mouth_face.png")
+    background-image: url("images/no_mouth_face.png")
 }
 
 .em_no_see_face {
-    background-image: url("emojis/no_see_face.png")
+    background-image: url("images/no_see_face.png")
 }
 
 .em_no_understand_face {
-    background-image: url("emojis/no_understand_face.png")
+    background-image: url("images/no_understand_face.png")
 }
 
 .em_ok_hand_face {
-    background-image: url("emojis/ok_hand_face.png")
-}
-
-.em_open_mouth_face {
-    background-image: url("emojis/open_mouth_face.png")
-}
-
-.em_savoring_food_face {
-    background-image: url("emojis/savoring_food_face.png")
+    background-image: url("images/ok_hand_face.png")
 }
 
 .em_screaming_in_fear_face {
-    background-image: url("emojis/screaming_in_fear_face.png")
+    background-image: url("images/screaming_in_fear_face.png")
 }
 
 .em_slightly_frowning_face {
-    background-image: url("emojis/slightly_frowning_face.png")
+    background-image: url("images/slightly_frowning_face.png")
 }
 
 .em_slightly_smiling_face {
-    background-image: url("emojis/slightly_smiling_face.png")
-}
-
-.em_slightly_smiling_face_2 {
-    background-image: url("emojis/slightly_smiling_face_2.png")
+    background-image: url("images/slightly_smiling_face.png")
 }
 
 .em_slightly_smiling_victory_face {
-    background-image: url("emojis/slightly_smiling_victory_face.png")
-}
-
-.em_smile_floating_hearts_face {
-    background-image: url("emojis/smile_floating_hearts_face.png")
+    background-image: url("images/slightly_smiling_victory_face.png")
 }
 
 .em_smiling_face {
-    background-image: url("emojis/smiling_face.png")
+    background-image: url("images/smiling_face.png")
 }
 
-.em_smiling_face_2 {
-    background-image: url("emojis/smiling_face_2.png")
+.em_smiling_face_with_sunglasses {
+    background-image: url("images/smiling_face_with_sunglasses.png")
 }
 
 .em_studying_face {
-    background-image: url("emojis/studying_face.png")
+    background-image: url("images/studying_face.png")
 }
 
 .em_surprise_open_mouth_face {
-    background-image: url("emojis/surprise_open_mouth_face.png")
+    background-image: url("images/surprise_open_mouth_face.png")
 }
 
-.em_threat_face {
-    background-image: url("emojis/threat_face.png")
+.em_thinking_flushed_face {
+    background-image: url("images/thinking_flushed_face.png")
 }
 
 .em_thumbs_down_face {
-    background-image: url("emojis/thumbs_down_face.png")
+    background-image: url("images/thumbs_down_face.png")
 }
 
 .em_thumbs_up_face {
-    background-image: url("emojis/thumbs_up_face.png")
+    background-image: url("images/thumbs_up_face.png")
 }
 
 .em_victory_hand_face {
-    background-image: url("emojis/victory_hand_face.png")
+    background-image: url("images/victory_hand_face.png")
+}
+
+.em_winking_face {
+    background-image: url("images/winking_face.png")
 }
 
 .em_worried_face {
-    background-image: url("emojis/worried_face.png")
+    background-image: url("images/worried_face.png")
 }
 
-.em_white_check_mark {
-    background-image: url("emojis/white_check_mark.png")
-}
-
-.em_x {
-    background-image: url("emojis/x.png")
-}
-
-.em_warning {
-    background-image: url("emojis/warning.png")
-}
-
-.em_raised_hands {
-    background-image: url("emojis/raised_hands.png")
-}
-
-.em_monster_energy {
-    background-image: url("emojis/monster_energy.png")
+.em_zipper_mouth_face {
+    background-image: url("images/zipper_mouth_face.png")
 }
 
 .em_poo {
-    background-image: url("emojis/poo.png")
-}
-
-.ba_1 {
-    background-image: url("banners/1.png")
-}
-
-.ba_2 {
-    background-image: url("banners/2.png")
-}
-
-.ba_3 {
-    background-image: url("banners/3.png")
-}
-
-.ba_4 {
-    background-image: url("banners/4.png")
-}
-
-.ba_5 {
-    background-image: url("banners/5.jpg")
-}
-
-.ba_6 {
-    background-image: url("banners/6.jpg")
-}
-
-.ba_7 {
-    background-image: url("banners/7.jpg")
-}
-
-.ba_8 {
-    background-image: url("banners/8.jpg")
-}
-
-.ba_9 {
-    background-image: url("banners/9.jpg")
-}
-
-.ba_10 {
-    background-image: url("banners/10.jpg")
-}
-
-.ba_11 {
-    background-image: url("banners/11.jpg")
-}
-
-.ba_12 {
-    background-image: url("banners/12.png")
-}
-
-.ba_13 {
-    background-image: url("banners/13.png")
+    background-image: url("images/poo.png")
 }

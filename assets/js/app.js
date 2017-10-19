@@ -969,6 +969,7 @@ $(document).ready(function () {
     $('#mensajesTable').DataTable({
         "ajax": "./post.php?r=obtenerMensajes",
         "columns": [
+            {"data": "id"},
             {"data": "time"},
             {"data": "name"},
             {"data": "surname"},
@@ -977,7 +978,10 @@ $(document).ready(function () {
         ],
         "order": [[0, "desc"]],
         "columnDefs": [{
-                "targets": 4,
+                "targets": 1,
+                "orderable": false
+            },{
+                "targets": 5,
                 "orderable": false
             }],
         "language": {

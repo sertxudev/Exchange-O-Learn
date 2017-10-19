@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 module" ng-controller="eventsController as module" ng-class="{ 'hidden-sm hidden-xs':mobile.isSet(2) || mobile.isSet(3) }">
+                        <div class="col-md-4 module" ng-controller="eventsController as module" ng-class="{ 'hidden-sm hidden-xs':mobile.isSet(2) || mobile.isSet(3) }" style="overflow-y: auto;">
                             <div class="row evento" ng-repeat="event in module.events" ng-click="mostrarEvento(event.id)">
                                 <div class="col-lg-3 col-md-3 date">
                                     <h2 class="day"> {{event.time| date:'dd'}} </h2><span>{{event.time| date:'MMMM'}} {{event.time| date:'yyyy'}}</span></div>
@@ -149,7 +149,7 @@
                                                 <div class="input-group input-group-md">
                                                     <input type="text" class="form-control" id="submit_text" class="form-control input-md chat-input col-md-10" placeholder="Enviar un mensaje">
                                                     <span class="input-group-btn" style="height: calc(70px - 30px);">
-                                                        <button type="button" class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;"><i class="em em_grinning_face_2"></i></button>
+                                                        <button type="button" class="btn btn-default" ng-click="openEmojiModal()" style="height: 100%;"><i class="em em_grinning_face"></i></button>
                                                     </span>
                                                 </div>                                                
                                             </div>
@@ -158,7 +158,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 module" ng-controller="filesController as module" ng-class="{ 'hidden-sm hidden-xs':mobile.isSet(1) || mobile.isSet(2) }">
+                        <div class="col-md-4 module" ng-controller="filesController as module" ng-class="{ 'hidden-sm hidden-xs':mobile.isSet(1) || mobile.isSet(2) }" style="overflow-y: auto;">
                             <div class="row archivos">
 
                                 <div class="col-lg-2 col-md-3 col-sm-2 col-xs-3 archivo" ng-repeat="carpetas in module.carpetas" ng-click="mostrarCarpeta(carpetas.id)">
@@ -473,6 +473,7 @@
                                 <table class="table table-bordered bordered table-striped datatable" id="mensajesTable" style="width: 100%;">
                                     <thead>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Fecha de envío</th>
                                             <th>Nombre</th>
                                             <th>Apellidos</th>

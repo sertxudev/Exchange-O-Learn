@@ -83,7 +83,7 @@ class c_dashboard {
                 $elemento['text'] = '<code>' .  htmlspecialchars($elemento['text']) . '</code>';
             }
 
-            $time = date('H:m d/m/Y', $elemento['time']);
+            $time = date('d/m/Y H:m', $elemento['time']);
 
             $acciones = '<div class="btn-group" role="group" aria-label="...">
                             <button type="button" onClick="borrarMensaje(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
