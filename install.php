@@ -80,7 +80,7 @@ if(file_exists(_RUTA_LOG_."bloqueado")){
     });
 
 EOF;
-
+            mkdir('./config/');
             file_put_contents('./config/config.php', $str);
             echo 1;
         }else{

@@ -30,17 +30,30 @@ class email extends ddbb{
         return $this->seleccionar("SELECT count(id) AS unread FROM mails WHERE id_to=$id AND isread=0", TRUE);
     }
     
-    public function obtenerEmail($email_id, $id){
-        return $this->seleccionar("SELECT M.id AS id, M.subject AS subject, 
-        M.text AS text, UNIX_TIMESTAMP(M.date) AS date, 
-        U2.name as name_from, U2.surname as surname_from, 
-        U1.name as name_to, U1.surname as surname_to, 
-        M.important as important 
-        
-        FROM mails AS M 
-        JOIN users as U1 ON M.id_to=U1.id 
-        JOIN users as U2 ON M.id_from=U2.id
-        WHERE M.id_to=$id AND M.id=$email_id", TRUE);
+    public function obtenerEmail($email_id, $flag, $id){
+        if($flag){
+            return $this->seleccionar("SELECT M.id AS id, M.subject AS subject, 
+            M.text AS text, UNIX_TIMESTAMP(M.date) AS date, 
+            U2.name as name_from, U2.surname as surname_from, 
+            U1.name as name_to, U1.surname as surname_to, 
+            M.important as important 
+            
+            FROM mails AS M 
+            JOIN users as U1 ON M.id_to=U1.id 
+            JOIN users as U2 ON M.id_from=U2.id
+            WHERE M.id_from=$id AND M.id=$email_id", TRUE);
+        }else{
+            return $this->seleccionar("SELECT M.id AS id, M.subject AS subject, 
+            M.text AS text, UNIX_TIMESTAMP(M.date) AS date, 
+            U2.name as name_from, U2.surname as surname_from, 
+            U1.name as name_to, U1.surname as surname_to, 
+            M.important as important 
+            
+            FROM mails AS M 
+            JOIN users as U1 ON M.id_to=U1.id 
+            JOIN users as U2 ON M.id_from=U2.id
+            WHERE M.id_to=$id AND M.id=$email_id", TRUE);
+        }
     }
     
     public function marcarLeidoEmail($email_id){

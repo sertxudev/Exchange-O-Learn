@@ -97,7 +97,7 @@ class c_email {
             $email->marcarLeidoEmail($email_id);
         }
 
-        $pdo = $email->obtenerEmail($email_id, $id);
+        $pdo = $email->obtenerEmail($email_id, $flag, $id);
         $array = array($pdo->fetch(PDO::FETCH_ASSOC));
 
         array_walk($array, function (&$elemento, $clave){

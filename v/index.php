@@ -216,7 +216,7 @@
                                                 <a ng-click="carpeta.setTab(1)" onclick="recargarMails()"><i class="fa fa-inbox" style="margin-right: 5px;"></i> Bandeja de Entrada <span class="label label-primary pull-right" id="unreadMails_label"></span></a>
                                             </li>
                                             <li ng-class="{ active:carpeta.isSet(2) }">
-                                                <a ng-click="carpeta.setTab(2)" onclick="recargarMailsEnviados()"><i class="fa fa-envelope-o" style="margin-right: 5px;"></i> Enviados</a>
+                                                <a ng-click="carpeta.setTab(2)" onclick="recargarMails()"><i class="fa fa-envelope-o" style="margin-right: 5px;"></i> Enviados</a>
                                             </li>
                                         </ul>
                                     </div>
