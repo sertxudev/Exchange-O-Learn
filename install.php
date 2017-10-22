@@ -5,7 +5,10 @@ if (!empty($_POST)) {
         $conexion = new PDO($_POST['type'] . ":dbname=" . $_POST['database'] . ";host=" . $_POST['address'], $_POST['db_username'], $_POST['db_password']);
         $conexion->query("SET NAMES 'utf8'");
 
-        if (isset($_POST['usr_username']) && !empty($_POST['usr_username']) && isset($_POST['usr_password']) && !empty($_POST['usr_password'])) {
+        if (isset($_POST['usr_username']) && !empty($_POST['usr_username']) 
+        && isset($_POST['usr_password']) && !empty($_POST['usr_password'])
+        && isset($_POST['usr_name']) && !empty($_POST['usr_name']) 
+        && isset($_POST['usr_surname']) && !empty($_POST['usr_surname'])) {
 
             $type           = $_POST['type'];
             $database       = $_POST['database'];
@@ -19,16 +22,12 @@ if (!empty($_POST)) {
             $user_name      = $_POST['usr_name'];
             $user_surname   = $_POST['usr_surname'];
 
-            // TODO
-
-            // Crear las tablas
             $conexion->query("CREATE TABLE `events` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`title` varchar(30) COLLATE utf8_unicode_ci NOT NULL,`description` tinytext COLLATE utf8_unicode_ci NOT NULL,`time` date NOT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
             $conexion->query("CREATE TABLE `files` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`name` tinytext COLLATE utf8_unicode_ci NOT NULL,`owner` int(11) UNSIGNED NOT NULL,`url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,`type` varchar(8) COLLATE utf8_unicode_ci NOT NULL,`time` date NOT NULL,`access` int(11) NOT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
             $conexion->query("CREATE TABLE `mails` (`id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,`id_to` int(11) UNSIGNED NOT NULL,`id_from` int(11) UNSIGNED NOT NULL,`subject` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,`text` text COLLATE utf8mb4_unicode_ci NOT NULL,`date` datetime NOT NULL,`isread` tinyint(1) NOT NULL DEFAULT '0',`important` tinyint(1) NOT NULL DEFAULT '0',PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
             $conexion->query("CREATE TABLE `messages` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`text` text COLLATE utf8mb4_unicode_ci NOT NULL,`author` int(11) UNSIGNED NOT NULL,`time` datetime NOT NULL,PRIMARY KEY (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
             $conexion->query("CREATE TABLE `users` (`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,`username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,`password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,`name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,`surname` varchar(150) COLLATE utf8_unicode_ci NOT NULL,`color` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#333',`background` varchar(22) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#32fea8',`type` int(1) UNSIGNED NOT NULL,`status` int(1) NOT NULL DEFAULT '0',PRIMARY KEY (`id`),UNIQUE KEY `username` (`username`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;");
-            
-            // Insertar usuario
+
             $conexion->query("INSERT INTO `users` (`username`, `password`, `name`, `surname`, `type`) VALUES('$user_username', '$user_pass_hash', '$user_name', '$user_surname', 2)");
             
             $str = <<<EOF
@@ -80,7 +79,9 @@ if(file_exists(_RUTA_LOG_."bloqueado")){
     });
 
 EOF;
-            mkdir('./config/');
+            if(!file_exists('./config')){
+                mkdir('./config');
+            }
             file_put_contents('./config/config.php', $str);
             echo 1;
         }else{
@@ -108,7 +109,7 @@ EOF;
         <div class="container">
             <div class="jumbotron" style="margin-top: 35px">
                 <h1 style="font-size:3.5em">Instalador de Exchange O' Learn</h1>
-                <p>Para poder instalar esta aplicación es necesario tener conexión a internet</p>
+                <p>Para poder instalar esta aplicación es no necesario tener conexión a internet</p>
             </div>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 form-horizontal">

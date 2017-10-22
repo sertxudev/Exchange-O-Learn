@@ -226,11 +226,11 @@ switch ($_GET['r']) {
                 header("Location: ./");
             } else {
                 $_SESSION['error'] = 'Se ha producido un error al subir el archivo';
-                header('location: ./');
+                header('Location: ./');
             }
         } else {
-            $_SESSION['error'] = 'Archivo no válido';
-            header('location: ./');
+            $_SESSION['error'] = 'El archivo no se ha podido subir';
+            header('Location: ./');
         }
 
 
