@@ -107,6 +107,17 @@ switch ($_POST['r']) {
         echo $email->crearEvento($_POST['nombre'], $_POST['descripcion'], $_POST['fecha']);
         break;
     
+    case 'editarEvento':
+        $email = new c_evento();
+        echo $email->editarEvento($_POST['id'], $_POST['nombre'], $_POST['descripcion'], $_POST['fecha']);
+        break;
+    
+    case 'obtenerEvento':
+        $email = new c_evento();
+        $response = $email->obtenerEditarEvento($_POST['id']);
+        echo $response;
+        break;
+    
     case 'borrarEvento':
         $email = new c_evento();
         echo $email->borrarEvento($_POST['id']);

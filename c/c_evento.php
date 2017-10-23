@@ -22,6 +22,16 @@ class c_evento {
         return json_encode($array);
     }
     
+    public function obtenerEditarEvento($post_id) {
+        $evento = new evento();
+        
+        $id = $this->sanitizeString($post_id);
+        
+        $pdo = $evento->obtenerEvento($id);
+        $array = $pdo->fetch(PDO::FETCH_ASSOC);
+        return json_encode($array);
+    }
+    
     public function crearEvento($post_nombre, $post_descripcion, $post_fecha) {
         $evento = new evento();
         
@@ -30,6 +40,17 @@ class c_evento {
         $fecha = $this->sanitizeString($post_fecha);
         
         return $evento->crearEvento($nombre, $descripcion, $fecha);
+    }
+    
+    public function editarEvento($post_id, $post_nombre, $post_descripcion, $post_fecha) {
+        $evento = new evento();
+        
+        $id = $this->sanitizeString($post_id);
+        $nombre = $this->sanitizeString($post_nombre);
+        $descripcion = $this->sanitizeString($post_descripcion);
+        $fecha = $this->sanitizeString($post_fecha);
+        
+        return $evento->editarEvento($id, $nombre, $descripcion, $fecha);
     }
     
     public function borrarEvento($post_id) {

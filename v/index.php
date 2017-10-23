@@ -23,7 +23,7 @@
                     <li></li>
 
                     <li ng-class="{ active:tab.isSet(3) }" onclick="recargarMails()">
-                        <a ng-click="tab.setTab(3)"><i class="fa fa-envelope"></i> <span>Correo Electrónico <span class="pull-right badge" id="unreadMails_badge"></span></span></a>
+                        <a ng-click="tab.setTab(3)"><i class="fa fa-envelope"></i> <span>Correo Electrónico <span class="pull-right badge" id="unreadMails_badge" style="position: absolute;right: 10px;"></span></span></a>
                     </li>
 
                     <li></li>
@@ -803,6 +803,37 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="crearEvento()">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarEvento" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Editar Evento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <input type="hidden" class="form-control" id="evento_editar_id">
+                        <div class="form-group">
+                            <label for="profesor_username">Nombre:</label>
+                            <input type="text" class="form-control" id="evento_editar_nombre" placeholder="Usuario">
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor_pass">Descripción:</label>
+                            <textarea class="form-control" style="resize: vertical;" id="evento_editar_descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="profesor_name">Fecha:</label>
+                            <input type="text" class="form-control" id="evento_editar_fecha" placeholder="Fecha" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="sendEditarEvento()">Editar</button>
                 </div>
             </div>
         </div>

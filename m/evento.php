@@ -15,6 +15,10 @@ class evento extends ddbb {
         return $this->insertar("INSERT INTO events (title, description, time) VALUES ('$nombre', '$descripcion', '$fecha')", TRUE);
     }
     
+    public function editarEvento($id, $nombre, $descripcion, $fecha){
+        return $this->insertar("UPDATE events SET title='$nombre', description='$descripcion', time='$fecha' WHERE id=$id", TRUE);
+    }
+    
     public function borrarEvento($id){
         return $this->insertar("DELETE FROM events WHERE id='$id'", TRUE);
     }

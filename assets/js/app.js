@@ -391,6 +391,53 @@ function crearEvento() {
             });
 }
 
+function editarEvento(id) {
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'obtenerEvento',
+            id: id
+        }
+    })
+            .done(function (response) {
+                if(response){
+                    var data = JSON.parse(response);
+                    $('#evento_editar_id').val(data.id);
+                    $('#evento_editar_nombre').val(data.title);
+                    $('#evento_editar_descripcion').val(data.description);
+                    $('#evento_editar_fecha').val(data.time);
+                   $('#modalEditarEvento').modal();
+               }
+            });
+}
+
+function sendEditarEvento() {
+    $.ajax({
+        method: "POST",
+        url: "post.php",
+
+        data: {
+            r: 'editarEvento',
+            id: $('#evento_editar_id').val(),
+            nombre: $('#evento_editar_nombre').val(),
+            descripcion: $('#evento_editar_descripcion').val(),
+            fecha: $('#evento_editar_fecha').val()
+        }
+    })
+            .done(function (response) {
+                if(response == 1){
+                    $('#evento_editar_id').val('');
+                    $('#evento_editar_nombre').val('');
+                    $('#evento_editar_descripcion').val('');
+                    $('#evento_editar_fecha').val('');
+                    recargarEventos();
+                    $('#modalEditarEvento').modal('hide');
+               }
+            });
+}
+
 function borrarEvento(id) {
     var r = confirm("¿Seguro que desea borrar el evento? Esta acción no se puede deshacer");
     if (r == true) {
@@ -783,6 +830,20 @@ $(document).ready(function () {
         firstDay: 1
     });
 
+    $("#evento_editar_fecha").datepicker({
+        dateFormat: 'yy-mm-dd',
+        yearRange: "-100:+0",
+        changeMonth: true,
+        changeYear: true,
+
+        prevText: 'Ant.',
+        nextText: 'Sig.',
+        currentText: 'Hoy',
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        firstDay: 1
+    });
+    
     $('#personalMail').DataTable({
         "ajax": "./post.php?r=obtenerEmailsRecibidos",
         "columns": [

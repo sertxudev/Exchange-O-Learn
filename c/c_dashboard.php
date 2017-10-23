@@ -105,8 +105,13 @@ class c_dashboard {
         
         array_walk($array, function (&$elemento, $clave){
 
-            $acciones = '<div class="btn-group" role="group" aria-label="...">
-                            <button type="button" onClick="borrarEvento(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
+            $acciones = '<div class="btn-group" role="group">
+                            <div class="btn-group" role="group">
+                                <button type="button" onClick="editarEvento(' . $elemento['id'] . ')" class="btn btn-primary">Editar</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" onClick="borrarEvento(' . $elemento['id'] . ')" class="btn btn-danger">Eliminar</button>
+                            </div>
                         </div>';
             
             $elemento['acciones'] = $acciones;
