@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     if (!file_exists('./config/config.php')) {
@@ -11,7 +10,7 @@
             if(isset($_SESSION['type']) && ($_SESSION['type'] == 0)){
             	include_once './v/header.php';
                 include_once './v/bloqueada.php';
-			    include_once './v/footer.php';
+		include_once './v/footer.php';
                 exit;
             }
         }
